@@ -1,0 +1,67 @@
+nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2A3647;
+    height: 100vh;
+    width: 15%;
+    
+    a{
+        color: white;
+        text-decoration: none;
+    }
+
+    .logo{
+        width: 100px;
+        margin-top: 50px;
+    }
+
+    .anchor-tags-main-div{
+        margin-top: 100px;
+        width: 100%;
+
+        div{
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            padding: 20px 0px;
+            cursor: pointer;
+            
+            &:hover{
+                background-color: #091931;
+            }
+
+            img{
+                margin: 0px 10px;
+                margin-left: 50px;
+            }
+        }
+    }
+
+    .legal-notice-div{
+        margin-top: 400px;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 20px 0px;
+        cursor: pointer;
+            
+        &:hover{
+            background-color: #091931;
+        }
+
+        img{
+            margin: 0px 10px;
+            margin-left: 50px;
+        }
+    }
+}
+
+.button-disabled{
+    background-color: none !important;
+}
+
+.button-active{
+    background-color: #091931 !important;
+    cursor: not-allowed !important;
+}

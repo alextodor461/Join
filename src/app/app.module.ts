@@ -11,6 +11,11 @@ import { SummaryComponent } from './summary/summary.component';
 import { BoardComponent } from './board/board.component';
 import { AddTasksComponent } from './add-tasks/add-tasks.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HelpComponent } from './help/help.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
+import { AddContactComponent } from './add-contact/add-contact.component';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import { ContactsComponent } from './contacts/contacts.component';
     SummaryComponent,
     BoardComponent,
     AddTasksComponent,
-    ContactsComponent
+    ContactsComponent,
+    NavbarComponent,
+    HelpComponent,
+    LegalNoticeComponent,
+    AddContactComponent,
+    EditContactComponent
   ],
   imports: [
     BrowserModule,

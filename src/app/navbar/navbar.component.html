@@ -1,0 +1,30 @@
+<nav>
+    <img class="logo" src="assets/logo-dunkel.svg" alt="">
+
+    <div class="anchor-tags-main-div">
+        <div [ngClass]="summaryBtn ? 'button-active': 'button-disabled'" (click)="showSummary()" routerLink="/Summary">
+            <img src="assets/summary-logo.svg" alt="">
+            <a routerLink="/Summary">Summary</a>
+        </div>
+        
+        <div [ngClass]="boardBtn ? 'button-active': 'button-disabled'" (click)="showBoard()" routerLink="/Board">
+            <img src="assets/board-logo.svg" alt="">
+            <a routerLink="/Board">Board</a>
+        </div>
+        
+        <div [ngClass]="addTaskBtn ? 'button-active': 'button-disabled'" (click)="showAddTask()" routerLink="/AddTasks">
+            <img src="assets/add-task-logo.svg" alt="">
+            <a routerLink="/AddTasks">Add Task</a>
+        </div>
+        
+        <div [ngClass]="contactBtn ? 'button-active': 'button-disabled'" (click)="showContact()" routerLink="/Contacts">
+            <img src="assets/contacts-logo.svg" alt="">
+            <a routerLink="/Contacts">Contacts</a>
+        </div>
+    </div>
+
+    <div class="legal-notice-div" routerLink="/LegalNotice">
+        <img src="assets/legal-notice-logo.svg" alt="">
+        <a routerLink="LegalNotice">Legal Notice</a>
+    </div>
+</nav>
