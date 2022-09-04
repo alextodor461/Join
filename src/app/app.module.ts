@@ -32,7 +32,7 @@ import { EditContactComponent } from './edit-contact/edit-contact.component';
     HelpComponent,
     LegalNoticeComponent,
     AddContactComponent,
-    EditContactComponent
+    EditContactComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,8 @@ import { AddTasksComponent } from './add-tasks/add-tasks.component';
 import { BoardComponent } from './board/board.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { HelpComponent } from './help/help.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: 'Summary', component: SummaryComponent },
   { path: 'Board', component: BoardComponent},
   { path: 'AddTasks', component: AddTasksComponent},
-  { path: 'Contacts', component: ContactsComponent }
+  { path: 'Contacts', component: ContactsComponent },
+  { path: 'Help', component: HelpComponent },
+  { path: 'LegalNotice', component: LegalNoticeComponent }
 ];
 
 @NgModule({
