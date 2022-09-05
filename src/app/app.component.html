@@ -1,1 +1,42 @@
-<router-outlet></router-outlet>
+<div class="main-container">
+
+    <nav>
+
+        <img class="logo" src="assets/logo-dunkel.svg" alt="">
+
+        <div class="anchor-tags-main-div">
+            <div routerLink="/Summary" routerLinkActive="active">
+                <img src="assets/summary-logo.svg" alt="">
+                <a routerLink="/Summary">Summary</a>
+            </div>
+
+            <div routerLink="/Board" routerLinkActive="active">
+                <img src="assets/board-logo.svg" alt="">
+                <a routerLink="/Board">Board</a>
+            </div>
+
+            <div routerLink="/AddTasks" routerLinkActive="active">
+                <img src="assets/add-task-logo.svg" alt="">
+                <a routerLink="/AddTasks">Add Task</a>
+            </div>
+
+            <div routerLink="/Contacts" routerLinkActive="active">
+                <img src="assets/contacts-logo.svg" alt="">
+                <a routerLink="/Contacts">Contacts</a>
+            </div>
+        </div>
+
+        <div class="legal-notice-div" routerLink="/LegalNotice" routerLinkActive="active">
+            <img src="assets/legal-notice-logo.svg" alt="">
+            <a routerLink="LegalNotice">Legal Notice</a>
+        </div>
+
+    </nav>
+
+    <div class="router-outlet-container">
+
+        <router-outlet></router-outlet>
+
+    </div>
+
+</div>

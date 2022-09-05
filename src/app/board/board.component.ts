@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskService } from 'src/services/task.service';
+import { Task } from 'src/models/task';
 
 @Component({
   selector: 'app-board',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
 
-  constructor() { }
+  tasks: Task[] = [];
+
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
+
+    this.taskService.getAllTaks().subscribe((data) => {
+
+      console.log(data);
+
+    })
+
   }
 
 }
