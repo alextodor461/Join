@@ -1,27 +1,41 @@
 <main>
+
     <nav>
-        <img src="assets/logo-hell.svg" alt="">
+
+        <img src="assets/logo-hell.svg">
+
         <div>
-            <p>Not a Join user ?</p>
-            <button>Sign Up</button>
+            <p>Not a Join user?</p>
+            <button class="signup-btn" routerLink="/signup">Sign Up</button>
         </div>
+
     </nav>    
 
     <div class="form-div">
-        <form action="">
-            <h1>Login</h1>
-            <hr>
-            <div class="input-fields-div">
-                <input type="text" placeholder="Email">
-                <input type="text" placeholder="Password">
-            </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="submit()">
+
+            <h1>Log in</h1>
+        
+            <mat-form-field>
+                <input matInput placeholder="Username" formControlName="username">
+                <mat-error *ngIf="username?.errors?.['required']">Username is required</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field>
+                <input matInput placeholder="Password" formControlName="password" type="password">
+                <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
+            </mat-form-field>
+
             <div class="buttons-div">
-                <button class="login-btn" type="submit">Log in</button>
-                <button class="guest-login-btn" type="submit">Guest Log in</button>
+                <button class="login-btn" type="submit" [disabled]="!loginForm.valid" [class.disabled-btn]="!loginForm.valid">
+                    Log in
+                </button>
+                <button class="guest-login-btn" routerLink="/summary">Guest Log in</button>
             </div>
             
         </form>
+
     </div>
+
 </main>
-
-

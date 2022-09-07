@@ -46,7 +46,7 @@ export class UserService {
 
   public deleteUser(id: number): Observable<User[]> {
 
-    const userToDeleteEndpoint = `user-update/${id}`;
+    const userToDeleteEndpoint = `user-delete/${id}`;
     
     return this.http.delete<User[]>(`${this.baseUrl}/${userToDeleteEndpoint}`);
 
