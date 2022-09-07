@@ -12,17 +12,17 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SummaryComponent } from './summary/summary.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'Login', pathMatch: 'full' },
-  { path: 'Login', component: LoginComponent },
-  { path: 'SignUp', component: SignUpComponent },
-  { path: 'ForgotPassword', component:  ForgotPasswordComponent},
-  { path: 'ResetPassword', component: ResetPasswordComponent },
-  { path: 'Summary', component: SummaryComponent },
-  { path: 'Board', component: BoardComponent},
-  { path: 'AddTasks', component: AddTasksComponent},
-  { path: 'Contacts', component: ContactsComponent },
-  { path: 'Help', component: HelpComponent },
-  { path: 'LegalNotice', component: LegalNoticeComponent }
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignUpComponent },
+  { path: 'forgot-password', component:  ForgotPasswordComponent},
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'summary', component: SummaryComponent },
+  { path: 'board', component: BoardComponent},
+  { path: 'add-task', component: AddTasksComponent},
+  { path: 'contacts', component: ContactsComponent },
+  { path: 'help', component: HelpComponent },
+  { path: 'legal-notice', component: LegalNoticeComponent }
 ];
 
 @NgModule({

@@ -1,29 +1,31 @@
 <div class="main-container">
 
-    <nav>
+    <nav *ngIf="checkNotLoginOrSignup()">
 
         <img class="logo" src="assets/logo-dunkel.svg" alt="">
 
         <div class="anchor-tags-main-div">
-            <div routerLink="/Summary" routerLinkActive="active">
+
+            <div routerLink="/summary" routerLinkActive="active">
                 <img src="assets/summary-logo.svg" alt="">
-                <a routerLink="/Summary">Summary</a>
+                <span>Summary</span>
             </div>
 
-            <div routerLink="/Board" routerLinkActive="active">
+            <div routerLink="/board" routerLinkActive="active">
                 <img src="assets/board-logo.svg" alt="">
-                <a routerLink="/Board">Board</a>
+                <span>Board</span>
             </div>
 
-            <div routerLink="/AddTasks" routerLinkActive="active">
+            <div routerLink="/add-task" routerLinkActive="active">
                 <img src="assets/add-task-logo.svg" alt="">
-                <a routerLink="/AddTasks">Add Task</a>
+                <span>Add Task</span>
             </div>
 
-            <div routerLink="/Contacts" routerLinkActive="active">
+            <div routerLink="/contacts" routerLinkActive="active">
                 <img src="assets/contacts-logo.svg" alt="">
-                <a routerLink="/Contacts">Contacts</a>
+                <span>Contacts</span>
             </div>
+
         </div>
 
         <div class="legal-notice-div" routerLink="/LegalNotice" routerLinkActive="active">

@@ -16,6 +16,10 @@ nav{
         text-decoration: none;
     }
 
+    span {
+        color: white;
+    }
+
     .logo{
         width: 100px;
         
@@ -63,6 +67,5 @@ nav{
 }
 
 .active{
-    background-color: #091931 !important;
-    cursor: not-allowed !important;
+    background-color: #091931;
 }
