@@ -1,1 +1,2 @@
-
+<h1 *ngIf="authService.currentUser">Welcolme to Join, {{ authService.currentUser.username }}</h1>
+<h1 *ngIf="!authService.currentUser">Welcolme to Join!</h1>
