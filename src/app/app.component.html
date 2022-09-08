@@ -6,7 +6,7 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <button mat-icon-button (click)="logout()" matTooltip="Click to log out" [matTooltipPosition]="'before'">
+        <button mat-icon-button (click)="logout(); drawer.close()" matTooltip="Click to log out" [matTooltipPosition]="'before'">
             <mat-icon>logout</mat-icon>
         </button>
 

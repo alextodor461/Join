@@ -18,37 +18,9 @@ export class BoardComponent implements OnInit {
 
     this.taskService.getAllTaks().subscribe((data) => {
 
-      console.log(data);
+      this.tasks = data;
 
     })
-
-    this.userService.getAllUsers().subscribe((data) => {
-
-      console.log(data);
-
-    })
-
-  }
-
-  getSpecificUser() {
-
-    this.userService.getUserById(1).subscribe((data) => {
-
-      console.log(data);
-
-    })
-
-  }
-
-  createUser() {
-
-  }
-
-  updateUser() {
-
-  }
-
-  deleteUser() {
 
   }
 
