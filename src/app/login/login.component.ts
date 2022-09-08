@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
       if (userFromTheDb) {
 
         this.authService.currentUser = userFromTheDb;
+        this.authService.saveCurrentUser();
         this.successfulLogin();
 
       } else {
