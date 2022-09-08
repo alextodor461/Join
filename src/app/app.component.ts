@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { filter, map, Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/services/authentication.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
 
   title = 'Join';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: AuthenticationService, private toast: HotToastService) { }
 
   ngOnInit(): void { }
 
@@ -28,6 +29,13 @@ export class AppComponent implements OnInit {
       return true;
       
     }
+
+  }
+
+  logout() {
+
+    this.auth.deleteCurrentUser();
+    this.toast.success('Logged out succesfully! See you again soon :)');
 
   }
 
