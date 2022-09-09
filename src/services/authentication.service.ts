@@ -13,14 +13,14 @@ export class AuthenticationService {
 
   saveCurrentUser() {
 
-    let currentUserAsText = JSON.stringify(this.currentUser);
+    const currentUserAsText = JSON.stringify(this.currentUser);
     localStorage.setItem('currentUserAsText', currentUserAsText);
 
   }
 
   getCurrentUser() {
 
-    let currentUserAsText = localStorage.getItem('currentUserAsText');
+    const currentUserAsText = localStorage.getItem('currentUserAsText');
 
     if (currentUserAsText) {
 

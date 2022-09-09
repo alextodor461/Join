@@ -9,13 +9,15 @@ import { AuthenticationService } from 'src/services/authentication.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthenticationService, private router: Router, private toast: HotToastService) { }
+  constructor(private router: Router, private toast: HotToastService) { }
 
   public canActivate(): Observable<boolean> {
 
     return new Observable((subscriber) => {
 
-      if (this.authService.currentUser) {
+      const isAlreadyLoggedIn = localStorage.getItem('currentUserAsText');
+
+      if (isAlreadyLoggedIn) {
 
         subscriber.next(true);
 
