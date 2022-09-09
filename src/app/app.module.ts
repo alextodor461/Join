@@ -26,6 +26,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
+import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthenticationService } from 'src/services/authentication.service';
+import { TaskService } from 'src/services/task.service';
+import { UserService } from 'src/services/user.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +63,7 @@ import { MatCardModule } from '@angular/material/card';
     MatTooltipModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [AuthGuard, AuthenticationService, UserService, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

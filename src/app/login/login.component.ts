@@ -74,4 +74,16 @@ export class LoginComponent implements OnInit {
 
   }
 
+  loginAsGuest() {
+
+    const guest = new User();
+
+    guest.username = "guest";
+    guest.password = "guest";
+
+    this.authService.currentUser = guest;
+    this.successfulLogin();
+
+  }
+
 }

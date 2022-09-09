@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/guards/auth.guard';
 import { AddTasksComponent } from './add-tasks/add-tasks.component';
 import { BoardComponent } from './board/board.component';
 import { ContactsComponent } from './contacts/contacts.component';
@@ -17,12 +18,12 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'forgot-password', component:  ForgotPasswordComponent},
   { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'summary', component: SummaryComponent },
-  { path: 'board', component: BoardComponent},
-  { path: 'add-task', component: AddTasksComponent},
-  { path: 'contacts', component: ContactsComponent },
-  { path: 'help', component: HelpComponent },
-  { path: 'legal-notice', component: LegalNoticeComponent }
+  { path: 'summary', component: SummaryComponent, canActivate: [AuthGuard] },
+  { path: 'board', component: BoardComponent, canActivate: [AuthGuard]},
+  { path: 'add-task', component: AddTasksComponent, canActivate: [AuthGuard]},
+  { path: 'contacts', component: ContactsComponent, canActivate: [AuthGuard] },
+  { path: 'help', component: HelpComponent, canActivate: [AuthGuard] },
+  { path: 'legal-notice', component: LegalNoticeComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
