@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from 'src/services/authentication.service';
 
 @Injectable({
   providedIn: 'root'

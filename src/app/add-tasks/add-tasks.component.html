@@ -1,54 +1,95 @@
-
 <main>
-    <mat-stepper #stepper>
-        <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
-          <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Title</ng-template>
-            <mat-form-field appearance="fill">
-              <mat-label>Name</mat-label>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-            </mat-form-field>
-            <div>
-              <p>Go to a different step to see the error state</p>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
-          <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Description</ng-template>
-            <mat-form-field appearance="fill">
-              <mat-label>Address</mat-label>
-              <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl"
-                     required>
-            </mat-form-field>
-            <div>
-              <p>Go to a different step to see the error state</p>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
-            <form [formGroup]="firstFormGroup">
-              <ng-template matStepLabel>Category</ng-template>
-              <mat-form-field appearance="fill">
-                <mat-label>Name</mat-label>
-                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-              </mat-form-field>
-              <div>
-                <p>Go to a different step to see the error state</p>
-                <button mat-button matStepperNext>Next</button>
-              </div>
-            </form>
-          </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
-        </mat-step>
-      </mat-stepper>
+
+  <mat-stepper #stepper>
+
+    <mat-step [stepControl]="titleFormGroup" errorMessage="Title is required.">
+      <form [formGroup]="titleFormGroup">
+        <ng-template matStepLabel>Title</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput placeholder="Task title" formControlName="title" required>
+        </mat-form-field>
+        <div>
+          <p>Go to a different step to see the error state</p>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="descriptionFormGroup" errorMessage="Description is required.">
+      <form [formGroup]="descriptionFormGroup">
+        <ng-template matStepLabel>Description</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Task description" formControlName="description" required>
+        </mat-form-field>
+        <div>
+          <p>Go to a different step to see the error state</p>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="priorityFormGroup" errorMessage="Priority is required.">
+      <form [formGroup]="priorityFormGroup">
+        <ng-template matStepLabel>Priority</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Priority</mat-label>
+          <mat-select formControlName="priority" name="food">
+            <mat-option [value]="1">Low</mat-option>
+            <mat-option [value]="2">Medium</mat-option>
+            <mat-option [value]="3">High</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <p>Go to a different step to see the error state</p>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="completionDateFormGroup" errorMessage="Completion date is required.">
+      <form [formGroup]="completionDateFormGroup">
+        <ng-template matStepLabel>Completion date</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="completionDate">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div>
+          <p>Go to a different step to see the error state</p>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="assigneeFormGroup" errorMessage="Assignee is required.">
+      <form [formGroup]="assigneeFormGroup">
+        <ng-template matStepLabel>Assignee</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Assignee</mat-label>
+          <input matInput placeholder="Task assignee" formControlName="assignee" required>
+        </mat-form-field>
+        <div>
+          <p>Go to a different step to see the error state</p>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="createTask()">Create task</button>
+      </div>
+    </mat-step>
+
+  </mat-stepper>
+
 </main>
