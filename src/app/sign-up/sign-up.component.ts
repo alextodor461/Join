@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
+import { Subject, takeUntil } from 'rxjs';
 import { User } from 'src/models/user';
 import { UserService } from 'src/services/user.service';
 
@@ -10,13 +11,15 @@ import { UserService } from 'src/services/user.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
 
   signupForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required])
   });
+
+  destroy = new Subject();
 
   constructor(
     private router: Router,
@@ -68,7 +71,7 @@ export class SignUpComponent implements OnInit {
     newUser.username = this.username?.value;
     newUser.password = this.password?.value;
 
-    this.userService.createUser(newUser).subscribe((data: User[] | string) => {
+    this.userService.createUser(newUser).pipe(takeUntil(this.destroy)).subscribe((data: User[] | string) => {
 
       if (data === `There is already one user with the username '${newUser.username}'.`) {
         
@@ -95,6 +98,12 @@ export class SignUpComponent implements OnInit {
 
     this.toast.error(`There is already one user with the username '${this.username?.value}'.`);
 
+  }
+
+  ngOnDestroy(): void {
+
+    this.destroy.next(true);
+    
   }
 
 }

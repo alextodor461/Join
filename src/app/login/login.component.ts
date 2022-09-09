@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
+import { Subject, takeUntil } from 'rxjs';
 import { User } from 'src/models/user';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { UserService } from 'src/services/user.service';
@@ -11,12 +12,14 @@ import { UserService } from 'src/services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
+
+  destroy = new Subject();
 
   constructor(
     private router: Router,
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit {
 
   submit() {
 
-    this.userService.getAllUsers().subscribe((data: User[]) => {
+    this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
       const userFromTheDb = data.find((user: User) => user.username === this.username?.value && user.password === this.password?.value);
 
@@ -83,6 +86,12 @@ export class LoginComponent implements OnInit {
 
     this.authService.currentUser = guest;
     this.successfulLogin();
+
+  }
+
+  ngOnDestroy(): void {
+    
+    this.destroy.next(true);
 
   }
 
