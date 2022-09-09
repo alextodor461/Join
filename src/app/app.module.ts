@@ -26,6 +26,7 @@ import { AuthGuard } from 'src/guards/auth.guard';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { TaskService } from 'src/services/task.service';
 import { UserService } from 'src/services/user.service';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { UserService } from 'src/services/user.service';
     MatSidenavModule,
     MatButtonModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    MatStepperModule
   ],
   providers: [AuthGuard, AuthenticationService, UserService, TaskService],
   bootstrap: [AppComponent]
