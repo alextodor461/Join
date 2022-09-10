@@ -79,13 +79,28 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   loginAsGuest() {
 
-    const guest = new User();
+    const guest: User = new User();
 
     guest.username = "guest";
     guest.password = "guest";
 
-    this.authService.currentUser = guest;
-    this.successfulLogin();
+    this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
+
+      const guestFromDb = data.find((user: User) => user.username === guest.username && user.password === guest.password);
+
+      if (guestFromDb) {
+
+        this.authService.currentUser = guestFromDb;
+        this.authService.saveCurrentUser();
+        this.successfulLogin();
+
+      } else {
+
+        this.toast.error('Log in as guest is not possible yet.');
+
+      }
+
+    });
 
   }
 
