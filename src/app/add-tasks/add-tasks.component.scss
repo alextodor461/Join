@@ -1,6 +1,7 @@
 mat-stepper {
     padding: 30px;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
 
@@ -10,4 +11,9 @@ mat-stepper {
 
 ::ng-deep .mat-horizontal-stepper-header-container {
     margin-bottom: 30px;
+}
+
+mat-progress-bar {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }

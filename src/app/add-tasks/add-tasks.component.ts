@@ -39,6 +39,36 @@ export class AddTasksComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.checkProgressBarValue();
+
+  }
+
+  checkProgressBarValue() {
+
+    const arrOfForms = new Array();
+
+    arrOfForms.push(this.titleFormGroup.get("title")?.value);
+    arrOfForms.push(this.descriptionFormGroup.get("description")?.value);
+    arrOfForms.push(this.priorityFormGroup.get("priority")?.value);
+    arrOfForms.push(this.completionDateFormGroup.get("completionDate")?.value);
+    arrOfForms.push(this.assigneeFormGroup.get("assignee")?.value);
+
+    let value = 0;
+
+    for (let i = 0; i < arrOfForms.length; i++) {
+      const element = arrOfForms[i];
+
+      if (element !== "") {
+
+        value += 20;
+        
+      }
+
+    }
+
+    return value;
+
   }
 
   createTask() {
