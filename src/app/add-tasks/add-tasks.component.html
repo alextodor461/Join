@@ -9,7 +9,8 @@
         <ng-template matStepLabel>Title</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Title</mat-label>
-          <input matInput placeholder="Task title" formControlName="title" required>
+          <input matInput placeholder="Task title" #title formControlName="title" maxlength="30" required>
+          <mat-hint align="end">{{ title.value.length }} / 30</mat-hint>
         </mat-form-field>
         <div>
           <p>Go to a different step to see the error state</p>
@@ -23,7 +24,8 @@
         <ng-template matStepLabel>Description</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Description</mat-label>
-          <input matInput placeholder="Task description" formControlName="description" required>
+          <input matInput placeholder="Task description" #description formControlName="description" maxlength="60" required>
+          <mat-hint align="end">{{ description.value.length }} / 60</mat-hint>
         </mat-form-field>
         <div>
           <p>Go to a different step to see the error state</p>
@@ -38,7 +40,7 @@
         <ng-template matStepLabel>Priority</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Priority</mat-label>
-          <mat-select formControlName="priority" name="food">
+          <mat-select formControlName="priority">
             <mat-option [value]="1">Low</mat-option>
             <mat-option [value]="2">Medium</mat-option>
             <mat-option [value]="3">High</mat-option>
@@ -73,7 +75,9 @@
         <ng-template matStepLabel>Assignee</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Assignee</mat-label>
-          <input matInput placeholder="Task assignee" formControlName="assignee" required>
+          <mat-select formControlName="assignee">
+            <mat-option *ngFor="let user of users" [value]="user.username">{{ user.username }}</mat-option>
+          </mat-select>
         </mat-form-field>
         <div>
           <p>Go to a different step to see the error state</p>
@@ -88,7 +92,7 @@
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
-        <button mat-button (click)="createTask()">Create task</button>
+        <button mat-button (click)="createTask()" [disabled]="checkProgressBarValue() !== 100">Create task</button>
       </div>
     </mat-step>
 

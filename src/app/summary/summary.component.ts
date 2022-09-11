@@ -10,10 +10,6 @@ export class SummaryComponent implements OnInit {
 
   constructor(public authService: AuthenticationService) { }
 
-  ngOnInit(): void { 
-
-    this.authService.getCurrentUser();
-
-  }
+  ngOnInit(): void { }
 
 }
