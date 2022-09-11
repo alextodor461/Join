@@ -3,4 +3,5 @@ git add .
 git commit -m "%*"
 git push
 ng build
-git ftp push
+git ftp init
+git ftp push --syncroot ./dist/join/
