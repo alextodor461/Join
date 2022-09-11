@@ -28,6 +28,8 @@ export class AuthenticationService {
       
     }
 
+    return this.currentUser;
+
   }
 
   deleteCurrentUser() {

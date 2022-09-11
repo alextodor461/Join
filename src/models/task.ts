@@ -1,5 +1,3 @@
-import { User } from "./user"
-
 export class Task {
     title!: string;
     description!: string;
@@ -7,6 +5,6 @@ export class Task {
     state!: number;
     creation_date!: string;
     completion_date!: string;
-    assignee!: User;
-    creator!: User;
+    assignee!: string;
+    creator!: string;
 }

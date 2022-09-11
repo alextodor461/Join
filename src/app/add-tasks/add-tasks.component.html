@@ -38,7 +38,7 @@
         <ng-template matStepLabel>Priority</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Priority</mat-label>
-          <mat-select formControlName="priority" name="food">
+          <mat-select formControlName="priority">
             <mat-option [value]="1">Low</mat-option>
             <mat-option [value]="2">Medium</mat-option>
             <mat-option [value]="3">High</mat-option>
@@ -73,7 +73,9 @@
         <ng-template matStepLabel>Assignee</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Assignee</mat-label>
-          <input matInput placeholder="Task assignee" formControlName="assignee" required>
+          <mat-select formControlName="assignee">
+            <mat-option *ngFor="let user of users" [value]="user.username">{{ user.username }}</mat-option>
+          </mat-select>
         </mat-form-field>
         <div>
           <p>Go to a different step to see the error state</p>
