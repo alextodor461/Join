@@ -31,6 +31,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogDeleteTaskComponent } from './dialog-delete-task/dialog-delete-task.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     ContactsComponent,
     HelpComponent,
     LegalNoticeComponent,
+    DialogDeleteTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    DragDropModule,
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [AuthGuard, AuthenticationService, UserService, TaskService],
   bootstrap: [AppComponent]

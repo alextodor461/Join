@@ -132,7 +132,6 @@ export class AddTasksComponent implements OnInit {
 
     let dateCut = (data.toString()).slice(4, 15);
     let arr = dateCut.split(" ");
-    console.log(arr);
 
     let yyyy = arr[2];
     let mm = arr[0];
@@ -175,18 +174,19 @@ export class AddTasksComponent implements OnInit {
     newTask.assignee = this.assignee?.value;
     newTask.creator = this.authService.getCurrentUser().username;
 
-    this.taskService.createTask(newTask).subscribe(() => {
+    this.taskService.createTask(newTask).subscribe((data: Task[]) => {
       
-      this.successfulTaskCreation();
+      const recentlyCreatedTask = data[data.length - 1];
+      this.successfulTaskCreation(recentlyCreatedTask);
 
     });
 
   }
 
-  successfulTaskCreation() {
+  successfulTaskCreation(task: Task) {
 
     this.toast.success('New task succesfully created!');
-    this.router.navigate(['/board']);
+    this.router.navigate(['/board', {taskId: task.id}]);
 
   }
 
