@@ -1,0 +1,120 @@
+.summary-headline {
+    display: flex;
+    justify-content: space-around;
+    h1 {
+        font-size: 3.813rem;
+        text-align: center;
+    }
+    p {
+        min-width: 170px;
+        text-align: center;
+        border-left: medium solid #29abe2;
+    }
+}
+
+.summary-main-container {
+    position: fixed;
+    top: 331px;
+    left: 355px;
+    display: flex;
+    justify-content: space-around;
+    .summary-container1 {
+        padding: 0px 0px 35px 0px;
+        display: flex;
+        .board-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        p {
+            text-align: center;
+            font-size: 21px;
+            color: #2A3647;
+        }
+    }
+    .summary-container2 {
+        padding: 0px 0px 35px 0px;
+        display: flex;
+        justify-content: space-around;
+        .board-date {
+            border-left: medium solid #29abe2;
+            padding-left: 150px;
+        }
+        mat-card {
+            min-width: 100%;
+        }
+        .middle-card {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+    .summary-container3 {
+        display: flex;
+        justify-content: space-between;
+    }
+    .welcome-name {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+        h1 {
+            font-size: 47px;
+            line-height: normal;
+        }
+    }
+}
+
+mat-card {
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    padding: 25px 0px;
+    gap: 13px;
+    h1 {
+        text-align: center;
+        font-size: 64px;
+        font-style: normal;
+    }
+}
+
+.card-size {
+    max-height: 150px;
+    width: 170px;
+}
+
+.card-size-middle {
+    max-height: 150px;
+    width: 170px;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+#circle {
+    width: 69px;
+    height: 69px;
+    background: #2a3647;
+    -moz-border-radius: 70px;
+    -webkit-border-radius: 70px;
+    border-radius: 70px;
+    img {
+        padding: 14px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.todo-card {
+    width: 47%;
+    display: flex;
+    justify-content: center;
+    p {
+        text-align: center;
+        font-size: 21px;
+        color: #2A3647;
+    }
+}
+
+.middle-card-left {
+    position: relative;
+    top: 20px;
+    display: flex;
+    align-items: self-start;
+}
