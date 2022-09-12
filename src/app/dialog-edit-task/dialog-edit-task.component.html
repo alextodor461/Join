@@ -1,0 +1,78 @@
+<main>
+
+  <ng-container *ngIf="taskFromTheBoard.assignee; else loading">
+
+    <h2 mat-dialog-title>Edit task: "{{ taskFromTheBoard.title }}".</h2>
+
+    <mat-dialog-content class="mat-typography">
+
+      <form [formGroup]="editTaskForm">
+
+        <mat-form-field>
+          <input matInput placeholder="Task title" formControlName="title">
+          <mat-error *ngIf="title?.errors?.['required']">Title is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Task description" formControlName="description">
+          <mat-error *ngIf="description?.errors?.['required']">Description is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Task priority</mat-label>
+          <mat-select formControlName="priority">
+            <mat-option [value]="1">Low</mat-option>
+            <mat-option [value]="2">Medium</mat-option>
+            <mat-option [value]="3">High</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Task state</mat-label>
+          <mat-select formControlName="state">
+            <mat-option [value]="1">To do</mat-option>
+            <mat-option [value]="2">In Progress</mat-option>
+            <mat-option [value]="3">Testing</mat-option>
+            <mat-option [value]="4">Done</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Task completion date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="completionDate">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Task assignee</mat-label>
+          <mat-select formControlName="assignee">
+            <mat-option *ngFor="let user of users" [value]="user.username">{{ user.username }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </form>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button color="accent" cdkFocusInitial (click)="saveChanges()">Save changes</button>
+
+    </mat-dialog-actions>
+
+  </ng-container>
+
+  <ng-template #loading>
+
+    <div class="spinner-container">
+
+      <mat-spinner></mat-spinner>
+
+    </div>
+
+  </ng-template>
+
+</main>

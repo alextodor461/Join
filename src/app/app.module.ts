@@ -37,6 +37,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogDeleteTaskComponent } from './dialog-delete-task/dialog-delete-task.component';
 import { DialogSeeTaskDetailsComponent } from './dialog-see-task-details/dialog-see-task-details.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DialogEditTaskComponent } from './dialog-edit-task/dialog-edit-task.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     LegalNoticeComponent,
     DialogDeleteTaskComponent,
     DialogSeeTaskDetailsComponent,
+    DialogEditTaskComponent,
   ],
   imports: [
     BrowserModule,

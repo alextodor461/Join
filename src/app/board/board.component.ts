@@ -10,6 +10,7 @@ import { DialogDeleteTaskComponent } from '../dialog-delete-task/dialog-delete-t
 import { HotToastService } from '@ngneat/hot-toast';
 import { DialogSeeTaskDetailsComponent } from '../dialog-see-task-details/dialog-see-task-details.component';
 import { User } from 'src/models/user';
+import { DialogEditTaskComponent } from '../dialog-edit-task/dialog-edit-task.component';
 
 @Component({
   selector: 'app-board',
@@ -136,6 +137,46 @@ export class BoardComponent implements OnInit, OnDestroy {
       }
 
     });
+
+  }
+
+  editTask(task: Task) {
+
+    const dialogRef = this.dialog.open(DialogEditTaskComponent, {
+
+      data: {
+        title: task.title,
+        description: task.description,
+        priority: task.priority,
+        state: task.state,
+        creation_date: task.creation_date,
+        completion_date: task.completion_date,
+        assignee: task.assignee,
+        creator: task.creator
+      }
+
+    });
+
+    /*
+    dialogRef.afterClosed().subscribe((data: Task[] | string) => {
+
+      if (data) {
+
+        if (typeof data !== "string") { //Meaning: if the response from the server is NOT "The task list is empty.".
+
+          this.emptyAndRefillArrays(data);
+          this.toast.success("Task succesfully deleted!");
+      
+        } else {
+  
+          this.emptyArrays();
+          this.toast.success("Task succesfully deleted!");
+  
+        }
+        
+      }
+   
+    });*/
 
   }
 

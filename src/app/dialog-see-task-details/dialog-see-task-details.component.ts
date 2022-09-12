@@ -11,7 +11,7 @@ import { UserService } from 'src/services/user.service';
 })
 export class DialogSeeTaskDetailsComponent implements OnInit {
 
-  taskFromBoard: Task = new Task();
+  taskFromTheBoard: Task = new Task();
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Task, 
@@ -21,12 +21,12 @@ export class DialogSeeTaskDetailsComponent implements OnInit {
 
   ngOnInit(): void { 
 
-    this.taskFromBoard.id = this.data.id;
-    this.taskFromBoard.title = this.data.title;
-    this.taskFromBoard.description = this.data.description;
-    this.taskFromBoard.state = this.data.state;
-    this.taskFromBoard.completion_date = this.data.completion_date;
-    this.taskFromBoard.creation_date = this.data.creation_date;
+    this.taskFromTheBoard.id = this.data.id;
+    this.taskFromTheBoard.title = this.data.title;
+    this.taskFromTheBoard.description = this.data.description;
+    this.taskFromTheBoard.state = this.data.state;
+    this.taskFromTheBoard.completion_date = this.data.completion_date;
+    this.taskFromTheBoard.creation_date = this.data.creation_date;
     
     this.getAssigneeOrCreator(this.data.assignee, "assignee");
     this.getAssigneeOrCreator(this.data.creator, "creator");
@@ -79,7 +79,7 @@ export class DialogSeeTaskDetailsComponent implements OnInit {
 
     this.userService.getUserById(id).subscribe((data: User) => {
 
-     assigneeOrCreator === "assignee" ? this.taskFromBoard.assignee = data.username : this.taskFromBoard.creator = data.username;
+     assigneeOrCreator === "assignee" ? this.taskFromTheBoard.assignee = data.username : this.taskFromTheBoard.creator = data.username;
       
     });
   

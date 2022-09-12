@@ -1,0 +1,160 @@
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Task } from 'src/models/task';
+import { User } from 'src/models/user';
+import { TaskService } from 'src/services/task.service';
+import { UserService } from 'src/services/user.service';
+
+@Component({
+  selector: 'app-dialog-edit-task',
+  templateUrl: './dialog-edit-task.component.html',
+  styleUrls: ['./dialog-edit-task.component.scss']
+})
+export class DialogEditTaskComponent implements OnInit {
+
+  taskFromTheBoard: Task = new Task();
+
+  users: User[] = [];
+
+  editTaskForm = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    priority: new FormControl('', [Validators.required]),
+    state: new FormControl('', [Validators.required]),
+    completionDate: new FormControl('', [Validators.required]),
+    assignee: new FormControl('', [Validators.required])
+  });
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Task,
+    public dialogRef: MatDialogRef<DialogEditTaskComponent>,
+    private taskService: TaskService,
+    private userService: UserService
+  ) { }
+
+  ngOnInit(): void {
+
+    this.taskFromTheBoard.title = this.data.title;
+    this.taskFromTheBoard.description = this.data.description;
+    this.taskFromTheBoard.priority = this.data.priority;
+    this.taskFromTheBoard.state = this.data.state;
+    this.taskFromTheBoard.completion_date = this.data.completion_date;
+    this.taskFromTheBoard.creation_date = this.data.creation_date;
+
+    this.getAssignee(this.data.assignee);
+
+    this.userService.getAllUsers().subscribe((data: User[]) => {
+
+      const usersExcludingGuest = data.filter(e => e.username !== "guest");
+      this.users = usersExcludingGuest;
+
+    });
+
+  }
+
+  get title() {
+
+    return this.editTaskForm.get("title");
+
+  }
+
+  get description() {
+
+    return this.editTaskForm.get("description");
+    
+  }
+
+  get priority() {
+
+    return this.editTaskForm.get("priority");
+    
+  }
+
+  get state() {
+
+    return this.editTaskForm.get("state");
+    
+  }
+
+  get completionDate() {
+
+    return this.editTaskForm.get("completionDate");
+    
+  }
+
+  get assignee() {
+
+    return this.editTaskForm.get("assignee");
+    
+  }
+
+  getPriority(n: number) {
+
+    if (n === 1) {
+
+      return "Low";
+
+    } else if (n === 2) {
+
+      return "Medium";
+
+    } else {
+
+      return "High";
+
+    }
+
+  }
+
+  getState(n: number) {
+
+    if (n === 1) {
+
+      return "To do";
+
+    } else if (n === 2) {
+
+      return "In Progress";
+
+    } else if (n === 3) {
+
+      return "Testing";
+
+    } else {
+
+      return "Done";
+
+    }
+
+  }
+
+  getAssignee(id: number | string) {
+
+    Number(id);
+
+    this.userService.getUserById(id).subscribe((data: User) => {
+
+      this.taskFromTheBoard.assignee = data.username;
+      this.setFormValues();
+
+    });
+
+  }
+
+  setFormValues() {
+
+    this.title?.setValue(this.taskFromTheBoard.title);
+    this.description?.setValue(this.taskFromTheBoard.description);
+    this.priority?.setValue(this.taskFromTheBoard.priority);
+    this.state?.setValue(this.taskFromTheBoard.state);
+    this.completionDate?.setValue(this.taskFromTheBoard.completion_date);
+    this.assignee?.setValue(this.taskFromTheBoard.assignee);
+
+  }
+
+  saveChanges() {
+    console.log(this.editTaskForm.value);
+  }
+
+}

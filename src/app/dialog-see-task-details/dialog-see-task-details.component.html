@@ -1,20 +1,20 @@
 <main>
 
-  <ng-container *ngIf="taskFromBoard.assignee && taskFromBoard.creator; else loading">
+  <ng-container *ngIf="taskFromTheBoard.assignee && taskFromTheBoard.creator; else loading">
 
     <h2 mat-dialog-title>"{{ data.title }}" details.</h2>
 
     <mat-dialog-content class="mat-typography">
 
-      <p><b>Id:</b> {{ taskFromBoard.id }}.</p>
-      <p><b>Title:</b> {{ taskFromBoard.title }}.</p>
-      <p><b>Description:</b> {{ taskFromBoard.description }}.</p>
-      <p><b>Priority:</b> {{ getPriority(taskFromBoard.priority) }}.</p>
-      <p><b>State:</b> {{ getState(taskFromBoard.state) }}.</p>
-      <p><b>Creation date:</b> {{ taskFromBoard.creation_date }}.</p>
-      <p><b>Completion date:</b> {{ taskFromBoard.completion_date }}.</p>
-      <p><b>Assignee:</b> {{ taskFromBoard.assignee }}</p>
-      <p><b>Creator:</b> {{ taskFromBoard.creator }} </p>
+      <p><b>Id:</b> {{ taskFromTheBoard.id }}.</p>
+      <p><b>Title:</b> {{ taskFromTheBoard.title }}.</p>
+      <p><b>Description:</b> {{ taskFromTheBoard.description }}.</p>
+      <p><b>Priority:</b> {{ getPriority(taskFromTheBoard.priority) }}.</p>
+      <p><b>State:</b> {{ getState(taskFromTheBoard.state) }}.</p>
+      <p><b>Creation date:</b> {{ taskFromTheBoard.creation_date }}.</p>
+      <p><b>Completion date:</b> {{ taskFromTheBoard.completion_date }}.</p>
+      <p><b>Assignee:</b> {{ taskFromTheBoard.assignee }}.</p>
+      <p><b>Creator:</b> {{ taskFromTheBoard.creator }}.</p>
 
     </mat-dialog-content>
 
