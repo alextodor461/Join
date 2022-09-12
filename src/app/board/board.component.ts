@@ -8,6 +8,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDeleteTaskComponent } from '../dialog-delete-task/dialog-delete-task.component';
 import { HotToastService } from '@ngneat/hot-toast';
+import { DialogSeeTaskDetailsComponent } from '../dialog-see-task-details/dialog-see-task-details.component';
+import { User } from 'src/models/user';
 
 @Component({
   selector: 'app-board',
@@ -117,6 +119,26 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
+  seeTaskDetails(task: Task) {
+
+    this.dialog.open(DialogSeeTaskDetailsComponent, {
+
+      data: {
+        id: task.id,
+        title: task.title,
+        description: task.description,
+        priority: task.priority,
+        state: task.state,
+        creation_date: task.creation_date,
+        completion_date: task.completion_date,
+        assignee: task.assignee,
+        creator: task.creator
+      }
+
+    });
+
+  }
+
   deleteTask(task: Task) {
 
     const dialogRef = this.dialog.open(DialogDeleteTaskComponent, {
@@ -130,18 +152,22 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((data: Task[] | string) => {
 
-      if (typeof data !== "string") { //Meaning: if the response from the server is NOT "The task list is empty.".
+      if (data) {
 
-        this.emptyAndRefillArrays(data);
-        this.toast.success("Task succesfully deleted!");
-    
-      } else {
+        if (typeof data !== "string") { //Meaning: if the response from the server is NOT "The task list is empty.".
 
-        this.emptyArrays();
-        this.toast.success("Task succesfully deleted!");
-
+          this.emptyAndRefillArrays(data);
+          this.toast.success("Task succesfully deleted!");
+      
+        } else {
+  
+          this.emptyArrays();
+          this.toast.success("Task succesfully deleted!");
+  
+        }
+        
       }
-
+   
     });
 
   }

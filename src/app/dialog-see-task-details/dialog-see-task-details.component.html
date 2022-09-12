@@ -1,0 +1,39 @@
+<main>
+
+  <ng-container *ngIf="taskFromBoard.assignee && taskFromBoard.creator; else loading">
+
+    <h2 mat-dialog-title>"{{ data.title }}" details.</h2>
+
+    <mat-dialog-content class="mat-typography">
+
+      <p><b>Id:</b> {{ taskFromBoard.id }}.</p>
+      <p><b>Title:</b> {{ taskFromBoard.title }}.</p>
+      <p><b>Description:</b> {{ taskFromBoard.description }}.</p>
+      <p><b>Priority:</b> {{ getPriority(taskFromBoard.priority) }}.</p>
+      <p><b>State:</b> {{ getState(taskFromBoard.state) }}.</p>
+      <p><b>Creation date:</b> {{ taskFromBoard.creation_date }}.</p>
+      <p><b>Completion date:</b> {{ taskFromBoard.completion_date }}.</p>
+      <p><b>Assignee:</b> {{ taskFromBoard.assignee }}</p>
+      <p><b>Creator:</b> {{ taskFromBoard.creator }} </p>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+
+      <button mat-button mat-dialog-close>Close</button>
+
+    </mat-dialog-actions>
+
+  </ng-container>
+
+  <ng-template #loading>
+
+    <div class="spinner-container">
+
+      <mat-spinner></mat-spinner>
+
+    </div>
+
+  </ng-template>
+
+</main>
