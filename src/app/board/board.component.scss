@@ -3,10 +3,19 @@
     background-color: #29ABE2 !important;
 }
 
+h2 {
+    text-align: center;
+}
+
 .example-container {
-    width: 275px;
-    max-width: 100%;
-    margin: 0 25px 25px 0;
+    margin-right: 20px;
+    width: calc(25% - 20px);
+    display: inline-block;
+    vertical-align: top;
+}
+
+.example-container-last {
+    width: 25%;
     display: inline-block;
     vertical-align: top;
 }
