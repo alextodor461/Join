@@ -25,6 +25,7 @@
             <mat-option [value]="2">Medium</mat-option>
             <mat-option [value]="3">High</mat-option>
           </mat-select>
+          <mat-error *ngIf="priority?.errors?.['required']">Priority is required</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -35,6 +36,7 @@
             <mat-option [value]="3">Testing</mat-option>
             <mat-option [value]="4">Done</mat-option>
           </mat-select>
+          <mat-error *ngIf="state?.errors?.['required']">State is required</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -43,6 +45,7 @@
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="completionDate?.errors?.['required']">Completion date is required</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -50,6 +53,7 @@
           <mat-select formControlName="assignee">
             <mat-option *ngFor="let user of users" [value]="user.username">{{ user.username }}</mat-option>
           </mat-select>
+          <mat-error *ngIf="assignee?.errors?.['required']">Assignee is required</mat-error>
         </mat-form-field>
 
       </form>

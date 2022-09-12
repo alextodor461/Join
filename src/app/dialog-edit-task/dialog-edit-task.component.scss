@@ -11,6 +11,10 @@ form {
     flex-direction: column;
 }
 
+mat-form-field {
+    margin-bottom: 1rem;
+}
+
 .spinner-container {
     display: flex;
     justify-content: center;
