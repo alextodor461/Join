@@ -161,20 +161,23 @@ export class DialogEditTaskComponent implements OnInit {
 
     const editedTask: Task = new Task();
 
-    editedTask.id = this.taskFromTheBoard.id
+    const id = this.taskFromTheBoard.id;
+
     editedTask.title = this.title?.value;
     editedTask.description = this.description?.value;
     editedTask.priority = this.priority?.value;
     editedTask.state = this.state?.value;
     editedTask.creation_date = this.taskFromTheBoard.creation_date;
-    editedTask.completion_date = this.convertCompletionDate(this.completionDate?.value);
+    editedTask.completion_date = (this.convertCompletionDate(this.completionDate?.value)).includes("undefined") ? this.taskFromTheBoard.completion_date : this.convertCompletionDate(this.completionDate?.value);
     editedTask.assignee = this.assignee?.value;
     editedTask.creator = this.taskFromTheBoard.creator;
 
-    this.taskService.updateTask(editedTask.id, editedTask).subscribe((data: Task[]) => {
+    console.log(editedTask);
+
+    this.taskService.updateTask(id, editedTask).subscribe((data: Task[]) => {
 
       this.tasksAfterEdition = data;
-      this.dialogRef.close(this.tasksAfterEdition);
+      this.dialogRef.close(this.tasksAfterEdition)
 
     });
     
