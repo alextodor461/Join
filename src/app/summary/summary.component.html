@@ -1,76 +1,79 @@
-<div class="summary-headline">
-    <h1>Summary</h1>
-    <p>Everything in a nutshell!</p>
-</div>
+<div class="summary-content">
 
-<div class="summary-main-container">
-    <div>
-        <div class="summary-container1">
-            <mat-card class="card-size">
-                <div class="board-info">
-                    <h1>5</h1>
-                    <p> Tasks in <br> Board</p>
-                </div>
-            </mat-card>
-            <mat-card class="card-size-middle">
-                <div class="board-info">
-                    <h1>5</h1>
-                    <p> Tasks in <br> Progress</p>
-                </div>
-            </mat-card>
-            <mat-card class="card-size">
-                <div class="board-info">
-                    <h1>5</h1>
-                    <p> Awaiting <br> Feedback</p>
-                </div>
-            </mat-card>
-        </div>
+    <div class="summary-headline">
+        <h1>Summary</h1>
+        <p>Everything in a nutshell!</p>
+    </div>
 
-        <div class="summary-container2">
-            <mat-card class="middle-card">
-                <div class="middle-card-left">
+    <div class="summary-main-container">
+        <div>
+            <div class="summary-container1">
+                <mat-card class="card-size">
+                    <div class="board-info">
+                        <h1>5</h1>
+                        <p> Tasks in <br> Board</p>
+                    </div>
+                </mat-card>
+                <mat-card class="card-size-middle">
+                    <div class="board-info">
+                        <h1>5</h1>
+                        <p> Tasks in <br> Progress</p>
+                    </div>
+                </mat-card>
+                <mat-card class="card-size">
+                    <div class="board-info">
+                        <h1>5</h1>
+                        <p> Awaiting <br> Feedback</p>
+                    </div>
+                </mat-card>
+            </div>
+
+            <div class="summary-container2">
+                <mat-card class="middle-card">
+                    <div class="middle-card-left">
+                        <div id="circle">
+                            <img src="assets\img\pencil-48.png">
+                        </div>
+                        <div class="">
+                            <h1>2</h1>
+                            <p>Tasks in Board</p>
+                        </div>
+                    </div>
+
+                    <div class="board-date">
+                        <p> Awaiting <br> Feedback</p>
+                        <p> Awaiting <br> Feedback</p>
+                    </div>
+                </mat-card>
+
+            </div>
+
+            <div class="summary-container3">
+                <mat-card class="todo-card">
                     <div id="circle">
                         <img src="assets\img\pencil-48.png">
                     </div>
                     <div class="">
                         <h1>2</h1>
-                        <p>Tasks in Board</p>
+                        <p>To-do</p>
                     </div>
-                </div>
-
-                <div class="board-date">
-                    <p> Awaiting <br> Feedback</p>
-                    <p> Awaiting <br> Feedback</p>
-                </div>
-            </mat-card>
-
+                </mat-card>
+                <mat-card class="todo-card">
+                    <div id="circle">
+                        <img src="assets\img\check-mark-3-48.png">
+                    </div>
+                    <div class="">
+                        <h1>2</h1>
+                        <p>Done</p>
+                    </div>
+                </mat-card>
+            </div>
         </div>
 
-        <div class="summary-container3">
-            <mat-card class="todo-card">
-                <div id="circle">
-                    <img src="assets\img\pencil-48.png">
-                </div>
-                <div class="">
-                    <h1>2</h1>
-                    <p>To-do</p>
-                </div>
-            </mat-card>
-            <mat-card class="todo-card">
-                <div id="circle">
-                    <img src="assets\img\check-mark-3-48.png">
-                </div>
-                <div class="">
-                    <h1>2</h1>
-                    <p>Done</p>
-                </div>
-            </mat-card>
+        <div class="welcome-name">
+            <h1 *ngIf="authService.currentUser">Welcome to Join, <br> <span style="color: #29abe2">{{ authService.currentUser.username }}</span></h1>
         </div>
+
+
     </div>
-
-    <div class="welcome-name">
-        <h1 *ngIf="authService.currentUser">Welcome to Join, <br> <span style="color: #29abe2">{{ authService.currentUser.username }}</span></h1>
-    </div>
-
-
 </div>

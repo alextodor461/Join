@@ -1,103 +1,103 @@
 <main>
 
-  <h1>Fill in the input fields to create a new task.</h1>
+    <h1>Fill in the input fields to create a new task.</h1>
 
-  <mat-stepper #stepper>
+    <mat-stepper #stepper>
 
-    <mat-step [stepControl]="titleFormGroup" errorMessage="Title is required.">
-      <form [formGroup]="titleFormGroup">
-        <ng-template matStepLabel>Title</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Title</mat-label>
-          <input matInput placeholder="Task title" #title formControlName="title" maxlength="30" required>
-          <mat-hint align="end">{{ title.value.length }} / 30</mat-hint>
-        </mat-form-field>
-        <div>
-          <p>Go to a different step to see the error state</p>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
+        <mat-step [stepControl]="titleFormGroup" errorMessage="Title is required.">
+            <form [formGroup]="titleFormGroup">
+                <ng-template matStepLabel>Title</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Title</mat-label>
+                    <input matInput placeholder="Task title" #title formControlName="title" maxlength="30" required>
+                    <mat-hint align="end">{{ title.value.length }} / 30</mat-hint>
+                </mat-form-field>
+                <div>
+                    <p>Go to a different step to see the error state</p>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
 
-    <mat-step [stepControl]="descriptionFormGroup" errorMessage="Description is required.">
-      <form [formGroup]="descriptionFormGroup">
-        <ng-template matStepLabel>Description</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Description</mat-label>
-          <input matInput placeholder="Task description" #description formControlName="description" maxlength="60" required>
-          <mat-hint align="end">{{ description.value.length }} / 60</mat-hint>
-        </mat-form-field>
-        <div>
-          <p>Go to a different step to see the error state</p>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
+        <mat-step [stepControl]="descriptionFormGroup" errorMessage="Description is required.">
+            <form [formGroup]="descriptionFormGroup">
+                <ng-template matStepLabel>Description</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <input matInput placeholder="Task description" #description formControlName="description" maxlength="60" required>
+                    <mat-hint align="end">{{ description.value.length }} / 60</mat-hint>
+                </mat-form-field>
+                <div>
+                    <p>Go to a different step to see the error state</p>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
 
-    <mat-step [stepControl]="priorityFormGroup" errorMessage="Priority is required.">
-      <form [formGroup]="priorityFormGroup">
-        <ng-template matStepLabel>Priority</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Priority</mat-label>
-          <mat-select formControlName="priority">
-            <mat-option [value]="1">Low</mat-option>
-            <mat-option [value]="2">Medium</mat-option>
-            <mat-option [value]="3">High</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div>
-          <p>Go to a different step to see the error state</p>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
+        <mat-step [stepControl]="priorityFormGroup" errorMessage="Priority is required.">
+            <form [formGroup]="priorityFormGroup">
+                <ng-template matStepLabel>Priority</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Priority</mat-label>
+                    <mat-select formControlName="priority">
+                        <mat-option [value]="1">Low</mat-option>
+                        <mat-option [value]="2">Medium</mat-option>
+                        <mat-option [value]="3">High</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <p>Go to a different step to see the error state</p>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
 
-    <mat-step [stepControl]="completionDateFormGroup" errorMessage="Completion date is required.">
-      <form [formGroup]="completionDateFormGroup">
-        <ng-template matStepLabel>Completion date</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="completionDate">
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <div>
-          <p>Go to a different step to see the error state</p>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
+        <mat-step [stepControl]="completionDateFormGroup" errorMessage="Completion date is required.">
+            <form [formGroup]="completionDateFormGroup">
+                <ng-template matStepLabel>Completion date</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="completionDate">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div>
+                    <p>Go to a different step to see the error state</p>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
 
-    <mat-step [stepControl]="assigneeFormGroup" errorMessage="Assignee is required.">
-      <form [formGroup]="assigneeFormGroup">
-        <ng-template matStepLabel>Assignee</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Assignee</mat-label>
-          <mat-select formControlName="assignee">
-            <mat-option *ngFor="let user of users" [value]="user.username">{{ user.username }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div>
-          <p>Go to a different step to see the error state</p>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
+        <mat-step [stepControl]="assigneeFormGroup" errorMessage="Assignee is required.">
+            <form [formGroup]="assigneeFormGroup">
+                <ng-template matStepLabel>Assignee</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Assignee</mat-label>
+                    <mat-select formControlName="assignee">
+                        <mat-option *ngFor="let user of users" [value]="user.username">{{ user.username }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <p>Go to a different step to see the error state</p>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
 
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-        <button mat-button (click)="createTask()" [disabled]="checkProgressBarValue() !== 100">Create task</button>
-      </div>
-    </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+                <button mat-button (click)="createTask()" [disabled]="checkProgressBarValue() !== 100">Create task</button>
+            </div>
+        </mat-step>
 
-  </mat-stepper>
+    </mat-stepper>
 
-  <mat-progress-bar mode="determinate" [value]="checkProgressBarValue()"></mat-progress-bar>
+    <mat-progress-bar mode="determinate" [value]="checkProgressBarValue()"></mat-progress-bar>
 
 </main>
