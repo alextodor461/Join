@@ -160,16 +160,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((data: Task[] | string) => {
 
-      if (data) {
+      console.log(data);
 
-        if (typeof data !== "string") { //Meaning: if the response from the server is NOT "The task list is empty.".
-
-          console.log(data);
-      
-        } 
-        
-      }
-   
     });
 
   }
