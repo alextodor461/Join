@@ -145,6 +145,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DialogEditTaskComponent, {
 
       data: {
+        id: task.id,
         title: task.title,
         description: task.description,
         priority: task.priority,
@@ -157,26 +158,19 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     });
 
-    /*
     dialogRef.afterClosed().subscribe((data: Task[] | string) => {
 
       if (data) {
 
         if (typeof data !== "string") { //Meaning: if the response from the server is NOT "The task list is empty.".
 
-          this.emptyAndRefillArrays(data);
-          this.toast.success("Task succesfully deleted!");
+          console.log(data);
       
-        } else {
-  
-          this.emptyArrays();
-          this.toast.success("Task succesfully deleted!");
-  
-        }
+        } 
         
       }
    
-    });*/
+    });
 
   }
 

@@ -26,6 +26,8 @@ export class DialogEditTaskComponent implements OnInit {
     assignee: new FormControl('', [Validators.required])
   });
 
+  tasksAfterEdition: Task[] = [];
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Task,
     public dialogRef: MatDialogRef<DialogEditTaskComponent>,
@@ -35,6 +37,7 @@ export class DialogEditTaskComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.taskFromTheBoard.id = this.data.id;
     this.taskFromTheBoard.title = this.data.title;
     this.taskFromTheBoard.description = this.data.description;
     this.taskFromTheBoard.priority = this.data.priority;
@@ -42,7 +45,8 @@ export class DialogEditTaskComponent implements OnInit {
     this.taskFromTheBoard.completion_date = this.data.completion_date;
     this.taskFromTheBoard.creation_date = this.data.creation_date;
 
-    this.getAssignee(this.data.assignee);
+    this.getAssigneeOrCreator(this.data.assignee, "assignee");
+    this.getAssigneeOrCreator(this.data.creator, "creator");
 
     this.userService.getAllUsers().subscribe((data: User[]) => {
 
@@ -129,13 +133,13 @@ export class DialogEditTaskComponent implements OnInit {
 
   }
 
-  getAssignee(id: number | string) {
+  getAssigneeOrCreator(id: number | string, assigneeOrCreator: string) {
 
     Number(id);
 
     this.userService.getUserById(id).subscribe((data: User) => {
 
-      this.taskFromTheBoard.assignee = data.username;
+      assigneeOrCreator === "assignee" ? this.taskFromTheBoard.assignee = data.username : this.taskFromTheBoard.creator = data.username;
       this.setFormValues();
 
     });
@@ -154,7 +158,59 @@ export class DialogEditTaskComponent implements OnInit {
   }
 
   saveChanges() {
-    console.log(this.editTaskForm.value);
+
+    const editedTask: Task = new Task();
+
+    editedTask.id = this.taskFromTheBoard.id
+    editedTask.title = this.title?.value;
+    editedTask.description = this.description?.value;
+    editedTask.priority = this.priority?.value;
+    editedTask.state = this.state?.value;
+    editedTask.creation_date = this.taskFromTheBoard.creation_date;
+    editedTask.completion_date = this.convertCompletionDate(this.completionDate?.value);
+    editedTask.assignee = this.assignee?.value;
+    editedTask.creator = this.taskFromTheBoard.creator;
+
+    this.taskService.updateTask(editedTask.id, editedTask).subscribe((data: Task[]) => {
+
+      this.tasksAfterEdition = data;
+      this.dialogRef.close(this.tasksAfterEdition);
+
+    });
+    
+  }
+
+  convertCompletionDate(data: string) {
+
+    let dateCut = (data.toString()).slice(4, 15);
+    let arr = dateCut.split(" ");
+
+    let yyyy = arr[2];
+    let mm = arr[0];
+    let dd = arr[1];
+
+    let equivalenceArray = [
+      ['Jan', '01'], ['Feb', '02'], ['Mar', '03'], ['Apr', '04'],
+      ['May', '05'], ['Jun', '06'], ['Jul', '07'], ['Aug', '08'],
+      ['Sep', '09'], ['Oct', '10'], ['Nov', '11'], ['Dec', '12']
+    ];
+
+    for (let i = 0; i < equivalenceArray.length; i++) {
+
+      const element = equivalenceArray[i];
+      const monthAsString = element[0];
+      const monthAsNumber = element[1];
+      
+      if (monthAsString === mm) {
+        mm = monthAsNumber;
+      }
+
+    }
+
+    const convertedDate = yyyy + "-" + mm + "-" + dd;
+
+    return convertedDate;
+
   }
 
 }
