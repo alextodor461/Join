@@ -174,10 +174,9 @@ export class DialogEditTaskComponent implements OnInit {
 
     console.log(editedTask);
 
-    this.taskService.updateTask(id, editedTask).subscribe((data: Task[]) => {
+    this.taskService.updateTask(id, editedTask).subscribe((data) => {
 
-      this.tasksAfterEdition = data;
-      console.log(this.tasksAfterEdition);
+      console.log(data);
 
     });
     
