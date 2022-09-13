@@ -38,7 +38,7 @@ export class TaskService {
 
   public updateTask(id: number, task: Task): Observable<Task[]> {
 
-    const taskToUpdateEndpoint = `task-update/${id}`;
+    const taskToUpdateEndpoint = `task-update/${id}/`;
 
     return this.http.put<Task[]>(`${this.baseUrl}/${taskToUpdateEndpoint}`, task);
 
