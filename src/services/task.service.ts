@@ -22,7 +22,7 @@ export class TaskService {
 
   public getTaskById(id: any): Observable<Task> {
 
-    const taskToGetEndpoint = `task-detail/${id}`;
+    const taskToGetEndpoint = `task-detail/${id}/`;
 
     return this.http.get<Task>(`${this.baseUrl}/${taskToGetEndpoint}`);
 
@@ -38,7 +38,7 @@ export class TaskService {
 
   public updateTask(id: number, task: Task): Observable<Task[]> {
 
-    const taskToUpdateEndpoint = `task-update/${id}/`;
+    const taskToUpdateEndpoint = `task-update/${id}/`; //The last ULR "/" is necessary in order to avoid server errors.
 
     return this.http.put<Task[]>(`${this.baseUrl}/${taskToUpdateEndpoint}`, task);
 
@@ -46,7 +46,7 @@ export class TaskService {
 
   public deleteTask(id: number): Observable<Task[]> {
 
-    const taskToDeleteEndpoint = `task-delete/${id}`;
+    const taskToDeleteEndpoint = `task-delete/${id}/`;
 
     return this.http.delete<Task[]>(`${this.baseUrl}/${taskToDeleteEndpoint}`);
 

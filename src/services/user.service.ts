@@ -38,7 +38,7 @@ export class UserService {
 
   public updateUser(id: number, user: User): Observable<User[]> {
 
-    const userToUpdateEndpoint = `user-update/${id}`;
+    const userToUpdateEndpoint = `user-update/${id}/`;
     
     return this.http.put<User[]>(`${this.baseUrl}/${userToUpdateEndpoint}`, user);
 
@@ -46,7 +46,7 @@ export class UserService {
 
   public deleteUser(id: number): Observable<User[]> {
 
-    const userToDeleteEndpoint = `user-delete/${id}`;
+    const userToDeleteEndpoint = `user-delete/${id}/`;
     
     return this.http.delete<User[]>(`${this.baseUrl}/${userToDeleteEndpoint}`);
 

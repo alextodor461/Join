@@ -172,11 +172,10 @@ export class DialogEditTaskComponent implements OnInit {
     editedTask.assignee = this.assignee?.value;
     editedTask.creator = this.taskFromTheBoard.creator;
 
-    console.log(editedTask);
-
     this.taskService.updateTask(id, editedTask).subscribe((data: Task[]) => {
 
-      console.log(data);
+      this.tasksAfterEdition = data;
+      this.dialogRef.close(this.tasksAfterEdition);
 
     });
     
