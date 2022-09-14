@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -9,8 +9,10 @@ import { HotToastService } from '@ngneat/hot-toast';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  disableClose: any;
 
   title = 'Join';
+
 
   constructor(private router: Router, private auth: AuthenticationService, private toast: HotToastService) { }
 
@@ -22,9 +24,13 @@ export class AppComponent implements OnInit {
 
     if (currentPath === '/login' || currentPath === '/signup') {
 
+      this.disableClose = false;
+
       return false;
 
     } else {
+      
+      this.disableClose = true;
 
       return true;
       
