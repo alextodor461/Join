@@ -77,8 +77,15 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     this.searchForm.get("taskSearch")?.valueChanges.subscribe((data: string) => {
 
-      this.filteredTasks = this.tasks.filter(task => (task.title.toLowerCase()).includes(data.toLowerCase()));
-      console.log(this.filteredTasks);
+      if (data.length) { //Meaning: if the search input infield is not empty...
+
+        this.filteredTasks = this.tasks.filter(task => (task.title.toLowerCase()).includes(data.toLowerCase()));
+        
+      } else {
+
+        this.filteredTasks = [];
+
+      }
 
     });
     

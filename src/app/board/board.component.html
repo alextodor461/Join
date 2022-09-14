@@ -67,7 +67,8 @@
 
                     <span class="currently-empty-span" *ngIf="!inProgress.length">currently empty</span>
 
-                    <p class="example-box" *ngFor="let item of inProgress; index as i" cdkDrag>
+                    <p class="example-box" *ngFor="let item of inProgress; index as i"
+                        [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
 
@@ -102,7 +103,8 @@
 
                     <span class="currently-empty-span" *ngIf="!testing.length">currently empty</span>
 
-                    <p class="example-box" *ngFor="let item of testing; index as i" cdkDrag>
+                    <p class="example-box" *ngFor="let item of testing; index as i"
+                        [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
 
@@ -137,7 +139,8 @@
 
                     <span class="currently-empty-span" *ngIf="!done.length">currently empty</span>
 
-                    <p class="example-box" *ngFor="let item of done; index as i" cdkDrag>
+                    <p class="example-box" *ngFor="let item of done; index as i"
+                        [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
 

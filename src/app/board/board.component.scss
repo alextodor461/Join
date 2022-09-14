@@ -1,6 +1,5 @@
 .recently-created {
-    color: white !important;
-    background-color: #29ABE2 !important;
+    background-color: #e6f6f9 !important;
 }
 
 .searched {
@@ -9,8 +8,11 @@
 
 .section-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+}
+
+h1 {
+    font-weight: bold;
 }
 
 h1, h2 {
