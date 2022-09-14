@@ -74,6 +74,10 @@
             <h1 *ngIf="authService.currentUser">Welcome to Join, <br> <span style="color: #29abe2">{{ authService.currentUser.username }}</span></h1>
         </div>
 
+        <div class="welcome-name">
+            <h1>Welcome to Join, <br> <span style="color: #29abe2">{{ authService.getCurrentUser().username }}</span></h1>
+        </div>
+        >>>>>>> ebe868894d6b5490d27b870347ded4312600322e
 
     </div>
 </div>

@@ -17,7 +17,7 @@ export class DialogDeleteTaskComponent implements OnInit {
   tasksAfterDeletion: Task[] = [];
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any, 
+    @Inject(MAT_DIALOG_DATA) public data: Task, 
     public dialogRef: MatDialogRef<DialogDeleteTaskComponent>,
     private taskService: TaskService
     ) { }

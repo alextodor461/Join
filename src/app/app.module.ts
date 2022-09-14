@@ -35,6 +35,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogDeleteTaskComponent } from './dialog-delete-task/dialog-delete-task.component';
+import { DialogSeeTaskDetailsComponent } from './dialog-see-task-details/dialog-see-task-details.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DialogEditTaskComponent } from './dialog-edit-task/dialog-edit-task.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,8 @@ import { DialogDeleteTaskComponent } from './dialog-delete-task/dialog-delete-ta
     HelpComponent,
     LegalNoticeComponent,
     DialogDeleteTaskComponent,
+    DialogSeeTaskDetailsComponent,
+    DialogEditTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,8 @@ import { DialogDeleteTaskComponent } from './dialog-delete-task/dialog-delete-ta
     MatProgressBarModule,
     DragDropModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   providers: [AuthGuard, AuthenticationService, UserService, TaskService],
   bootstrap: [AppComponent]
