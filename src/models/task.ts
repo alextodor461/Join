@@ -1,5 +1,5 @@
 export class Task {
-    id!: number; //Determined by the backend.
+    id!: number;
     title!: string;
     description!: string;
     priority!: number;
