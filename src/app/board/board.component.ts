@@ -315,8 +315,12 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((data: Task[]) => {
 
-      this.emptyAndRefillArrays(data);
-      this.toast.success("Task succesfully edited!");
+      if (data) {
+
+        this.emptyAndRefillArrays(data);
+        this.toast.success("Task succesfully edited!");  
+        
+      }
 
     });
 
