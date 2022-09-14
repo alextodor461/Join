@@ -12,6 +12,10 @@ export class TaskService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * GET method: fetches all the tasks from the server.
+   * @returns - all the tasks from the server / a string if there are no tasks to fetch.
+   */
   public getAllTaks(): Observable<Task[]> {
 
     const taskListEndpoint = "task-list/";
@@ -20,6 +24,11 @@ export class TaskService {
 
   }
 
+  /**
+   * GET method: fetches the passed-in task from the server.
+   * @param id - This is the passed-in task's id. The function needs it to fetch the right task from the server.
+   * @returns - the passed-in task from the server.
+   */
   public getTaskById(id: any): Observable<Task> {
 
     const taskToGetEndpoint = `task-detail/${id}/`;
@@ -28,6 +37,11 @@ export class TaskService {
 
   }
 
+  /**
+   * POST method: creates a new task on the server.
+   * @param task - This is the passed-in task (the to-be-created task).
+   * @returns - all the tasks from the server.
+   */
   public createTask(task: Task): Observable<Task[]> {
 
     const taskCreationEndpoint = "task-create/";
@@ -36,6 +50,12 @@ export class TaskService {
 
   }
 
+  /**
+   * PUT method: updates an existing task on the server.
+   * @param id - This is the passed-in task's id. The function needs it to update the right task on the server.
+   * @param task - This is the passed-in task. The function needs it to update the to-be-updated task info.
+   * @returns - all the tasks from the server.
+   */
   public updateTask(id: number, task: Task): Observable<Task[]> {
 
     const taskToUpdateEndpoint = `task-update/${id}/`; //The last ULR "/" is necessary in order to avoid server errors.
@@ -44,6 +64,11 @@ export class TaskService {
 
   }
 
+  /**
+   * DELETE method: deletes an existing task from the server.
+   * @param id - This is the passed-in task's id. The function needs it to delete the right task from the server.
+   * @returns - all the tasks from the server.
+   */
   public deleteTask(id: number): Observable<Task[]> {
 
     const taskToDeleteEndpoint = `task-delete/${id}/`;
