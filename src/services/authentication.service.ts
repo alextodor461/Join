@@ -11,6 +11,9 @@ export class AuthenticationService {
 
   constructor(private router: Router) { }
 
+  /**
+   * Stores the current user in the local storage.
+   */
   saveCurrentUser() {
 
     const currentUserAsText = JSON.stringify(this.currentUser);
@@ -18,6 +21,11 @@ export class AuthenticationService {
 
   }
 
+  /**
+   * Gets the current user from the local storage.
+   * IMPORTANT! --> This function is always called after the saveCurrentUser function. Therefore, there is always one user in the
+   * local storage to retreive.
+   */
   getCurrentUser() {
 
     const currentUserAsText = localStorage.getItem('currentUserAsText');
@@ -32,6 +40,9 @@ export class AuthenticationService {
 
   }
 
+  /**
+   * Deletes the current user from the local storage and navigates the user to the login view.
+   */
   deleteCurrentUser() {
 
     localStorage.removeItem('currentUserAsText');

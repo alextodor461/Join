@@ -1,9 +1,21 @@
 .recently-created {
-    color: white !important;
-    background-color: #29ABE2 !important;
+    background-color: #e6f6f9 !important;
 }
 
-h2 {
+.searched {
+    background-color: beige;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+h1, h2 {
     text-align: center;
 }
 
@@ -126,4 +138,9 @@ h2 {
 
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
 }

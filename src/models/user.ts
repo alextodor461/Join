@@ -1,5 +1,5 @@
 export class User {
-    id!: number; //Determined by the backend.
+    id!: number;
     username!: string;
     password!: string;
 }

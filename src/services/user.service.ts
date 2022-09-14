@@ -12,6 +12,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * GET method: fetches all the users from the server.
+   * @returns - all the users from the server / a string if there are no users to fetch.
+   */
   public getAllUsers(): Observable<User[]> {
 
     const userListEndpoint = "user-list/";
@@ -20,6 +24,11 @@ export class UserService {
 
   }
 
+  /**
+   * GET method: fetches the passed-in user from the server.
+   * @param id - This is the passed-in user's id. The function needs it to fetch the right user from the server.
+   * @returns - the passed-in user from the server.
+   */
   public getUserById(id: any): Observable<User> {
 
     const userToGetEndpoint = `user-detail/${id}`;
@@ -28,6 +37,11 @@ export class UserService {
 
   }
 
+  /**
+   * POST method: creates a new user on the server.
+   * @param user - This is the passed-in user (the to-be-created user).
+   * @returns - all the users from the server.
+   */
   public createUser(user: User): Observable<User[]> {
 
     const userCreationEndpoint = "user-create/";
@@ -36,17 +50,28 @@ export class UserService {
 
   }
 
+  /**
+   * PUT method: updates an existing user on the server.
+   * @param id - This is the passed-in user's id. The function needs it to update the right user on the server.
+   * @param user - This is the passed-in user. The function needs it to update the to-be-updated user info.
+   * @returns - all the users from the server.
+   */
   public updateUser(id: number, user: User): Observable<User[]> {
 
-    const userToUpdateEndpoint = `user-update/${id}`;
+    const userToUpdateEndpoint = `user-update/${id}/`;
     
     return this.http.put<User[]>(`${this.baseUrl}/${userToUpdateEndpoint}`, user);
 
   }
 
+  /**
+   * DELETE method: deletes an existing user from the server.
+   * @param id - This is the passed-in user's id. The function needs it to delete the right user from the server.
+   * @returns - all the users from the server.
+   */
   public deleteUser(id: number): Observable<User[]> {
 
-    const userToDeleteEndpoint = `user-delete/${id}`;
+    const userToDeleteEndpoint = `user-delete/${id}/`;
     
     return this.http.delete<User[]>(`${this.baseUrl}/${userToDeleteEndpoint}`);
 
