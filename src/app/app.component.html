@@ -12,9 +12,9 @@
 
     </mat-toolbar>
 
-    <mat-drawer #drawer [opened]="disableClose" mode="side">
+    <mat-drawer #drawer mode="side" [opened]="checkNotLoginOrSignup()">
 
-        <nav *ngIf="checkNotLoginOrSignup()">
+        <nav>
 
             <div class="sidebar-top">
 
