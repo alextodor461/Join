@@ -31,6 +31,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   done: Task[] = [];
 
+  tasksLoaded: boolean = false;
+
   destroy = new Subject();
 
   constructor(
@@ -49,6 +51,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
         this.tasks = data;
         this.sortTasks();
+        this.tasksLoaded = true;
 
       }
 
@@ -107,6 +110,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
 
+      console.log(event.item.element.nativeElement.innerText);
+
     } else {
 
       transferArrayItem(
@@ -115,6 +120,136 @@ export class BoardComponent implements OnInit, OnDestroy {
         event.previousIndex,
         event.currentIndex,
       );
+
+      if (event.container.id === "cdk-drop-list-0") {
+
+        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
+
+        if (movedTask) {
+
+          movedTask.state = 1;
+
+          this.userService.getAllUsers().subscribe((data: User[]) => {
+
+            console.log(data);
+
+            const assignee = data.find(user => user.id === movedTask.assignee);
+            const creator = data.find(user => user.id === movedTask.creator);
+
+            if (assignee && creator) {
+
+              movedTask.assignee = assignee?.username;
+              movedTask.creator = creator?.username;
+
+              this.taskService.updateTask(movedTask.id, movedTask).subscribe((data: Task[]) => {
+
+                console.log(data);
+          
+              });
+
+            }
+
+          });
+
+        }
+
+      } else if (event.container.id === "cdk-drop-list-1") {
+
+        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
+
+        if (movedTask) {
+
+          movedTask.state = 2;
+
+          this.userService.getAllUsers().subscribe((data: User[]) => {
+
+            console.log(data);
+
+            const assignee = data.find(user => user.id === movedTask.assignee);
+            const creator = data.find(user => user.id === movedTask.creator);
+
+            if (assignee && creator) {
+
+              movedTask.assignee = assignee?.username;
+              movedTask.creator = creator?.username;
+
+              this.taskService.updateTask(movedTask.id, movedTask).subscribe((data: Task[]) => {
+
+                console.log(data);
+          
+              });
+
+            }
+
+          });
+
+        }
+
+      } else if (event.container.id === "cdk-drop-list-2") {
+
+        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
+
+        if (movedTask) {
+
+          movedTask.state = 3;
+
+          this.userService.getAllUsers().subscribe((data: User[]) => {
+
+            console.log(data);
+
+            const assignee = data.find(user => user.id === movedTask.assignee);
+            const creator = data.find(user => user.id === movedTask.creator);
+
+            if (assignee && creator) {
+
+              movedTask.assignee = assignee?.username;
+              movedTask.creator = creator?.username;
+
+              this.taskService.updateTask(movedTask.id, movedTask).subscribe((data: Task[]) => {
+
+                console.log(data);
+          
+              });
+
+            }
+
+          });
+
+        }
+
+      } else {
+
+        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
+
+        if (movedTask) {
+
+          movedTask.state = 4;
+
+          this.userService.getAllUsers().subscribe((data: User[]) => {
+
+            console.log(data);
+
+            const assignee = data.find(user => user.id === movedTask.assignee);
+            const creator = data.find(user => user.id === movedTask.creator);
+
+            if (assignee && creator) {
+
+              movedTask.assignee = assignee?.username;
+              movedTask.creator = creator?.username;
+
+              this.taskService.updateTask(movedTask.id, movedTask).subscribe((data: Task[]) => {
+
+                console.log(data);
+          
+              });
+
+            }
+
+          });
+
+        }
+
+      }
 
     }
 
@@ -158,9 +293,10 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     });
 
-    dialogRef.afterClosed().subscribe((data: Task[] | string) => {
+    dialogRef.afterClosed().subscribe((data: Task[]) => {
 
-      console.log(data);
+      this.emptyAndRefillArrays(data);
+      this.toast.success("Task succesfully edited!");
 
     });
 
@@ -185,16 +321,16 @@ export class BoardComponent implements OnInit, OnDestroy {
 
           this.emptyAndRefillArrays(data);
           this.toast.success("Task succesfully deleted!");
-      
+
         } else {
-  
+
           this.emptyArrays();
           this.toast.success("Task succesfully deleted!");
-  
+
         }
-        
+
       }
-   
+
     });
 
   }

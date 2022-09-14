@@ -2,148 +2,163 @@
 
     <h1>This is the board</h1>
 
-    <div cdkDropListGroup>
+    <ng-container *ngIf="tasksLoaded; else loading">
 
-        <div class="example-container">
+        <div cdkDropListGroup>
 
-            <h2>To do</h2>
+            <div class="example-container">
 
-            <div cdkDropList [cdkDropListData]="toDo" class="example-list" (cdkDropListDropped)="drop($event)"
-                [class.empty]="!toDo.length">
+                <h2>To do</h2>
 
-                <span class="currently-empty-span" *ngIf="!toDo.length">currently empty</span>
+                <div cdkDropList [cdkDropListData]="toDo" class="example-list" (cdkDropListDropped)="drop($event)"
+                    [class.empty]="!toDo.length">
 
-                <p class="example-box" *ngFor="let item of toDo; index as i" [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
+                    <span class="currently-empty-span" *ngIf="!toDo.length">currently empty</span>
 
-                    <span>{{ item.title }}</span>
+                    <p class="example-box" *ngFor="let item of toDo; index as i"
+                        [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
-                    <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
-                            <mat-icon>info</mat-icon>
-                            See details
-                        </button>
-                        <button mat-menu-item class="item-btn edit" (click)="editTask(item)">
-                            <mat-icon>edit</mat-icon>
-                            Edit
-                        </button>
-                        <button mat-menu-item class="item-btn delete" (click)="deleteTask(item)">
-                            <mat-icon color="warning">delete</mat-icon>
-                            Delete
-                        </button>
-                    </mat-menu>
+                        <span>{{ item.title }}</span>
 
-                </p>
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
+                                <mat-icon>info</mat-icon>
+                                See details
+                            </button>
+                            <button mat-menu-item class="item-btn edit" (click)="editTask(item)">
+                                <mat-icon>edit</mat-icon>
+                                Edit
+                            </button>
+                            <button mat-menu-item class="item-btn delete" (click)="deleteTask(item)">
+                                <mat-icon color="warning">delete</mat-icon>
+                                Delete
+                            </button>
+                        </mat-menu>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="example-container">
+
+                <h2>In Progress</h2>
+
+                <div cdkDropList [cdkDropListData]="inProgress" class="example-list" (cdkDropListDropped)="drop($event)"
+                    [class.empty]="!inProgress.length">
+
+                    <span class="currently-empty-span" *ngIf="!inProgress.length">currently empty</span>
+
+                    <p class="example-box" *ngFor="let item of inProgress; index as i" cdkDrag>
+
+                        <span>{{ item.title }}</span>
+
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
+                                <mat-icon>info</mat-icon>
+                                See details
+                            </button>
+                            <button mat-menu-item class="item-btn edit" (click)="editTask(item)">
+                                <mat-icon>edit</mat-icon>
+                                Edit
+                            </button>
+                            <button mat-menu-item class="item-btn delete" (click)="deleteTask(item)">
+                                <mat-icon color="warning">delete</mat-icon>
+                                Delete
+                            </button>
+                        </mat-menu>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="example-container">
+
+                <h2>Testing</h2>
+
+                <div cdkDropList [cdkDropListData]="testing" class="example-list" (cdkDropListDropped)="drop($event)"
+                    [class.empty]="!testing.length">
+
+                    <span class="currently-empty-span" *ngIf="!testing.length">currently empty</span>
+
+                    <p class="example-box" *ngFor="let item of testing; index as i" cdkDrag>
+
+                        <span>{{ item.title }}</span>
+
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
+                                <mat-icon>info</mat-icon>
+                                See details
+                            </button>
+                            <button mat-menu-item class="item-btn edit" (click)="editTask(item)">
+                                <mat-icon>edit</mat-icon>
+                                Edit
+                            </button>
+                            <button mat-menu-item class="item-btn delete" (click)="deleteTask(item)">
+                                <mat-icon color="warning">delete</mat-icon>
+                                Delete
+                            </button>
+                        </mat-menu>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="example-container-last">
+
+                <h2>Done</h2>
+
+                <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)"
+                    [class.empty]="!done.length">
+
+                    <span class="currently-empty-span" *ngIf="!done.length">currently empty</span>
+
+                    <p class="example-box" *ngFor="let item of done; index as i" cdkDrag>
+
+                        <span>{{ item.title }}</span>
+
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
+                                <mat-icon>info</mat-icon>
+                                See details
+                            </button>
+                            <button mat-menu-item class="item-btn edit" (click)="editTask(item)">
+                                <mat-icon>edit</mat-icon>
+                                Edit
+                            </button>
+                            <button mat-menu-item class="item-btn delete" (click)="deleteTask(item)">
+                                <mat-icon color="warning">delete</mat-icon>
+                                Delete
+                            </button>
+                        </mat-menu>
+
+                    </p>
+
+                </div>
 
             </div>
 
         </div>
 
-        <div class="example-container">
+    </ng-container>
 
-            <h2>In Progress</h2>
+    <ng-template #loading>
 
-            <div cdkDropList [cdkDropListData]="inProgress" class="example-list" (cdkDropListDropped)="drop($event)"
-                [class.empty]="!inProgress.length">
-
-                <span class="currently-empty-span" *ngIf="!inProgress.length">currently empty</span>
-
-                <p class="example-box" *ngFor="let item of inProgress; index as i" cdkDrag>
-
-                    <span>{{ item.title }}</span>
-
-                    <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
-                            <mat-icon>info</mat-icon>
-                            See details
-                        </button>
-                        <button mat-menu-item class="item-btn edit" (click)="editTask(item)">
-                            <mat-icon>edit</mat-icon>
-                            Edit
-                        </button>
-                        <button mat-menu-item class="item-btn delete" (click)="deleteTask(item)">
-                            <mat-icon color="warning">delete</mat-icon>
-                            Delete
-                        </button>
-                    </mat-menu>
-
-                </p>
-
-            </div>
-
+        <div class="spinner-container">
+    
+          <mat-spinner></mat-spinner>
+    
         </div>
-
-        <div class="example-container">
-
-            <h2>Testing</h2>
-
-            <div cdkDropList [cdkDropListData]="testing" class="example-list" (cdkDropListDropped)="drop($event)"
-                [class.empty]="!testing.length">
-
-                <span class="currently-empty-span" *ngIf="!testing.length">currently empty</span>
-
-                <p class="example-box" *ngFor="let item of testing; index as i" cdkDrag>
-
-                    <span>{{ item.title }}</span>
-
-                    <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
-                            <mat-icon>info</mat-icon>
-                            See details
-                        </button>
-                        <button mat-menu-item class="item-btn edit" (click)="editTask(item)">
-                            <mat-icon>edit</mat-icon>
-                            Edit
-                        </button>
-                        <button mat-menu-item class="item-btn delete" (click)="deleteTask(item)">
-                            <mat-icon color="warning">delete</mat-icon>
-                            Delete
-                        </button>
-                    </mat-menu>
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="example-container-last">
-
-            <h2>Done</h2>
-
-            <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)"
-                [class.empty]="!done.length">
-
-                <span class="currently-empty-span" *ngIf="!done.length">currently empty</span>
-
-                <p class="example-box" *ngFor="let item of done; index as i" cdkDrag>
-
-                    <span>{{ item.title }}</span>
-
-                    <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
-                            <mat-icon>info</mat-icon>
-                            See details
-                        </button>
-                        <button mat-menu-item class="item-btn edit" (click)="editTask(item)">
-                            <mat-icon>edit</mat-icon>
-                            Edit
-                        </button>
-                        <button mat-menu-item class="item-btn delete" (click)="deleteTask(item)">
-                            <mat-icon color="warning">delete</mat-icon>
-                            Delete
-                        </button>
-                    </mat-menu>
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
+    
+      </ng-template>
 
 </main>

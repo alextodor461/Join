@@ -6,6 +6,6 @@ export class Task {
     state!: number;
     creation_date!: string;
     completion_date!: string;
-    assignee!: string;
-    creator!: string;
+    assignee!: string | number;
+    creator!: string | number;
 }
