@@ -11,6 +11,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { DialogSeeTaskDetailsComponent } from '../dialog-see-task-details/dialog-see-task-details.component';
 import { User } from 'src/models/user';
 import { DialogEditTaskComponent } from '../dialog-edit-task/dialog-edit-task.component';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-board',
@@ -20,6 +21,8 @@ import { DialogEditTaskComponent } from '../dialog-edit-task/dialog-edit-task.co
 export class BoardComponent implements OnInit, OnDestroy {
 
   tasks: Task[] = [];
+
+  filteredTasks: Task[] = [];
 
   recentlyCreatedTaskId!: number;
 
@@ -32,6 +35,10 @@ export class BoardComponent implements OnInit, OnDestroy {
   done: Task[] = [];
 
   tasksLoaded: boolean = false;
+
+  searchForm = new FormGroup({
+    taskSearch: new FormControl()
+  });
 
   destroy = new Subject();
 
@@ -67,6 +74,19 @@ export class BoardComponent implements OnInit, OnDestroy {
       }
 
     });
+
+    this.searchForm.get("taskSearch")?.valueChanges.subscribe((data: string) => {
+
+      this.filteredTasks = this.tasks.filter(task => (task.title.toLowerCase()).includes(data.toLowerCase()));
+      console.log(this.filteredTasks);
+
+    });
+    
+  }
+
+  includedInFilteredTasks(task: Task) {
+
+    return this.filteredTasks.includes(task);
 
   }
 

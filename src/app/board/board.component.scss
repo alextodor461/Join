@@ -3,6 +3,16 @@
     background-color: #29ABE2 !important;
 }
 
+.searched {
+    background-color: beige;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 h1, h2 {
     text-align: center;
 }

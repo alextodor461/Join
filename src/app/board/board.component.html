@@ -1,6 +1,22 @@
 <main>
 
-    <h1>This is the board</h1>
+    <div class="section-header">
+
+        <h1>Board</h1>
+
+        <form [formGroup]="searchForm">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Search for a task</mat-label>
+                <input matInput formControlName="taskSearch">
+                <button mat-icon-button matSuffix>
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+
+        </form>
+
+    </div>
 
     <ng-container *ngIf="tasksLoaded; else loading">
 
@@ -18,7 +34,7 @@
                     <p class="example-box" *ngFor="let item of toDo; index as i"
                         [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
-                        <span>{{ item.title }}</span>
+                        <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
 
                         <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
                         <mat-menu #menu="matMenu">
@@ -53,7 +69,7 @@
 
                     <p class="example-box" *ngFor="let item of inProgress; index as i" cdkDrag>
 
-                        <span>{{ item.title }}</span>
+                        <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
 
                         <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
                         <mat-menu #menu="matMenu">
@@ -88,7 +104,7 @@
 
                     <p class="example-box" *ngFor="let item of testing; index as i" cdkDrag>
 
-                        <span>{{ item.title }}</span>
+                        <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
 
                         <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
                         <mat-menu #menu="matMenu">
@@ -123,7 +139,7 @@
 
                     <p class="example-box" *ngFor="let item of done; index as i" cdkDrag>
 
-                        <span>{{ item.title }}</span>
+                        <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
 
                         <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
                         <mat-menu #menu="matMenu">
@@ -154,11 +170,11 @@
     <ng-template #loading>
 
         <div class="spinner-container">
-    
-          <mat-spinner></mat-spinner>
-    
+
+            <mat-spinner></mat-spinner>
+
         </div>
-    
-      </ng-template>
+
+    </ng-template>
 
 </main>
