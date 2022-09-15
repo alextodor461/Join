@@ -34,7 +34,10 @@ h2 {
     vertical-align: top;
 }
 
-.list-1, .list-2, .list-3, .list-4 {
+.list-1,
+.list-2,
+.list-3,
+.list-4 {
     min-height: 60px;
     background: white;
     border-radius: 4px;
@@ -44,7 +47,10 @@ h2 {
     border: solid 1px white;
 }
 
-.box-1, .box-2, .box-3, .box-4 {
+.box-1,
+.box-2,
+.box-3,
+.box-4 {
     padding: 20px 10px;
     color: black;
     font-weight: 400;
@@ -55,7 +61,7 @@ h2 {
     box-sizing: border-box;
     cursor: move;
     font-size: 14px;
-    height: 72px;  
+    height: 72px;
     margin: 0;
     border-bottom: solid 1px white;
 }
@@ -79,11 +85,11 @@ h2 {
 .empty {
     background-color: rgba(0, 0, 0, 0.15) !important;
     border: none !important;
-    height: 72px;  
+    height: 72px;
 }
 
 .currently-empty-span {
-    position: absolute; 
+    position: absolute;
     top: 26px;
     left: 10px;
 }
@@ -96,7 +102,7 @@ h2 {
 
     &:hover {
         color: white;
-        background-color: rgba(0, 0, 0, .25); 
+        background-color: rgba(0, 0, 0, .25);
     }
 }
 
@@ -127,7 +133,7 @@ h2 {
 
 .delete {
     transition: 225ms ease-in-out;
-    
+
     &:hover {
         mat-icon {
             color: #F44336;
@@ -151,12 +157,21 @@ h2 {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.box-1:last-child, .box-2:last-child, .box-3:last-child, .box-4:last-child {
+.box-1:last-child,
+.box-2:last-child,
+.box-3:last-child,
+.box-4:last-child {
     border: none;
 }
 
-.list-1.cdk-drop-list-dragging, .list-2.cdk-drop-list-dragging, .list-3.cdk-drop-list-dragging, .list-4.cdk-drop-list-dragging,  
-.box-1:not(.cdk-drag-placeholder), .box-2:not(.cdk-drag-placeholder), .box-3:not(.cdk-drag-placeholder), .box-4:not(.cdk-drag-placeholder) {
+.list-1.cdk-drop-list-dragging,
+.list-2.cdk-drop-list-dragging,
+.list-3.cdk-drop-list-dragging,
+.list-4.cdk-drop-list-dragging,
+.box-1:not(.cdk-drag-placeholder),
+.box-2:not(.cdk-drag-placeholder),
+.box-3:not(.cdk-drag-placeholder),
+.box-4:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 

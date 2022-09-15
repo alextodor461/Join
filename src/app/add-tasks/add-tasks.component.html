@@ -14,8 +14,7 @@
                     <input matInput placeholder="Task title" #title formControlName="title" maxlength="30" required>
                     <mat-hint align="end">{{ title.value.length }} / 30</mat-hint>
                 </mat-form-field>
-                <div>
-                    <p>Go to a different step to see the error state</p>
+                <div class="mt-30">
                     <button mat-button matStepperNext>Next</button>
                 </div>
             </form>
@@ -30,8 +29,7 @@
                         maxlength="60" required>
                     <mat-hint align="end">{{ description.value.length }} / 60</mat-hint>
                 </mat-form-field>
-                <div>
-                    <p>Go to a different step to see the error state</p>
+                <div class="mt-30">
                     <button mat-button matStepperPrevious>Back</button>
                     <button mat-button matStepperNext>Next</button>
                 </div>
@@ -49,8 +47,8 @@
                         <mat-option [value]="3">High</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <div>
-                    <p>Go to a different step to see the error state</p>
+                <div class="mt-30">
+                    <button mat-button matStepperPrevious>Back</button>
                     <button mat-button matStepperNext>Next</button>
                 </div>
             </form>
@@ -66,8 +64,8 @@
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-                <div>
-                    <p>Go to a different step to see the error state</p>
+                <div class="mt-30">
+                    <button mat-button matStepperPrevious>Back</button>
                     <button mat-button matStepperNext>Next</button>
                 </div>
             </form>
@@ -82,8 +80,8 @@
                         <mat-option *ngFor="let user of users" [value]="user.username">{{ user.username }}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <div>
-                    <p>Go to a different step to see the error state</p>
+                <div class="mt-30">
+                    <button mat-button matStepperPrevious>Back</button>
                     <button mat-button matStepperNext>Next</button>
                 </div>
             </form>
@@ -97,18 +95,17 @@
             </p>
             <p>If you wish you can go back to change the information of any input or click the "Reset" button to delete
                 all the information entered so far and go back to the first step.</p>
-            <div>
+            <div class="mt-30">
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button (click)="stepper.reset()">Reset</button>
-                <button mat-button (click)="createTask()" [disabled]="checkProgressBarValue() !== 100">Create
-                    task</button>
+                <button mat-button (click)="createTask()" [disabled]="checkProgressBarValue() !== 100">
+                    Create task
+                </button>
             </div>
         </mat-step>
 
     </mat-stepper>
 
     <mat-progress-bar mode="determinate" [value]="checkProgressBarValue()"></mat-progress-bar>
-
-    <h3>Reminder: you can also create tasks from the summary view.</h3>
 
 </main>

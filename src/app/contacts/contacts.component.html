@@ -6,20 +6,35 @@
             <h1>Contacts</h1>
             <h2>Better with a team.</h2>
         </div>
-        
-        <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-            <mat-icon>delete</mat-icon>
+
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
+            matTooltip="Click to add new contact" [matTooltipPosition]="'after'">
+            <mat-icon>add</mat-icon>
         </button>
 
     </div>
 
-    <mat-card>
-        <mat-card-title>Actions Buttons</mat-card-title>
-        <mat-card-subtitle>End</mat-card-subtitle>
-        <mat-card-actions align="end">
-            <button mat-button>Like</button>
-            <button mat-button>SHARE</button>
-        </mat-card-actions>
-    </mat-card>
+    <ng-container *ngIf="users.length else loading">
+
+        <mat-card *ngFor="let user of users; last as last" [ngClass]="last ? '' : 'mb-30'">
+            <mat-card-title>{{ user.username }}</mat-card-title>
+            <mat-card-subtitle>subtitle</mat-card-subtitle>
+            <mat-card-actions align="end">
+                <button mat-button>Edit</button>
+                <button mat-button color="warn">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+
+    </ng-container>
+
+    <ng-template #loading>
+
+        <div class="spinner-container">
+
+            <mat-spinner></mat-spinner>
+
+        </div>
+
+    </ng-template>
 
 </main>
