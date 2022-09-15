@@ -151,9 +151,10 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Every time a task is moved (from one state to another) calls the updateTask function from the task service to update the state of
-   * the passed-in task (this in contained within the event parameter).
-   * @param event - This is the event that contains, among other things, the info of the to-be-moved task.
+   * Every time a task is moved (from one list/group/state to another) calls the updateTask function from the task service to update 
+   * the state of the passed-in task (this is contained within the event parameter).
+   * @param event - This is the event that contains, among other things, the info of the to-be-moved task as well as the info of the
+   * destination list/group/state.
    */
   drop(event: CdkDragDrop<Task[]>) {
 
