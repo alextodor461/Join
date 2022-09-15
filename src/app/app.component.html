@@ -1,6 +1,6 @@
 <mat-drawer-container class="example-container" autosize>
 
-    <mat-toolbar *ngIf="checkNotLoginOrSignup()">
+    <mat-toolbar *ngIf="checkNotLoginOrSignup()" class="mat-elevation-z6">
 
         <button mat-icon-button (click)="drawer.toggle()" matTooltip="Click to open/close the sidebar menu"
             [matTooltipPosition]="'after'">

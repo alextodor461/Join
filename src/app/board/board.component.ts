@@ -173,7 +173,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       const containerName = event.container.element.nativeElement.className;
 
-      if (containerName.includes("example-list-1")) {
+      if (containerName.includes("list-1")) {
 
         const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
 
@@ -203,7 +203,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
         }
 
-      } else if (containerName.includes("example-list-2")) {
+      } else if (containerName.includes("list-2")) {
 
         const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
 
@@ -233,7 +233,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
         }
 
-      } else if (containerName.includes("example-list-3")) {
+      } else if (containerName.includes("list-3")) {
 
         const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
 

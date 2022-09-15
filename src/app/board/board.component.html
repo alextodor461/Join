@@ -2,7 +2,10 @@
 
     <div class="section-header">
 
-        <h1>Board</h1>
+        <div>
+            <h1>Board</h1>
+            <h2>Here you can see all the current tasks.</h2>
+        </div>
 
         <form [formGroup]="searchForm">
 
@@ -22,21 +25,24 @@
 
         <div cdkDropListGroup>
 
-            <div class="example-container">
+            <div class="list-container">
 
                 <h2>To do</h2>
 
-                <div cdkDropList [cdkDropListData]="toDo" class="example-list-1" (cdkDropListDropped)="drop($event)"
+                <div cdkDropList [cdkDropListData]="toDo" class="list-1" (cdkDropListDropped)="drop($event)"
                     [class.empty]="!toDo.length">
 
                     <span class="currently-empty-span" *ngIf="!toDo.length">currently empty</span>
 
-                    <p class="example-box" *ngFor="let item of toDo; index as i"
+                    <p class="box-1" *ngFor="let item of toDo; index as i"
                         [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
 
-                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
+                            [matTooltipPosition]="'before'">
+                            more_vert
+                        </mat-icon>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
                                 <mat-icon>info</mat-icon>
@@ -58,21 +64,24 @@
 
             </div>
 
-            <div class="example-container">
+            <div class="list-container">
 
                 <h2>In Progress</h2>
 
-                <div cdkDropList [cdkDropListData]="inProgress" class="example-list-2" (cdkDropListDropped)="drop($event)"
+                <div cdkDropList [cdkDropListData]="inProgress" class="list-2" (cdkDropListDropped)="drop($event)"
                     [class.empty]="!inProgress.length">
 
                     <span class="currently-empty-span" *ngIf="!inProgress.length">currently empty</span>
 
-                    <p class="example-box" *ngFor="let item of inProgress; index as i"
+                    <p class="box-2" *ngFor="let item of inProgress; index as i"
                         [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
 
-                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
+                            [matTooltipPosition]="'before'">
+                            more_vert
+                        </mat-icon>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
                                 <mat-icon>info</mat-icon>
@@ -94,21 +103,24 @@
 
             </div>
 
-            <div class="example-container">
+            <div class="list-container">
 
                 <h2>Testing</h2>
 
-                <div cdkDropList [cdkDropListData]="testing" class="example-list-3" (cdkDropListDropped)="drop($event)"
+                <div cdkDropList [cdkDropListData]="testing" class="list-3" (cdkDropListDropped)="drop($event)"
                     [class.empty]="!testing.length">
 
                     <span class="currently-empty-span" *ngIf="!testing.length">currently empty</span>
 
-                    <p class="example-box" *ngFor="let item of testing; index as i"
+                    <p class="box-3" *ngFor="let item of testing; index as i"
                         [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
 
-                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
+                            [matTooltipPosition]="'before'">
+                            more_vert
+                        </mat-icon>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
                                 <mat-icon>info</mat-icon>
@@ -130,21 +142,24 @@
 
             </div>
 
-            <div class="example-container-last">
+            <div class="list-container-last">
 
                 <h2>Done</h2>
 
-                <div cdkDropList [cdkDropListData]="done" class="example-list-4" (cdkDropListDropped)="drop($event)"
+                <div cdkDropList [cdkDropListData]="done" class="list-4" (cdkDropListDropped)="drop($event)"
                     [class.empty]="!done.length">
 
                     <span class="currently-empty-span" *ngIf="!done.length">currently empty</span>
 
-                    <p class="example-box" *ngFor="let item of done; index as i"
+                    <p class="box-4" *ngFor="let item of done; index as i"
                         [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
 
-                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn">more_vert</mat-icon>
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
+                            [matTooltipPosition]="'before'">
+                            more_vert
+                        </mat-icon>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item class="item-btn info" (click)="seeTaskDetails(item)">
                                 <mat-icon>info</mat-icon>

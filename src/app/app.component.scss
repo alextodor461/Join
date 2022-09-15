@@ -9,6 +9,7 @@ mat-drawer {
 mat-toolbar {
     background-color: rgba(0, 0, 0, .15);
     justify-content: space-between;
+    padding: 0 30px;
 
     button {
         transition: 225ms ease-in-out;

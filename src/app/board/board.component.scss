@@ -1,61 +1,79 @@
 .recently-created {
-    background-color: #e6f6f9 !important;
+    background-color: #e4b2b2 !important;
 }
 
 .searched {
-    background-color: beige;
+    background-color: #2A3647;
+    color: white
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 h1 {
     font-weight: bold;
 }
 
-h1, h2 {
+h2 {
     text-align: center;
 }
 
-.example-container {
+.list-container {
     margin-right: 20px;
     width: calc(25% - 20px);
     display: inline-block;
     vertical-align: top;
 }
 
-.example-container-last {
+.list-container-last {
     width: 25%;
     display: inline-block;
     vertical-align: top;
 }
 
-.example-list-1, .example-list-2, .example-list-3, .example-list-4 {
-    border: solid 1px #ccc;
+.list-1, .list-2, .list-3, .list-4 {
     min-height: 60px;
     background: white;
     border-radius: 4px;
     overflow: hidden;
     display: block;
     position: relative;
+    border: solid 1px white;
 }
 
-.example-box {
+.box-1, .box-2, .box-3, .box-4 {
     padding: 20px 10px;
-    border-bottom: solid 1px #ccc;
-    color: rgba(0, 0, 0, 0.87);
+    color: black;
+    font-weight: 400;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
     cursor: move;
-    background: white;
     font-size: 14px;
     height: 72px;  
     margin: 0;
+    border-bottom: solid 1px white;
+}
+
+.box-1 {
+    background-color: #e5dada;
+}
+
+.box-2 {
+    background-color: lemonchiffon;
+}
+
+.box-3 {
+    background-color: #c5dbe5;
+}
+
+.box-4 {
+    background-color: #c2e6c2;
 }
 
 .empty {
@@ -77,7 +95,8 @@ h1, h2 {
     padding: 4px;
 
     &:hover {
-        background-color: rgba(0, 0, 0, 0.15); 
+        color: white;
+        background-color: rgba(0, 0, 0, .25); 
     }
 }
 
@@ -132,11 +151,12 @@ h1, h2 {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-box:last-child {
+.box-1:last-child, .box-2:last-child, .box-3:last-child, .box-4:last-child {
     border: none;
 }
 
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+.list-1.cdk-drop-list-dragging, .list-2.cdk-drop-list-dragging, .list-3.cdk-drop-list-dragging, .list-4.cdk-drop-list-dragging,  
+.box-1:not(.cdk-drag-placeholder), .box-2:not(.cdk-drag-placeholder), .box-3:not(.cdk-drag-placeholder), .box-4:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
