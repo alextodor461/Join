@@ -67,7 +67,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       }
 
-    })
+    });
 
     this.route.paramMap.subscribe((params: ParamMap) => {
 
@@ -170,7 +170,9 @@ export class BoardComponent implements OnInit, OnDestroy {
         event.currentIndex,
       );
 
-      if (event.container.id === "cdk-drop-list-0") {
+      const containerName = event.container.element.nativeElement.className;
+
+      if (containerName.includes("example-list-1")) {
 
         const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
 
@@ -200,7 +202,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
         }
 
-      } else if (event.container.id === "cdk-drop-list-1") {
+      } else if (containerName.includes("example-list-2")) {
 
         const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
 
@@ -230,7 +232,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
         }
 
-      } else if (event.container.id === "cdk-drop-list-2") {
+      } else if (containerName.includes("example-list-3")) {
 
         const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
 

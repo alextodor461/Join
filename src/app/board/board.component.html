@@ -26,7 +26,7 @@
 
                 <h2>To do</h2>
 
-                <div cdkDropList [cdkDropListData]="toDo" class="example-list" (cdkDropListDropped)="drop($event)"
+                <div cdkDropList [cdkDropListData]="toDo" class="example-list-1" (cdkDropListDropped)="drop($event)"
                     [class.empty]="!toDo.length">
 
                     <span class="currently-empty-span" *ngIf="!toDo.length">currently empty</span>
@@ -62,7 +62,7 @@
 
                 <h2>In Progress</h2>
 
-                <div cdkDropList [cdkDropListData]="inProgress" class="example-list" (cdkDropListDropped)="drop($event)"
+                <div cdkDropList [cdkDropListData]="inProgress" class="example-list-2" (cdkDropListDropped)="drop($event)"
                     [class.empty]="!inProgress.length">
 
                     <span class="currently-empty-span" *ngIf="!inProgress.length">currently empty</span>
@@ -98,7 +98,7 @@
 
                 <h2>Testing</h2>
 
-                <div cdkDropList [cdkDropListData]="testing" class="example-list" (cdkDropListDropped)="drop($event)"
+                <div cdkDropList [cdkDropListData]="testing" class="example-list-3" (cdkDropListDropped)="drop($event)"
                     [class.empty]="!testing.length">
 
                     <span class="currently-empty-span" *ngIf="!testing.length">currently empty</span>
@@ -134,7 +134,7 @@
 
                 <h2>Done</h2>
 
-                <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)"
+                <div cdkDropList [cdkDropListData]="done" class="example-list-4" (cdkDropListDropped)="drop($event)"
                     [class.empty]="!done.length">
 
                     <span class="currently-empty-span" *ngIf="!done.length">currently empty</span>
