@@ -26,7 +26,8 @@
                 <ng-template matStepLabel>Description</ng-template>
                 <mat-form-field appearance="fill">
                     <mat-label>Description</mat-label>
-                    <input matInput placeholder="Task description" #description formControlName="description" maxlength="60" required>
+                    <input matInput placeholder="Task description" #description formControlName="description"
+                        maxlength="60" required>
                     <mat-hint align="end">{{ description.value.length }} / 60</mat-hint>
                 </mat-form-field>
                 <div>
@@ -91,13 +92,16 @@
         <mat-step>
             <ng-template matStepLabel>Done</ng-template>
             <p>You are now done.</p>
-            <p>If you have filled in all the inputs the "Create task" button should be enabled. Click it to create a new task.
+            <p>If you have filled in all the inputs the "Create task" button should be enabled. Click it to create a new
+                task.
             </p>
-            <p>If you wish you can go back to change the information of any input or click the "Reset" button to delete all the information entered so far and go back to the first step.</p>
+            <p>If you wish you can go back to change the information of any input or click the "Reset" button to delete
+                all the information entered so far and go back to the first step.</p>
             <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button (click)="stepper.reset()">Reset</button>
-                <button mat-button (click)="createTask()" [disabled]="checkProgressBarValue() !== 100">Create task</button>
+                <button mat-button (click)="createTask()" [disabled]="checkProgressBarValue() !== 100">Create
+                    task</button>
             </div>
         </mat-step>
 

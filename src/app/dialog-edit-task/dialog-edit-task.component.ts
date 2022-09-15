@@ -1,6 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subject, takeUntil } from 'rxjs';
 import { Task } from 'src/models/task';
 import { User } from 'src/models/user';
 import { TaskService } from 'src/services/task.service';
@@ -11,7 +12,7 @@ import { UserService } from 'src/services/user.service';
   templateUrl: './dialog-edit-task.component.html',
   styleUrls: ['./dialog-edit-task.component.scss']
 })
-export class DialogEditTaskComponent implements OnInit {
+export class DialogEditTaskComponent implements OnInit, OnDestroy {
 
   taskFromTheBoard: Task = new Task();
 
@@ -28,6 +29,8 @@ export class DialogEditTaskComponent implements OnInit {
 
   tasksAfterEdition: Task[] = [];
 
+  destroy = new Subject();
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Task,
     public dialogRef: MatDialogRef<DialogEditTaskComponent>,
@@ -35,6 +38,12 @@ export class DialogEditTaskComponent implements OnInit {
     private userService: UserService
   ) { }
 
+  /**
+   * Assigns to the local variable "taskFromTheBoard" all the data properties (data comes from the board component) so that the
+   * template can make use of these. It also gets all the users from the server by calling the getAllUsers function from the user 
+   * service. 
+   * IMPORTANT! --> Like in the add-tasks component, the "guest" user is excluded from the data that comes from the server.
+   */
   ngOnInit(): void {
 
     this.taskFromTheBoard.id = this.data.id;
@@ -48,7 +57,7 @@ export class DialogEditTaskComponent implements OnInit {
     this.getAssigneeOrCreator(this.data.assignee, "assignee");
     this.getAssigneeOrCreator(this.data.creator, "creator");
 
-    this.userService.getAllUsers().subscribe((data: User[]) => {
+    this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
       const usersExcludingGuest = data.filter(e => e.username !== "guest");
       this.users = usersExcludingGuest;
@@ -57,42 +66,65 @@ export class DialogEditTaskComponent implements OnInit {
 
   }
 
+  /**
+   * Gets the title form control.
+   */
   get title() {
 
     return this.editTaskForm.get("title");
 
   }
 
+  /**
+   * Gets the description form control.
+   */
   get description() {
 
     return this.editTaskForm.get("description");
-    
+
   }
 
+  /**
+   * Gets the priority form control.
+   */
   get priority() {
 
     return this.editTaskForm.get("priority");
-    
+
   }
 
+  /**
+   * Gets the state form control.
+   */
   get state() {
 
     return this.editTaskForm.get("state");
-    
+
   }
 
+  /**
+   * Gets the completionDate form control.
+   */
   get completionDate() {
 
     return this.editTaskForm.get("completionDate");
-    
+
   }
 
+  /**
+   * Gets the assignee form control.
+   */
   get assignee() {
 
     return this.editTaskForm.get("assignee");
-    
+
   }
 
+  /**
+   * Converts the passed-in value into its corresponding string.
+   * @param n - This is the passed-in value.
+   * @returns - the string that corresponds to the passed-in value.
+   */
   getPriority(n: number) {
 
     if (n === 1) {
@@ -111,6 +143,11 @@ export class DialogEditTaskComponent implements OnInit {
 
   }
 
+  /**
+   * Converts the passed-in value into its corresponding string.
+   * @param n - This is the passed-in value.
+   * @returns - the string that corresponds to the passed-in value.
+   */
   getState(n: number) {
 
     if (n === 1) {
@@ -133,19 +170,34 @@ export class DialogEditTaskComponent implements OnInit {
 
   }
 
+  /**
+   * By calling the getUserById function from the user service (and of course making use of the passed-in id) gets the assignee/creator 
+   * username.
+   * @param id - This is the passed-in id.
+   * @param assigneeOrCreator - This is the assignee or the creator. Depending on what we want to get, assignee or creator username, we 
+   * will pass in "assignee" or "creator".
+   * IMPORTANT! --> This function is needed because both the assignee and the creator have a numeric value on the server and we want
+   * the user to see their usernames and not their numeric values.
+   */
   getAssigneeOrCreator(id: number | string, assigneeOrCreator: string) {
 
     Number(id);
 
-    this.userService.getUserById(id).subscribe((data: User) => {
+    this.userService.getUserById(id).pipe(takeUntil(this.destroy)).subscribe((data: User) => {
 
       assigneeOrCreator === "assignee" ? this.taskFromTheBoard.assignee = data.username : this.taskFromTheBoard.creator = data.username;
+      
+      //Once the function gets the assignee and creator usernames the setFormValues function is called.
       this.setFormValues();
 
     });
 
   }
 
+  /**
+   * Sets the form control values from the editTask from group. In order to do this, it makes use of the local variable
+   * "taskFromTheBoard" properties.
+   */
   setFormValues() {
 
     this.title?.setValue(this.taskFromTheBoard.title);
@@ -157,6 +209,14 @@ export class DialogEditTaskComponent implements OnInit {
 
   }
 
+  /**
+   * Taking the values of all form controls + the taskFromTheBoard creation date + the taskFromTheBoard creator updates the task
+   * object that corresponds to the passed-in id (you can find it in the updateTask function) on the server (it does it by 
+   * calling the updateTask function from the task service). It then closes the dialog and passes to the board component the data 
+   * obtained after updating that task (all the tasks, including the recently updated task with the updated info).
+   * IMPORTANT! --> We want this function to pass all the tasks (updated) to the board, because this will make use of this data to 
+   * update its tasks array.
+   */
   saveChanges() {
 
     const editedTask: Task = new Task();
@@ -172,15 +232,20 @@ export class DialogEditTaskComponent implements OnInit {
     editedTask.assignee = this.assignee?.value;
     editedTask.creator = this.taskFromTheBoard.creator;
 
-    this.taskService.updateTask(id, editedTask).subscribe((data: Task[]) => {
+    this.taskService.updateTask(id, editedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task[]) => {
 
       this.tasksAfterEdition = data;
       this.dialogRef.close(this.tasksAfterEdition);
 
     });
-    
+
   }
 
+  /**
+   * Converts the completion date into yyyy-mm-dd format.
+   * @param data - This is the passed-in date.
+   * @returns -the completion date into yyyy-mm-dd format.
+   */
   convertCompletionDate(data: string) {
 
     let dateCut = (data.toString()).slice(4, 15);
@@ -201,7 +266,7 @@ export class DialogEditTaskComponent implements OnInit {
       const element = equivalenceArray[i];
       const monthAsString = element[0];
       const monthAsNumber = element[1];
-      
+
       if (monthAsString === mm) {
         mm = monthAsNumber;
       }
@@ -211,6 +276,15 @@ export class DialogEditTaskComponent implements OnInit {
     const convertedDate = yyyy + "-" + mm + "-" + dd;
 
     return convertedDate;
+
+  }
+
+  /**
+   * Sets the local variable "destroy" to "true" so that all observables in the component are unsubscribed when this is "destroyed".
+   */
+  ngOnDestroy(): void {
+
+    this.destroy.next(true);
 
   }
 

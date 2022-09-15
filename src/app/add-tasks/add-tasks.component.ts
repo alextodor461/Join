@@ -118,7 +118,7 @@ export class AddTasksComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Iterates over a form controls array and adds 20 to the progressBarValue variable each time any of the form controls is valid.
+   * Iterates over a form controls array and adds 20 to the "progressBarValue" variable each time any of the form controls is valid.
    * @returns - a value between 0 and 100, depending on how many form controls are valid (meaning: depending on how many form controls 
    * are filled in).
    */

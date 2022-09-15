@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
-      //There is a "guest" user in the server that cannot be deleted (from the frontend). Meaning: the function will always find
+      //There is a "guest" user on the server that cannot be deleted (from the frontend). Meaning: the function will always find
       //the user object that matches the hard coded data.
       const guestFromDb = data.find((user: User) => user.username === guest.username && user.password === guest.password);
 
