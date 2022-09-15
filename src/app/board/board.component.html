@@ -37,7 +37,14 @@
                     <p class="box-1" *ngFor="let item of toDo; index as i"
                         [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
-                        <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
+                        <span class="task-title-container">
+                            <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
+                            <div class="priority-icon-container" [ngSwitch]="item.priority">
+                                <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
+                                <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
+                                <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
+                            </div>
+                        </span>
 
                         <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
                             [matTooltipPosition]="'before'">
@@ -76,7 +83,14 @@
                     <p class="box-2" *ngFor="let item of inProgress; index as i"
                         [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
-                        <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
+                        <span class="task-title-container">
+                            <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
+                            <div class="priority-icon-container" [ngSwitch]="item.priority">
+                                <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
+                                <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
+                                <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
+                            </div>
+                        </span>
 
                         <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
                             [matTooltipPosition]="'before'">
@@ -115,7 +129,14 @@
                     <p class="box-3" *ngFor="let item of testing; index as i"
                         [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
-                        <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
+                        <span class="task-title-container">
+                            <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
+                            <div class="priority-icon-container" [ngSwitch]="item.priority">
+                                <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
+                                <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
+                                <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
+                            </div>
+                        </span>
 
                         <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
                             [matTooltipPosition]="'before'">
@@ -151,10 +172,17 @@
 
                     <span class="currently-empty-span" *ngIf="!done.length">currently empty</span>
 
-                    <p class="box-4" *ngFor="let item of done; index as i"
-                        [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
+                    <p class="box-4" *ngFor="let item of done; index as i" 
+                        [class.recently-created]="recentlyCreatedTask(item)"cdkDrag>
 
-                        <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
+                        <span class="task-title-container">
+                            <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
+                            <div class="priority-icon-container" [ngSwitch]="item.priority">
+                                <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
+                                <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
+                                <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
+                            </div>
+                        </span>
 
                         <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
                             [matTooltipPosition]="'before'">

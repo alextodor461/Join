@@ -7,8 +7,8 @@
             <h2>Better with a team.</h2>
         </div>
 
-        <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
-            matTooltip="Click to add new contact" [matTooltipPosition]="'after'">
+        <button mat-fab color="primary" (click)="addNewContact()" matTooltip="Click to add new contact"
+            [matTooltipPosition]="'after'">
             <mat-icon>add</mat-icon>
         </button>
 
@@ -20,8 +20,8 @@
             <mat-card-title>{{ user.username }}</mat-card-title>
             <mat-card-subtitle>subtitle</mat-card-subtitle>
             <mat-card-actions align="end">
-                <button mat-button>Edit</button>
-                <button mat-button color="warn">Delete</button>
+                <button mat-button (click)="editContact(user)">Edit</button>
+                <button mat-button color="warn" (click)="deleteContact(user)">Delete</button>
             </mat-card-actions>
         </mat-card>
 

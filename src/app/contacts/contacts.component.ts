@@ -1,7 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { User } from 'src/models/user';
 import { UserService } from 'src/services/user.service';
+import { DialogAddContactComponent } from '../dialog-add-contact/dialog-add-contact.component';
+import { DialogDeleteContactComponent } from '../dialog-delete-contact/dialog-delete-contact.component';
+import { DialogEditContactComponent } from '../dialog-edit-contact/dialog-edit-contact.component';
 
 @Component({
   selector: 'app-contacts',
@@ -15,7 +19,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
   destroy = new Subject();
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    public dialog: MatDialog
   ) { }
 
   /**
@@ -31,6 +36,24 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
     });
 
+  }
+
+  addNewContact() {
+
+    const dialogRef = this.dialog.open(DialogAddContactComponent);
+
+  }
+
+  editContact(contact: User) {
+
+    const dialogRef = this.dialog.open(DialogEditContactComponent);
+    
+  }
+
+  deleteContact(contact: User) {
+
+    const dialogRef = this.dialog.open(DialogDeleteContactComponent);
+    
   }
 
   /**
