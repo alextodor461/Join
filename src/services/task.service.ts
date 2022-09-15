@@ -16,7 +16,7 @@ export class TaskService {
    * GET method: fetches all the tasks from the server.
    * @returns - all the tasks from the server / a string if there are no tasks to fetch.
    */
-  public getAllTaks(): Observable<Task[]> {
+  public getAllTasks(): Observable<Task[]> {
 
     const taskListEndpoint = "task-list/";
 

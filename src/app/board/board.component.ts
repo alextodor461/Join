@@ -50,11 +50,16 @@ export class BoardComponent implements OnInit, OnDestroy {
     private toast: HotToastService
   ) { }
 
+  /**
+   * Gets all the tasks from the server by calling the getAllTasks function from the task service -and assigns the obtained data
+   * to the local array "tasks"-, retrieves the route parameter (if any) -and assigns it to the local variable "recentlyCreatedTaskId" 
+   * and "listens" for value changes in the taskSearch form control to update the local array "filteredTasks".
+   */
   ngOnInit(): void {
 
-    this.taskService.getAllTaks().pipe(takeUntil(this.destroy)).subscribe((data: Task[] | string) => {
+    this.taskService.getAllTasks().pipe(takeUntil(this.destroy)).subscribe((data: Task[] | string) => {
 
-      if (typeof data !== "string") { //Meaning: if the response from the server is NOT "The task list is empty.".
+      if (typeof data !== "string") { //Meaning: if the response from the server is NOT "The task list is empty."...
 
         this.tasks = data;
         this.sortTasks();
@@ -91,12 +96,20 @@ export class BoardComponent implements OnInit, OnDestroy {
     
   }
 
+  /**
+   * Checks if the local array "filteredTasks" contains the passed-in task.
+   * @param task - This is the passed-in Task.
+   * @returns - true or false, depending on wether the passed-in task is included in the local array "filteredTasks" or not.
+   */
   includedInFilteredTasks(task: Task) {
 
     return this.filteredTasks.includes(task);
 
   }
 
+  /**
+   * Sorts all task into 4 subarrays according to their state (1 = toDo, 2 = inProgress, 3 = testing and 4 = done).
+   */
   sortTasks() {
 
     for (let i = 0; i < this.tasks.length; i++) {
@@ -125,19 +138,28 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Checks if the passed-in task id has the same value as the local variable "recentlyCreatedTaskId".
+   * @param item - This is the passed-in item (task).
+   * @returns - true or false, depending on wether the passed-in task id has the same value as the local variable 
+   * "recentlyCreatedTaskId" or not.
+   */
   recentlyCreatedTask(item: Task) {
 
     return this.recentlyCreatedTaskId === item.id;
 
   }
 
+  /**
+   * Every time a task is moved (from one state to another) calls the updateTask function from the task service to update the state of
+   * the passed-in task (this in contained within the event parameter).
+   * @param event - This is the event that contains, among other things, the info of the to-be-moved task.
+   */
   drop(event: CdkDragDrop<Task[]>) {
 
-    if (event.previousContainer === event.container) {
+    if (event.previousContainer === event.container) { //Meaning: if the passed-in task is moved within its state (within its group)...
 
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-
-      console.log(event.item.element.nativeElement.innerText);
 
     } else {
 
@@ -156,9 +178,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
           movedTask.state = 1;
 
-          this.userService.getAllUsers().subscribe((data: User[]) => {
-
-            console.log(data);
+          this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
             const assignee = data.find(user => user.id === movedTask.assignee);
             const creator = data.find(user => user.id === movedTask.creator);
@@ -168,7 +188,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               movedTask.assignee = assignee?.username;
               movedTask.creator = creator?.username;
 
-              this.taskService.updateTask(movedTask.id, movedTask).subscribe((data: Task[]) => {
+              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task[]) => {
 
                 console.log(data);
           
@@ -188,9 +208,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
           movedTask.state = 2;
 
-          this.userService.getAllUsers().subscribe((data: User[]) => {
-
-            console.log(data);
+          this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
             const assignee = data.find(user => user.id === movedTask.assignee);
             const creator = data.find(user => user.id === movedTask.creator);
@@ -200,7 +218,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               movedTask.assignee = assignee?.username;
               movedTask.creator = creator?.username;
 
-              this.taskService.updateTask(movedTask.id, movedTask).subscribe((data: Task[]) => {
+              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task[]) => {
 
                 console.log(data);
           
@@ -220,9 +238,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
           movedTask.state = 3;
 
-          this.userService.getAllUsers().subscribe((data: User[]) => {
-
-            console.log(data);
+          this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
             const assignee = data.find(user => user.id === movedTask.assignee);
             const creator = data.find(user => user.id === movedTask.creator);
@@ -232,7 +248,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               movedTask.assignee = assignee?.username;
               movedTask.creator = creator?.username;
 
-              this.taskService.updateTask(movedTask.id, movedTask).subscribe((data: Task[]) => {
+              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task[]) => {
 
                 console.log(data);
           
@@ -252,9 +268,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
           movedTask.state = 4;
 
-          this.userService.getAllUsers().subscribe((data: User[]) => {
-
-            console.log(data);
+          this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
             const assignee = data.find(user => user.id === movedTask.assignee);
             const creator = data.find(user => user.id === movedTask.creator);
@@ -264,7 +278,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               movedTask.assignee = assignee?.username;
               movedTask.creator = creator?.username;
 
-              this.taskService.updateTask(movedTask.id, movedTask).subscribe((data: Task[]) => {
+              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task[]) => {
 
                 console.log(data);
           
@@ -282,6 +296,10 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Opens the DialogSeeTaskDetailsComponent and passes all the passed-in task properties to it (as a data object).
+   * @param task - This is the passed-in task.
+   */
   seeTaskDetails(task: Task) {
 
     this.dialog.open(DialogSeeTaskDetailsComponent, {
@@ -302,6 +320,11 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Opens the DialogEditTaskComponent, passes all the passed-in task properties to it (as a data object) and, when this is closed,
+   * uses the from-the-DialogEditTaskComponent-received data to update the local array "tasks" (and also the 4 subarrays).
+   * @param task - This is the passed-in task.
+   */
   editTask(task: Task) {
 
     const dialogRef = this.dialog.open(DialogEditTaskComponent, {
@@ -333,6 +356,12 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Opens the DialogDeleteTaskComponent, passes some propertis from the passed-in task properties to it (as a data object) and, when 
+   * this is closed, uses the from-the-DialogDeleteTaskComponent-received data to update the local array "tasks" (and also the 4 
+   * subarrays).
+   * @param task - This is the passed-in task.
+   */
   deleteTask(task: Task) {
 
     const dialogRef = this.dialog.open(DialogDeleteTaskComponent, {
@@ -348,7 +377,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       if (data) {
 
-        if (typeof data !== "string") { //Meaning: if the response from the server is NOT "The task list is empty.".
+        if (typeof data !== "string") { //Meaning: if the response from the server is NOT "The task list is empty."...
 
           this.emptyAndRefillArrays(data);
           this.toast.success("Task succesfully deleted!");
@@ -366,6 +395,9 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Empties all arrays (this function is only called when, after deleting a task, there are no more tasks left on the server).
+   */
   emptyArrays() {
 
     this.tasks = [];
@@ -377,6 +409,11 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Updates the local array "tasks" and also the 4 subarrays (the 4 subarrays are first emptied and then refilled thanks to the
+   * sortTasks function).
+   * @param data - This is the passed-in data (the passed-in array from tasks).
+   */
   emptyAndRefillArrays(data: Task[]) {
 
     this.tasks = data;
@@ -390,6 +427,9 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Sets the local variable "destroy" to "true" so that all observables in the component are unsubscribed when this is "destroyed".
+   */
   ngOnDestroy(): void {
 
     this.destroy.next(true);

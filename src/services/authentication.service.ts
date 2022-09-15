@@ -24,7 +24,7 @@ export class AuthenticationService {
   /**
    * Gets the current user from the local storage.
    * IMPORTANT! --> This function is always called after the saveCurrentUser function. Therefore, there is always one user in the
-   * local storage to retreive.
+   * local storage to retrieve.
    */
   getCurrentUser() {
 
