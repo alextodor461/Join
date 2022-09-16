@@ -41,6 +41,7 @@ import { DialogEditTaskComponent } from './dialog-edit-task/dialog-edit-task.com
 import { DialogAddContactComponent } from './dialog-add-contact/dialog-add-contact.component';
 import { DialogEditContactComponent } from './dialog-edit-contact/dialog-edit-contact.component';
 import { DialogDeleteContactComponent } from './dialog-delete-contact/dialog-delete-contact.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { DialogDeleteContactComponent } from './dialog-delete-contact/dialog-del
     DragDropModule,
     MatMenuModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatExpansionModule
   ],
   providers: [AuthGuard, AuthenticationService, UserService, TaskService],
   bootstrap: [AppComponent]

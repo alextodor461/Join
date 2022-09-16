@@ -17,8 +17,10 @@
     <ng-container *ngIf="users.length else loading">
 
         <mat-card *ngFor="let user of users; last as last" [ngClass]="last ? '' : 'mb-30'">
-            <mat-card-title>{{ user.username }}</mat-card-title>
-            <mat-card-subtitle>subtitle</mat-card-subtitle>
+            <div class="avatar-username-container">
+                <img src="assets\img\user.png">
+                <mat-card-title>{{ user.username }}</mat-card-title>
+            </div>
             <mat-card-actions align="end">
                 <button mat-button (click)="editContact(user)">Edit</button>
                 <button mat-button color="warn" (click)="deleteContact(user)">Delete</button>

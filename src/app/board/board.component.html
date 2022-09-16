@@ -172,8 +172,8 @@
 
                     <span class="currently-empty-span" *ngIf="!done.length">currently empty</span>
 
-                    <p class="box-4" *ngFor="let item of done; index as i" 
-                        [class.recently-created]="recentlyCreatedTask(item)"cdkDrag>
+                    <p class="box-4" *ngFor="let item of done; index as i"
+                        [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span class="task-title-container">
                             <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
@@ -213,12 +213,16 @@
 
     </ng-container>
 
-    <h4>*By changing a task from one list to another you will be changing the state of the task, which will remain saved
-        if you go to another section of the app or if you refresh/close the page. However, within each list the tasks
-        will be automatically sorted according to their id whenever you change the view or refresh/close the page.
-        This is so that the tasks in each list are sorted by creation date, with the oldest at the top and the most
-        recent at the bottom.
-    </h4>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>*Important information about the tasks.</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>By changing a task from one list to another you will be changing the state of the task, which will remain
+            saved if you go to another section of the app or if you refresh/close the page. However, within each list the
+            tasks will be automatically sorted according to their id whenever you change the view or refresh/close the page.
+            This is so that the tasks in each list are sorted by creation date, with the oldest at the top and the most
+            recent at the bottom.</p>
+    </mat-expansion-panel>
 
     <ng-template #loading>
 

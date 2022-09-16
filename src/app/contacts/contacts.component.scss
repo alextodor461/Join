@@ -16,3 +16,20 @@ h1 {
     display: flex;
     justify-content: center;
 }
+
+.avatar-username-container {
+    display: flex;
+    align-items: center;
+
+    mat-card-title {
+        margin: 0;
+    }
+
+    img {
+        margin-right: 1rem;
+        background-color: rgba(0, 0, 0, .5);
+        border-radius: 4px;
+        padding: 5px;
+        width: 7.5rem;
+    }
+}

@@ -1,1 +1,14 @@
-<p>dialog-delete-contact works!</p>
+<h2 mat-dialog-title>Delete contact "{{ userToDeleteUsername }}".</h2>
+
+<mat-dialog-content class="mat-typography">
+
+    <p>Are you sure you want to remove "{{ userToDeleteUsername }}" from the contacts?</p>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button color="warn" cdkFocusInitial (click)="deleteContact(userToDeleteId)">Delete</button>
+
+</mat-dialog-actions>
