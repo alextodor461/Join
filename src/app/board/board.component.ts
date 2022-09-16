@@ -415,7 +415,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   /**
    * Updates the local array "tasks" and also the 4 subarrays (the 4 subarrays are first emptied and then refilled thanks to the
    * sortTasks function).
-   * @param data - This is the passed-in data (the passed-in array from tasks).
+   * @param data - This is the passed-in data (the passed-in array of tasks).
    */
   emptyAndRefillArrays(data: Task[]) {
 

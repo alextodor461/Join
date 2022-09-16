@@ -31,9 +31,9 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   /**
    * Gets all the users from the server by calling the getAllUsers function from the user service. It then excludes the "guest" user
-   * object from the data (this is done because we do not want the "guest" user to be displayed, edited or deleted). It also assigns
-   * to the local variable "currentUser" the current user (which is obtained from the local storage thanks to the getCurrentUser
-   * function from the authentication service).
+   * object from the data (this is done because we do not want the "guest" user to be displayed, edited or deleted). Finally, it 
+   * assigns to the local variable "currentUser" the current user (which is obtained from the local storage thanks to the 
+   * getCurrentUser function from the authentication service).
    */
   ngOnInit(): void {
 
@@ -48,6 +48,10 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Opens the DialogAddContactComponent and, when this is closed, uses the from-the-DialogAddContactComponent-received data to update 
+   * the local array "users".
+   */
   addNewContact() {
 
     const dialogRef = this.dialog.open(DialogAddContactComponent);
@@ -65,6 +69,12 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * If the current user is Vincent, Alex or Florian, or if the current user clicks the "Edit" button that corresponds to his/her own
+   * contact, the function opens the DialogEditContactComponent, passes all the passed-in contact properties to it (as a data object) 
+   * and, when this is closed, uses the from-the-DialogEditContactComponent-received data to update the local array "users".
+   * @param contact - This is the passed-in contact.
+   */
   editContact(contact: User) {
 
     //If the current user is Vincent, Alex or Florian...
@@ -91,6 +101,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
       });
 
+    //If the current user tries to edit his/her own contact...
     } else if (this.currentUser.id === contact.id) {
 
       const dialogRef = this.dialog.open(DialogEditContactComponent, {
@@ -114,14 +125,21 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
       });
 
+    //If the current user is NOT Vincent, Alex or Florian and he/she tries to edit a contact that is not his/her own.
     } else {
 
-      this.toast.warning('You are not authorized to edit contacts except your own');
+      this.toast.warning('You are not authorized to edit contacts except your own.');
 
     }
 
   }
 
+  /**
+   * If the current user is Vincent, Alex or Florian, or if the current user clicks the "Delete" button that corresponds to his/her own
+   * contact, the function opens the DialogDeleteContactComponent, passes two of the passed-in contact properties to it (as a data 
+   * object) and, when this is closed, uses the from-the-DialogDeleteContactComponent-received data to update the local array "users".
+   * @param contact - This is the passed-in contact.
+   */
   deleteContact(contact: User) {
 
     //If the current user is Vincent, Alex or Florian...
@@ -147,6 +165,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
       });
 
+    //If the current tries to delete his/her own contact...
     } else if (this.currentUser.id === contact.id) {
 
       const dialogRef = this.dialog.open(DialogDeleteContactComponent, {
@@ -169,9 +188,10 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
       });
 
+    //If the current user is NOT Vincent, Alex or Florian and he/she tries to delete a contact that is not his/her own.
     } else {
 
-      this.toast.warning('You are not authorized to delete contacts except your own');
+      this.toast.warning('You are not authorized to delete contacts except your own.');
 
     }
 
@@ -179,7 +199,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   /**
    * Updates the local array "users".
-   * @param data - This is the passed-in data (the passed-in array from users).
+   * @param data - This is the passed-in data (the passed-in array of users).
    */
   updateUsersArray(data: User[]) {
 
