@@ -61,8 +61,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       //If there is a user object in the database that matches the passed-in data...
       if (userFromTheDb) {
 
-        this.authService.currentUser = userFromTheDb;
         this.authService.saveCurrentUser();
+        this.authService.currentUser = userFromTheDb;
         this.successfulLogin();
 
       //If there is NO user object in the database that matches the passed-in data...
@@ -114,8 +114,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       if (guestFromDb) {
 
-        this.authService.currentUser = guestFromDb;
         this.authService.saveCurrentUser();
+        this.authService.currentUser = guestFromDb;
         this.successfulLogin();
 
       //Since the function will always find the user object that matches the hard coded data, this is not really necessary. It could
@@ -134,7 +134,7 @@ export class LoginComponent implements OnInit, OnDestroy {
    * Sets the local variable "destroy" to "true" so that all observables in the component are unsubscribed when this is "destroyed".
    */
   ngOnDestroy(): void {
-    
+
     this.destroy.next(true);
 
   }

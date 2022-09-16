@@ -195,7 +195,7 @@ export class DialogEditTaskComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Sets the form control values from the editTask from group. In order to do this, it makes use of the local variable
+   * Sets all form control values from the editTask from group. In order to do this, it makes use of the local variable
    * "taskFromTheBoard" properties.
    */
   setFormValues() {
@@ -214,8 +214,8 @@ export class DialogEditTaskComponent implements OnInit, OnDestroy {
    * object that corresponds to the passed-in id (you can find it in the updateTask function) on the server (it does it by 
    * calling the updateTask function from the task service). It then closes the dialog and passes to the board component the data 
    * obtained after updating that task (all the tasks, including the recently updated task with the updated info).
-   * IMPORTANT! --> We want this function to pass all the tasks (updated) to the board, because this will make use of this data to 
-   * update its tasks array.
+   * IMPORTANT! --> We want this function to pass all the tasks (updated) to the board, because this component will make use of this 
+   * data to update its tasks array.
    */
   saveChanges() {
 

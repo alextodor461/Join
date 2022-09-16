@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
   /**
    * Checks the current URL and returns "false" if it is "/login" or "/signup" or "true" if it is neither of those.
-   * @returns - true or false, depending on the currentPath variable.
+   * @returns - "true" or "false", depending on the currentPath variable value.
    */
   checkNotLoginOrSignup() {
 

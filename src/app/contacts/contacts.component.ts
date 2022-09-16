@@ -32,8 +32,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
   /**
    * Gets all the users from the server by calling the getAllUsers function from the user service. It then excludes the "guest" user
    * object from the data (this is done because we do not want the "guest" user to be displayed, edited or deleted). It also assigns
-   * to the local variable "currentUser" the current user (which is obtained from the local storage thanks to the authentication
-   * service).
+   * to the local variable "currentUser" the current user (which is obtained from the local storage thanks to the getCurrentUser
+   * function from the authentication service).
    */
   ngOnInit(): void {
 
@@ -93,7 +93,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
     } else if (this.currentUser.id === contact.id) {
 
-
       const dialogRef = this.dialog.open(DialogEditContactComponent, {
 
         data: {
@@ -150,7 +149,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
     } else if (this.currentUser.id === contact.id) {
 
-
       const dialogRef = this.dialog.open(DialogDeleteContactComponent, {
 
         data: {
@@ -179,6 +177,10 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Updates the local array "users".
+   * @param data - This is the passed-in data (the passed-in array from users).
+   */
   updateUsersArray(data: User[]) {
 
     this.users = data;

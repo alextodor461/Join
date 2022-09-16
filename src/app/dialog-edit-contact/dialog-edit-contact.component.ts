@@ -28,7 +28,7 @@ export class DialogEditContactComponent implements OnInit, OnDestroy {
   ) { }
 
   /**
-   * Using the data properties from the contacts component sets both form controls from the editContact from group.
+   * Using the data properties from the contacts component sets both form control values from the editContact form group.
    */
   ngOnInit(): void {
 
@@ -55,32 +55,42 @@ export class DialogEditContactComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Taking the values of the two form controls updates the user object that corresponds to the passed-in id (you can find it in the 
+   * updateUser function) on the server (it does it by calling the updateUser function from the user service). It then checks if there
+   * is already a user with the passed-in username and if not, closes the dialog and passes to the contacts component the data 
+   * obtained after updating that user (all the users, including the recently updated user with the updated info).
+   * IMPORTANT! --> We want this function to pass all the users (updated) to the contacts component, because this component will make 
+   * use of this data to update its users array.
+   */
   saveChanges() {
 
     const editedContact: User = new User();
 
     const id = this.data.id;
 
-    editedContact.username = this.username?.value;
+    editedContact.username = (this.username?.value).replace(/ /g, '');
     editedContact.password = this.password?.value;
 
     this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
       const alreadyThisUsername = data.find((user: User) => user.username === editedContact.username);
 
+      //If the new username matches any username on the server, the user is not updated.
       if (alreadyThisUsername) {
 
         this.dialogRef.close();
         this.toast.warning(`There is already one user with the username '${editedContact.username}'.`);
-        
+
+      //But, if the username does not match any username on the server, the user is updated.
       } else {
 
-        this.userService.updateUser(id, editedContact).subscribe((data: User[]) => {
+        this.userService.updateUser(id, editedContact).pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
           this.dialogRef.close(data);
-    
+
         });
-    
+
       }
 
     });

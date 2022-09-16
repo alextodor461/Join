@@ -97,7 +97,7 @@ export class DialogSeeTaskDetailsComponent implements OnInit, OnDestroy {
    * @param assigneeOrCreator - This is the assignee or the creator. Depending on what we want to get, assignee or creator username, we 
    * will pass in "assignee" or "creator".
    * IMPORTANT! --> This function is needed because both the assignee and the creator have a numeric value on the server and we want
-   * the user to see their usernames and not their numeric values.
+   * the users to see their usernames and not their numeric values.
    */
   getAssigneeOrCreator(id: number | string, assigneeOrCreator: string) {
 

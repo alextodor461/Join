@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { User } from 'src/models/user';
@@ -9,7 +9,7 @@ import { UserService } from 'src/services/user.service';
   templateUrl: './dialog-delete-contact.component.html',
   styleUrls: ['./dialog-delete-contact.component.scss']
 })
-export class DialogDeleteContactComponent implements OnInit {
+export class DialogDeleteContactComponent implements OnInit, OnDestroy {
 
   userToDeleteId!: number;
 
@@ -37,8 +37,8 @@ export class DialogDeleteContactComponent implements OnInit {
   /**
    * Calls the deleteUser function from the user service to delete the user that corresponds to the passed-in id and then closes the
    * dialog, passing to the board component the data obtained after deleting that user (the rest of the users).
-   * IMPORTANT! --> We want this function to pass the rest of the users to the contacts component, because this will make use of this 
-   * data to update its users array.
+   * IMPORTANT! --> We want this function to pass the rest of the users to the contacts component, because this component will make 
+   * use of this data to update its users array.
    * @param userId - This is the passed-in user id.
    */
   deleteContact(userId: number) {

@@ -58,15 +58,15 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   /**
    * Checks if the password and confirmPassword form controls have the same value (but only if they are not empty) and if so, it
-   * returns true. The function returns false if these two form controls have different values.
-   * @returns - true or false, depending on wether the password and confirmPassword form controls have the same value or not.
+   * returns "true". The function returns "false" if these two form controls have different values.
+   * @returns - "true" or "false", depending on wether the password and confirmPassword form controls have the same value or not.
    */
   checkPasswordsMatch() {
 
     const passwordCurrentValue = this.password?.value;
     const confirmPasswordCurrentValue = this.confirmPassword?.value;
 
-    //Only checks for match if both the password and confirmPassword form controls have some value.
+    //Only checks for match if both the password and confirmPassword form controls have value (if they are not empty).
     if (passwordCurrentValue.length && confirmPasswordCurrentValue.length) {
 
       return this.password?.value === this.confirmPassword?.value;
@@ -86,17 +86,17 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     const newUser: User = new User();
 
-    newUser.username = this.username?.value;
+    newUser.username = (this.username?.value).replace(/ /g, '');
     newUser.password = this.password?.value;
 
     this.userService.createUser(newUser).pipe(takeUntil(this.destroy)).subscribe((data: User[] | string) => {
 
-      //If the username from the passed-in data matches any username from the server, no user is created.
+      //If the username from the passed-in data matches any username on the server, no user is created.
       if (data === `There is already one user with the username '${newUser.username}'.`) {
-        
+
         this.unsuccessfulResgistration();
 
-      //But, if the username from the passed-in data does not match any username from the server, a new user is created.
+      //But, if the username from the passed-in data does not match any username on the server, a new user is created.
       } else {
 
         this.successfulResgistration();
@@ -132,7 +132,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
 
     this.destroy.next(true);
-    
+
   }
 
 }
