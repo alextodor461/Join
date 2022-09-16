@@ -9,7 +9,6 @@ import { SummaryComponent } from './summary/summary.component';
 import { BoardComponent } from './board/board.component';
 import { AddTasksComponent } from './add-tasks/add-tasks.component';
 import { ContactsComponent } from './contacts/contacts.component';
-import { HelpComponent } from './help/help.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HotToastModule } from '@ngneat/hot-toast';
@@ -52,7 +51,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
     BoardComponent,
     AddTasksComponent,
     ContactsComponent,
-    HelpComponent,
     LegalNoticeComponent,
     DialogDeleteTaskComponent,
     DialogSeeTaskDetailsComponent,

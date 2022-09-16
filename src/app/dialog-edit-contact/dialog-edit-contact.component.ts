@@ -2,7 +2,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { User } from 'src/models/user';
 import { UserService } from 'src/services/user.service';
 
@@ -27,6 +27,9 @@ export class DialogEditContactComponent implements OnInit, OnDestroy {
     private toast: HotToastService
   ) { }
 
+  /**
+   * Using the data properties from the contacts component sets both form controls from the editContact from group.
+   */
   ngOnInit(): void {
 
     this.username?.setValue(this.data.username);
@@ -61,9 +64,24 @@ export class DialogEditContactComponent implements OnInit, OnDestroy {
     editedContact.username = this.username?.value;
     editedContact.password = this.password?.value;
 
-    this.userService.updateUser(id, editedContact).subscribe((data: User[]) => {
+    this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
-      console.log(data);
+      const alreadyThisUsername = data.find((user: User) => user.username === editedContact.username);
+
+      if (alreadyThisUsername) {
+
+        this.dialogRef.close();
+        this.toast.warning(`There is already one user with the username '${editedContact.username}'.`);
+        
+      } else {
+
+        this.userService.updateUser(id, editedContact).subscribe((data: User[]) => {
+
+          this.dialogRef.close(data);
+    
+        });
+    
+      }
 
     });
 

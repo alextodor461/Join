@@ -24,7 +24,7 @@ export class DialogDeleteContactComponent implements OnInit {
   ) { }
 
   /**
-   * Assigns to the local variables "userToDeleteId" and "userToDeleteUsername" the data properties (data comes from the board 
+   * Assigns to the local variables "userToDeleteId" and "userToDeleteUsername" the data properties (data comes from the contacts 
    * component) so that the template can make use of these.
    */
   ngOnInit(): void {
