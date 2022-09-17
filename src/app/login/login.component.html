@@ -4,7 +4,7 @@
 
         <img src="assets/logo-hell.svg">
 
-        <div>
+        <div class="register-button">
             <p>Not a Join user?</p>
             <button class="signup-btn" routerLink="/signup">Sign Up</button>
         </div>
@@ -28,8 +28,7 @@
             </mat-form-field>
 
             <div class="buttons-div">
-                <button class="login-btn" type="submit" [disabled]="!loginForm.valid"
-                    [class.disabled-btn]="!loginForm.valid">
+                <button class="login-btn" type="submit" [disabled]="!loginForm.valid" [class.disabled-btn]="!loginForm.valid">
                     Log in
                 </button>
                 <button class="guest-login-btn" type="button" (click)="loginAsGuest()">Guest Log in</button>

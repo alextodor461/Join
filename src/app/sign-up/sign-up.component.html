@@ -4,7 +4,7 @@
 
         <img src="assets/logo-hell.svg">
 
-        <div>
+        <div class="register-button">
             <p>Already a Join user?</p>
             <button class="back-to-login-btn" routerLink="/login">Back to login</button>
         </div>
@@ -32,12 +32,10 @@
                 <mat-error *ngIf="confirmPassword?.errors?.['required']">Confirm password is required</mat-error>
             </mat-form-field>
 
-            <mat-error *ngIf="!checkPasswordsMatch()">Password must be the same in both the "Password" and "Confirm
-                password" fields.</mat-error>
+            <mat-error *ngIf="!checkPasswordsMatch()">Password must be the same in both the "Password" and "Confirm password" fields.</mat-error>
 
             <div class="buttons-div">
-                <button class="signup-btn" type="submit" [disabled]="!signupForm.valid || !checkPasswordsMatch()"
-                    [class.disabled-btn]="!signupForm.valid || !checkPasswordsMatch()">
+                <button class="signup-btn" type="submit" [disabled]="!signupForm.valid || !checkPasswordsMatch()" [class.disabled-btn]="!signupForm.valid || !checkPasswordsMatch()">
                     Sign up
                 </button>
             </div>
