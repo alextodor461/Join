@@ -7,16 +7,14 @@ mat-drawer {
 }
 
 mat-toolbar {
-    background-color: rgba(0, 0, 0, .15);
+    background-color: rgba(0, 0, 0, 0.15);
     justify-content: space-between;
     padding: 0 30px;
-
     button {
         transition: 225ms ease-in-out;
-
         &:hover {
             color: white;
-            background-color: #29ABE2;
+            background-color: #29abe2;
         }
     }
 }
@@ -25,40 +23,33 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #2A3647;
+    background-color: #2a3647;
     height: 100%;
     font-size: 13px;
-
     a {
         color: white;
         text-decoration: none;
     }
-
     span {
         color: white;
     }
-
     .logo {
         margin-left: 25%;
-        padding-block: 30px
+        padding-block: 30px;
     }
-
     .anchor-tags-main-div {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
-
         div {
             display: flex;
             align-items: center;
             padding: 20px 0px;
-
             &:hover {
                 cursor: pointer;
-                background-color: #091931;
+                //background-color: #091931;
             }
-
             img {
                 margin-left: 25%;
                 margin-right: 10px;
@@ -67,7 +58,6 @@ nav {
             }
         }
     }
-
     .legal-notice-div {
         display: flex;
         text-align: center;
@@ -75,11 +65,9 @@ nav {
         width: 100%;
         padding: 20px 0px;
         cursor: pointer;
-
         &:hover {
             background-color: #091931;
         }
-
         img {
             margin-left: 25%;
             margin-right: 10px;
@@ -95,4 +83,60 @@ nav {
 
 .active {
     background-color: #091931;
+}
+
+@media (max-width: 1000px) {
+    .sidebar-top {
+        img {
+            height: 20%;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .anchor-tags-main-div {
+        span {
+            display: none;
+        }
+    }
+    .legal-notice-div {
+        span {
+            display: none;
+        }
+    }
+    .sidebar-top {
+        img {
+            height: 15%;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .mat-drawer {
+        position: absolute;
+        top: unset;
+        bottom: 0;
+        left: 0;
+    }
+    nav {
+        justify-content: space-around;
+        width: 100%;
+    }
+    .anchor-tags-main-div {
+        flex-direction: row !important;
+        justify-content: space-around !important;
+    }
+    .logo {
+        display: contents;
+    }
+    mat-drawer {
+        min-width: 100%;
+    }
+    .legal-notice-div {
+        display: none !important;
+    }
+    mat-toolbar {
+        position: fixed;
+        left: 0;
+    }
 }
