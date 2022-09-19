@@ -23,31 +23,28 @@
 
     <ng-container *ngIf="tasksLoaded; else loading">
 
-        <div cdkDropListGroup>
+        <div class="list-container-group" cdkDropListGroup>
 
             <div class="list-container">
 
                 <h2>To do</h2>
 
-                <div cdkDropList [cdkDropListData]="toDo" class="list-1" (cdkDropListDropped)="drop($event)"
-                    [class.empty]="!toDo.length">
+                <div cdkDropList [cdkDropListData]="toDo" class="list-1" (cdkDropListDropped)="drop($event)" [class.empty]="!toDo.length">
 
                     <span class="currently-empty-span" *ngIf="!toDo.length">currently empty</span>
 
-                    <p class="box-1" *ngFor="let item of toDo; index as i"
-                        [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
+                    <p class="box-1" *ngFor="let item of toDo; index as i" [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span class="task-title-container">
                             <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
-                            <div class="priority-icon-container" [ngSwitch]="item.priority">
-                                <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
-                                <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
-                                <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
-                            </div>
+                        <div class="priority-icon-container" [ngSwitch]="item.priority">
+                            <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
+                            <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
+                            <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
+                        </div>
                         </span>
 
-                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
-                            [matTooltipPosition]="'before'">
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu" [matTooltipPosition]="'before'">
                             more_vert
                         </mat-icon>
                         <mat-menu #menu="matMenu">
@@ -75,25 +72,22 @@
 
                 <h2>In Progress</h2>
 
-                <div cdkDropList [cdkDropListData]="inProgress" class="list-2" (cdkDropListDropped)="drop($event)"
-                    [class.empty]="!inProgress.length">
+                <div cdkDropList [cdkDropListData]="inProgress" class="list-2" (cdkDropListDropped)="drop($event)" [class.empty]="!inProgress.length">
 
                     <span class="currently-empty-span" *ngIf="!inProgress.length">currently empty</span>
 
-                    <p class="box-2" *ngFor="let item of inProgress; index as i"
-                        [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
+                    <p class="box-2" *ngFor="let item of inProgress; index as i" [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span class="task-title-container">
                             <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
-                            <div class="priority-icon-container" [ngSwitch]="item.priority">
-                                <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
-                                <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
-                                <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
-                            </div>
+                        <div class="priority-icon-container" [ngSwitch]="item.priority">
+                            <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
+                            <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
+                            <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
+                        </div>
                         </span>
 
-                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
-                            [matTooltipPosition]="'before'">
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu" [matTooltipPosition]="'before'">
                             more_vert
                         </mat-icon>
                         <mat-menu #menu="matMenu">
@@ -121,25 +115,22 @@
 
                 <h2>Testing</h2>
 
-                <div cdkDropList [cdkDropListData]="testing" class="list-3" (cdkDropListDropped)="drop($event)"
-                    [class.empty]="!testing.length">
+                <div cdkDropList [cdkDropListData]="testing" class="list-3" (cdkDropListDropped)="drop($event)" [class.empty]="!testing.length">
 
                     <span class="currently-empty-span" *ngIf="!testing.length">currently empty</span>
 
-                    <p class="box-3" *ngFor="let item of testing; index as i"
-                        [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
+                    <p class="box-3" *ngFor="let item of testing; index as i" [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span class="task-title-container">
                             <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
-                            <div class="priority-icon-container" [ngSwitch]="item.priority">
-                                <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
-                                <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
-                                <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
-                            </div>
+                        <div class="priority-icon-container" [ngSwitch]="item.priority">
+                            <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
+                            <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
+                            <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
+                        </div>
                         </span>
 
-                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
-                            [matTooltipPosition]="'before'">
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu" [matTooltipPosition]="'before'">
                             more_vert
                         </mat-icon>
                         <mat-menu #menu="matMenu">
@@ -167,25 +158,22 @@
 
                 <h2>Done</h2>
 
-                <div cdkDropList [cdkDropListData]="done" class="list-4" (cdkDropListDropped)="drop($event)"
-                    [class.empty]="!done.length">
+                <div cdkDropList [cdkDropListData]="done" class="list-4" (cdkDropListDropped)="drop($event)" [class.empty]="!done.length">
 
                     <span class="currently-empty-span" *ngIf="!done.length">currently empty</span>
 
-                    <p class="box-4" *ngFor="let item of done; index as i"
-                        [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
+                    <p class="box-4" *ngFor="let item of done; index as i" [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span class="task-title-container">
                             <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
-                            <div class="priority-icon-container" [ngSwitch]="item.priority">
-                                <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
-                                <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
-                                <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
-                            </div>
+                        <div class="priority-icon-container" [ngSwitch]="item.priority">
+                            <img *ngSwitchCase="1" src="assets\img\arrow-up.png">
+                            <img *ngSwitchCase="2" src="assets\img\double-arrow.png">
+                            <img *ngSwitchCase="3" src="assets\img\triple-arrows.png">
+                        </div>
                         </span>
 
-                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu"
-                            [matTooltipPosition]="'before'">
+                        <mat-icon mat-button [matMenuTriggerFor]="menu" class="menu-btn" matTooltip="Click to open menu" [matTooltipPosition]="'before'">
                             more_vert
                         </mat-icon>
                         <mat-menu #menu="matMenu">
@@ -217,13 +205,8 @@
         <mat-expansion-panel-header>
             <mat-panel-title>*Important information about the tasks.</mat-panel-title>
         </mat-expansion-panel-header>
-        <p>By changing a task from one list to another you will be changing the state of the task, which will remain
-            saved if you go to another section of the app or if you refresh/close the page. However, within each list
-            the
-            tasks will be automatically sorted according to their id whenever you change the view or refresh/close the
-            page.
-            This is so that the tasks in each list are sorted by creation date, with the oldest at the top and the most
-            recent at the bottom.</p>
+        <p>By changing a task from one list to another you will be changing the state of the task, which will remain saved if you go to another section of the app or if you refresh/close the page. However, within each list the tasks will be automatically
+            sorted according to their id whenever you change the view or refresh/close the page. This is so that the tasks in each list are sorted by creation date, with the oldest at the top and the most recent at the bottom.</p>
     </mat-expansion-panel>
 
     <ng-template #loading>
