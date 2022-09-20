@@ -1,83 +1,110 @@
 <div class="summary-content">
 
     <div class="summary-headline">
-        <h1>Summary</h1>
+        <h1 class="font-size-big">Summary</h1>
         <p>Everything in a nutshell!</p>
     </div>
 
     <div class="summary-main-container">
-        <div>
+
+        <div class="summary-left-container">
+
             <div class="summary-container1">
-                <mat-card class="card-size">
+
+                <mat-card class="mr-1">
+
                     <div class="board-info">
                         <h1>5</h1>
-                        <p> Tasks in <br> Board</p>
+                        <p>Tasks in<br>Board</p>
                     </div>
+
                 </mat-card>
-                <mat-card class="card-size-middle">
+
+                <mat-card class="mr-1">
+
                     <div class="board-info">
                         <h1>5</h1>
-                        <p> Tasks in <br> Progress</p>
+                        <p>Tasks in<br>Progress</p>
                     </div>
+
                 </mat-card>
-                <mat-card class="card-size">
+
+                <mat-card>
+
                     <div class="board-info">
                         <h1>5</h1>
-                        <p> Awaiting <br> Feedback</p>
+                        <p>Awaiting<br>Feedback</p>
                     </div>
+
                 </mat-card>
+
             </div>
 
             <div class="summary-container2">
+
                 <mat-card class="middle-card">
+
                     <div class="middle-card-left">
+
                         <div id="circle-red">
                             <img src="assets\img\up-arrow-white.png">
                         </div>
-                        <div class="">
+
+                        <div class="subcontainer-left">
                             <h1>2</h1>
                             <p>Tasks</p>
                         </div>
+
                     </div>
 
                     <div class="board-date">
-                        <p> Oktober 16, 2022</p>
-                        <p> Upcomming Deadline</p>
+                        <p>Oktober 16, 2022</p>
+                        <p>Upcomming Deadline</p>
                     </div>
+
                 </mat-card>
 
             </div>
 
             <div class="summary-container3">
-                <mat-card class="todo-card">
+
+                <mat-card class="todo-card mr-1">
+
                     <div id="circle">
                         <img src="assets\img\pencil-48.png">
                     </div>
-                    <div class="">
+
+                    <div class="subcontainer-right">
                         <h1>2</h1>
-                        <p>To-do</p>
+                        <p>To do</p>
                     </div>
+
                 </mat-card>
+
                 <mat-card class="todo-card">
+
                     <div id="circle">
                         <img src="assets\img\check-mark-3-48.png">
                     </div>
-                    <div class="">
+
+                    <div class="subcontainer-right">
                         <h1>2</h1>
                         <p>Done</p>
                     </div>
-                </mat-card>
-            </div>
-        </div>
 
-        <!--<div class="welcome-name">
-            <h1 *ngIf="authService.currentUser">Welcome to Join, <br> <span style="color: #29abe2">{{ authService.currentUser.username }}</span></h1>
-        </div> -->
+                </mat-card>
+
+            </div>
+
+        </div>
 
         <div class="welcome-name">
-            <h1>Welcome to Join, <br> <span style="color: #29abe2">{{ authService.getCurrentUser().username }}</span></h1>
+
+            <h1>👋 Welcome to Join,</h1>
+            <h1 style="color: #29abe2">{{ authService.getCurrentUser().username }}</h1>
+
         </div>
-        <!-- >>>>>>> ebe868894d6b5490d27b870347ded4312600322e -->
 
     </div>
+
 </div>

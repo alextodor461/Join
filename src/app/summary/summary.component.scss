@@ -1,76 +1,174 @@
 .summary-content {
-    position: relative;
-    //left: 7.688rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
 .summary-headline {
-    margin-top: 3.688rem;
-    margin-bottom: 5.438rem;
     display: flex;
     justify-content: center;
+    align-items: center;
+
     h1 {
-        font-size: 3.813rem;
-        text-align: center;
-        font-style: normal;
-        font-weight: 700;
-        margin-right: 1.875rem;
+        font-weight: bold;
+        font-size: 3rem;
+        margin-right: 1rem;
     }
+
     p {
-        font-size: 1.688rem;
-        min-width: 170px;
         text-align: center;
         border-left: medium solid #29abe2;
-        line-height: 0.8;
-        padding: 0.625rem;
+        padding-left: 1rem;
+        font-size: 1.5rem;
     }
 }
 
 .summary-main-container {
-    position: relative;
     display: flex;
-    justify-content: space-around;
-    .summary-container1 {
-        padding: 0px 0px 35px 0px;
-        display: flex;
-        .board-info {
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 172px);
+
+    .summary-left-container {
+        width: 50%;
+
+        .summary-container1 {
+            padding: 0px 0px 35px 0px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
+
+            mat-card {
+                max-height: 150px;
+                width: calc(100% / 3);
+
+                .board-info {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    p {
+                        text-align: center;
+                        font-size: 21px;
+                        color: #2a3647;
+                    }
+                }
+            }
         }
-        p {
-            text-align: center;
-            font-size: 21px;
-            color: #2a3647;
-        }
-    }
-    .summary-container2 {
-        padding: 0px 0px 35px 0px;
-        display: flex;
-        justify-content: center;
-        .board-date {
-            border-left: medium solid #d1d1d1;
-            padding: 10px;
-            padding-left: 50px;
-        }
-        mat-card {
-            min-width: 100%;
-        }
-        .middle-card {
+
+        .summary-container2 {
+            padding: 0px 0px 35px 0px;
             display: flex;
             justify-content: center;
+
+            mat-card {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+
+                .middle-card-left {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 1rem;
+
+                    #circle-red {
+                        width: 69px;
+                        height: 69px;
+                        background: #ff3d00;
+                        border-radius: 70px;
+                        margin-right: 1rem;
+                        -webkit-border-radius: 70px;
+
+                        img {
+                            padding: 14px;
+                            width: 40px;
+                            height: 40px;
+                            transform: rotate(180deg);
+                        }
+                    }
+
+                    .subcontainer-left {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        h1 {
+                            margin-bottom: .5rem;
+                        }
+
+                        p {
+                            text-align: center;
+                            font-size: 1.5rem;
+                            color: #2a3647;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+
+                .board-date {
+                    border-left: medium solid #d1d1d1;
+                    padding-inline: 1rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    p {
+                        margin-bottom: 0;
+                    }
+                }
+            }
         }
+
+        .summary-container3 {
+            display: flex;
+            justify-content: space-between;
+
+            mat-card {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                #circle {
+                    width: 69px;
+                    height: 69px;
+                    background: #2a3647;
+                    border-radius: 70px;
+                    margin-right: 1rem;
+                    -webkit-border-radius: 70px;
+
+                    img {
+                        padding: 14px;
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+
+                .subcontainer-right {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    h1 {
+                        margin-bottom: .5rem;
+                    }
+
+                    p {
+                        text-align: center;
+                        font-size: 1.5rem;
+                        color: #2a3647;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+
     }
-    .summary-container3 {
-        display: flex;
-        justify-content: space-between;
-    }
+
     .welcome-name {
-        margin-left: 20px;
-        display: flex;
-        align-items: center;
+        text-align: center;
+        width: 50%;
+
         h1 {
             font-size: 47px;
             line-height: normal;
@@ -80,114 +178,68 @@
 
 mat-card {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
     padding: 25px 0px;
-    gap: 13px;
+
     h1 {
+        font-size: 2rem;
+        font-weight: bold;
         text-align: center;
-        font-size: 64px;
-        font-style: normal;
     }
 }
 
-.card-size {
-    max-height: 150px;
-    width: 170px;
-}
-
-.card-size-middle {
-    max-height: 150px;
-    width: 170px;
-    margin-left: 35px;
-    margin-right: 35px;
-}
-
-#circle {
-    width: 69px;
-    height: 69px;
-    background: #2a3647;
-    -moz-border-radius: 70px;
-    -webkit-border-radius: 70px;
-    border-radius: 70px;
-    img {
-        padding: 14px;
-        width: 40px;
-        height: 40px;
-    }
-}
-
-#circle-red {
-    width: 69px;
-    height: 69px;
-    background: #ff3d00;
-    -moz-border-radius: 70px;
-    -webkit-border-radius: 70px;
-    border-radius: 70px;
-    img {
-        padding: 15px;
-        width: 40px;
-        height: 40px;
-        transform: rotate(180deg);
-    }
-}
-
-.todo-card {
-    width: 47%;
-    display: flex;
-    justify-content: center;
-    p {
-        text-align: center;
-        font-size: 21px;
-        color: #2a3647;
-    }
-}
-
-.middle-card-left {
-    position: relative;
-    padding-right: 30px;
-    top: 20px;
-    display: flex;
+.mr-1 {
+    margin-right: 1rem;
 }
 
 @media (max-width: 1000px) {
+
     .welcome-name {
         display: none !important;
     }
 }
 
 @media (max-width: 750px) {
+
     .card-size {
         max-height: 110px;
         width: 110px;
     }
+
     .card-size-middle {
         max-height: 110px;
         width: 110px;
     }
+
     h1 {
         font-size: 47px !important;
     }
+
     p {
         font-size: 14px !important;
     }
+
     #circle {
         width: 50px;
         height: 50px;
+
         img {
             padding: 10px;
             width: 30px;
             height: 30px;
         }
     }
+
     #circle-red {
         width: 50px;
         height: 50px;
+
         img {
             padding: 10px;
             width: 30px;
             height: 30px;
         }
     }
+
     .summary-content {
         position: fixed !important;
         left: 4px !important;
