@@ -33,7 +33,7 @@
 
                     <div class="board-info">
                         <h1>{{ testing.length ? testing.length : 0 }}</h1>
-                        <p>Awaiting<br>Feedback</p>
+                        <p>Tasks in<br>Testing</p>
                     </div>
 
                 </mat-card>
@@ -52,14 +52,14 @@
 
                         <div class="subcontainer-left">
                             <h1>{{ tasksWithHighPriority.length ? tasksWithHighPriority.length : 0 }}</h1>
-                            <p>Tasks with high priority</p>
+                            <p>Tasks with <span>high</span> priority</p>
                         </div>
 
                     </div>
 
                     <div class="board-date">
-                        <p>Oktober 16, 2022</p>
-                        <p>Upcomming Deadline</p>
+                        <p>Task with the closest deadline:</p>
+                        <p><b>"{{ tasksOrderedbyCompletionDate.length ? tasksOrderedbyCompletionDate[0].title : "none" }}"</b></p>
                     </div>
 
                 </mat-card>
