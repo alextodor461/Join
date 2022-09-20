@@ -99,7 +99,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   /**
    * Checks if the local array "filteredTasks" contains the passed-in task.
    * @param task - This is the passed-in Task.
-   * @returns - "true" or "false", depending on wether the passed-in task is included in the local array "filteredTasks" or not.
+   * @returns - "true" or "false", depending on whether the passed-in task is included in the local array "filteredTasks" or not.
    */
   includedInFilteredTasks(task: Task) {
 
@@ -141,7 +141,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   /**
    * Checks if the passed-in task id has the same value as the local variable "recentlyCreatedTaskId".
    * @param item - This is the passed-in item (task).
-   * @returns - "true" or "false", depending on wether the passed-in task id has the same value as the local variable 
+   * @returns - "true" or "false", depending on whether the passed-in task id has the same value as the local variable 
    * "recentlyCreatedTaskId" or not.
    */
   recentlyCreatedTask(item: Task) {

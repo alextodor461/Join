@@ -63,7 +63,7 @@ export class DialogAddContactComponent implements OnInit, OnDestroy {
   /**
    * Checks if the password and confirmPassword form controls have the same value (but only if they are not empty) and if so, it
    * returns "true·. The function returns "false" if these two form controls have different values.
-   * @returns - "true" or "false", depending on wether the password and confirmPassword form controls have the same value or not.
+   * @returns - "true" or "false", depending on whether the password and confirmPassword form controls have the same value or not.
    */
   checkPasswordsMatch() {
 
