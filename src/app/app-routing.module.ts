@@ -17,7 +17,8 @@ const routes: Routes = [
   { path: 'board', component: BoardComponent, canActivate: [AuthGuard]},
   { path: 'add-task', component: AddTasksComponent, canActivate: [AuthGuard]},
   { path: 'contacts', component: ContactsComponent, canActivate: [AuthGuard] },
-  { path: 'legal-notice', component: LegalNoticeComponent, canActivate: [AuthGuard] }
+  { path: 'legal-notice', component: LegalNoticeComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
