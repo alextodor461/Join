@@ -14,7 +14,7 @@
                 <mat-card class="mr-1">
 
                     <div class="board-info">
-                        <h1>5</h1>
+                        <h1>{{ tasks.length ? tasks.length : 0}}</h1>
                         <p>Tasks in<br>Board</p>
                     </div>
 
@@ -23,7 +23,7 @@
                 <mat-card class="mr-1">
 
                     <div class="board-info">
-                        <h1>5</h1>
+                        <h1>{{ inProgress.length ? inProgress.length : 0}}</h1>
                         <p>Tasks in<br>Progress</p>
                     </div>
 
@@ -32,7 +32,7 @@
                 <mat-card>
 
                     <div class="board-info">
-                        <h1>5</h1>
+                        <h1>{{ testing.length ? testing.length : 0 }}</h1>
                         <p>Awaiting<br>Feedback</p>
                     </div>
 
@@ -51,8 +51,8 @@
                         </div>
 
                         <div class="subcontainer-left">
-                            <h1>2</h1>
-                            <p>Tasks</p>
+                            <h1>{{ tasksWithHighPriority.length ? tasksWithHighPriority.length : 0 }}</h1>
+                            <p>Tasks with high priority</p>
                         </div>
 
                     </div>
@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="subcontainer-right">
-                        <h1>2</h1>
+                        <h1>{{ toDo.length ? toDo.length : 0}}</h1>
                         <p>To do</p>
                     </div>
 
@@ -88,7 +88,7 @@
                     </div>
 
                     <div class="subcontainer-right">
-                        <h1>2</h1>
+                        <h1>{{ done.length ? done.length : 0}}</h1>
                         <p>Done</p>
                     </div>
 
