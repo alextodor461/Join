@@ -1,0 +1,27 @@
+.legal-notice-content {
+    display: flex;
+    flex-direction: column;
+    mat-card {
+        margin-top: 20px;
+    }
+    h3 {
+        color: #29abe2;
+        text-decoration: underline;
+    }
+}
+
+@media (max-width: 600px) {
+    mat-drawer-content {
+        margin-left: unset;
+        position: unset;
+    }
+    .legal-notice-content {
+        position: absolute;
+        left: 0;
+        top: 67px;
+        right: 0px;
+        bottom: 0px;
+        width: 100%;
+        overflow: scroll;
+    }
+}
