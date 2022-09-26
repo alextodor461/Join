@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { User } from 'src/models/user';
+import { UserPlusToken } from 'src/models/userPlusToken';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +12,15 @@ export class AuthenticationService {
 
   public currentUser!: User;
 
-  constructor(private router: Router) { }
+  private loginUrl: string = "https://vicentbotellaferragud.pythonanywhere.com/users/login/";
+
+  constructor(private router: Router, private http: HttpClient) { }
+
+  public loginUser(user: User): Observable<UserPlusToken> {
+
+    return this.http.post<UserPlusToken>(this.loginUrl, user);
+
+  }
 
   /**
    * Stores the current user in the local storage.

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subject, takeUntil } from 'rxjs';
 import { User } from 'src/models/user';
+import { UserPlusToken } from 'src/models/userPlusToken';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { UserService } from 'src/services/user.service';
 
@@ -54,23 +55,14 @@ export class LoginComponent implements OnInit, OnDestroy {
    */
   submit() {
 
-    this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
+    const userToLogIn: User = new User();
 
-      const userFromTheDb = data.find((user: User) => user.username === this.username?.value && user.password === this.password?.value);
+    userToLogIn.username = (this.username?.value).replace(/ /g, '');
+    userToLogIn.password = this.password?.value;
 
-      //If there is a user object in the database that matches the passed-in data...
-      if (userFromTheDb) {
+    this.authService.loginUser(userToLogIn).pipe(takeUntil(this.destroy)).subscribe((data: UserPlusToken) => {
 
-        this.authService.currentUser = userFromTheDb;
-        this.authService.saveCurrentUser();
-        this.successfulLogin();
-
-      //If there is NO user object in the database that matches the passed-in data...
-      } else {
-
-        this.unsuccessfulLogin();
-
-      }
+     console.log(data);
 
     });
 
