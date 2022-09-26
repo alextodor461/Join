@@ -88,8 +88,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     newUser.username = (this.username?.value).replace(/ /g, '');
     newUser.password = this.password?.value;
+    newUser.password_confirmation = this.confirmPassword?.value;
 
-    this.userService.createUser(newUser).pipe(takeUntil(this.destroy)).subscribe((data: User[] | string) => {
+    this.userService.createUser(newUser).pipe(takeUntil(this.destroy)).subscribe((data: User | string) => {
 
       //If the username from the passed-in data matches any username on the server, no user is created.
       if (data === `There is already one user with the username '${newUser.username}'.`) {

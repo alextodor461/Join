@@ -10,6 +10,8 @@ export class UserService {
 
   private baseUrl: string = "https://vicentbotellaferragud.pythonanywhere.com/api";
 
+  private registrationUrl: string = "https://vicentbotellaferragud.pythonanywhere.com/users/register/";
+
   constructor(private http: HttpClient) { }
 
   /**
@@ -37,16 +39,9 @@ export class UserService {
 
   }
 
-  /**
-   * POST method: creates a new user on the server.
-   * @param user - This is the passed-in user (the to-be-created user).
-   * @returns - all the users from the server.
-   */
-  public createUser(user: User): Observable<User[]> {
-
-    const userCreationEndpoint = "user-create/";
+  public createUser(user: User): Observable<User> {
     
-    return this.http.post<User[]>(`${this.baseUrl}/${userCreationEndpoint}`, user);
+    return this.http.post<User>(this.registrationUrl, user);
 
   }
 
