@@ -3,7 +3,7 @@ import { TaskService } from 'src/services/task.service';
 import { Task } from 'src/models/task';
 import { UserService } from 'src/services/user.service';
 import { Subject, takeUntil } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDeleteTaskComponent } from '../dialog-delete-task/dialog-delete-task.component';
@@ -47,7 +47,8 @@ export class BoardComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
-    private toast: HotToastService
+    private toast: HotToastService,
+    private router: Router
   ) { }
 
   /**
@@ -175,7 +176,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       if (containerName.includes("list-1")) {
 
-        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
+        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).slice(0, -10) === task.title);
 
         if (movedTask) {
 
@@ -205,7 +206,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       } else if (containerName.includes("list-2")) {
 
-        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
+        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).slice(0, -10) === task.title);
 
         if (movedTask) {
 
@@ -235,7 +236,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       } else if (containerName.includes("list-3")) {
 
-        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
+        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).slice(0, -10) === task.title);
 
         if (movedTask) {
 
@@ -265,7 +266,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       } else {
 
-        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).includes(task.title));
+        const movedTask = this.tasks.find(task => (event.item.element.nativeElement.innerText).slice(0, -10) === task.title);
 
         if (movedTask) {
 
@@ -350,7 +351,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       if (data) {
 
-        this.emptyAndRefillArrays(data);
+        this.refreshPage();
         this.toast.success("Task succesfully edited!");  
         
       }
@@ -380,16 +381,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       if (data) {
 
-        if (typeof data !== "string") { //Meaning: if the response from the server is NOT "The task list is empty."...
-
-          this.toast.success("Task succesfully deleted!");
-
-        } else {
-
-          this.emptyArrays();
-          this.toast.success("Task succesfully deleted!");
-
-        }
+        this.refreshPage();
+        this.toast.success("Task succesfully deleted!");
 
       }
 
@@ -397,35 +390,15 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
-  /**
-   * Empties all arrays (this function is only called when, after deleting a task, there are no more tasks left on the server).
-   */
-  emptyArrays() {
+  refreshPage() {
 
-    this.tasks = [];
+    let currentUrl = this.router.url;
 
-    this.toDo = [];
-    this.inProgress = [];
-    this.awaitingFeedback = [];
-    this.done = [];
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
 
-  }
+        this.router.navigate([currentUrl]);
 
-  /**
-   * Updates the local array "tasks" and also the 4 subarrays (the 4 subarrays are first emptied and then refilled thanks to the
-   * sortTasks function).
-   * @param data - This is the passed-in data (the passed-in array of tasks).
-   */
-  emptyAndRefillArrays(data: Task) {
-
-    this.tasks.push(data);
-
-    this.toDo = [];
-    this.inProgress = [];
-    this.awaitingFeedback = [];
-    this.done = [];
-
-    this.sortTasks();
+    });
 
   }
 

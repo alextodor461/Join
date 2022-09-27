@@ -45,7 +45,7 @@ export class DialogDeleteTaskComponent implements OnInit, OnDestroy {
 
     this.taskService.deleteTask(taskId).pipe(takeUntil(this.destroy)).subscribe((data: string) => {
 
-      this.dialogRef.close();
+      this.dialogRef.close(data);
 
     });
 

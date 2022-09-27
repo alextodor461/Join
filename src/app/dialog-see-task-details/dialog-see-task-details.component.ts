@@ -42,56 +42,6 @@ export class DialogSeeTaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Converts the passed-in value into its corresponding string.
-   * @param n - This is the passed-in value.
-   * @returns - the string that corresponds to the passed-in value.
-   */
-  getPriority(n: number) {
-
-    if (n === 1) {
-
-      return "Low";
-
-    } else if (n === 2) {
-
-      return "Medium";
-
-    } else {
-
-      return "High";
-
-    }
-
-  }
-
-  /**
-   * Converts the passed-in value into its corresponding string.
-   * @param n - This is the passed-in value.
-   * @returns - the string that corresponds to the passed-in value.
-   */
-  getState(n: number) {
-
-    if (n === 1) {
-
-      return "To do";
-
-    } else if (n === 2) {
-
-      return "In Progress";
-
-    } else if (n === 3) {
-
-      return "Testing";
-
-    } else {
-
-      return "Done";
-
-    }
-
-  }
-
-  /**
    * By calling the getUserById function from the user service (and of course making use of the passed-in id) gets the assignee/creator 
    * username.
    * @param id - This is the passed-in id.

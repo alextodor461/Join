@@ -120,55 +120,6 @@ export class DialogEditTaskComponent implements OnInit, OnDestroy {
 
   }
 
-  /**
-   * Converts the passed-in value into its corresponding string.
-   * @param n - This is the passed-in value.
-   * @returns - the string that corresponds to the passed-in value.
-   */
-  getPriority(n: number) {
-
-    if (n === 1) {
-
-      return "Low";
-
-    } else if (n === 2) {
-
-      return "Medium";
-
-    } else {
-
-      return "High";
-
-    }
-
-  }
-
-  /**
-   * Converts the passed-in value into its corresponding string.
-   * @param n - This is the passed-in value.
-   * @returns - the string that corresponds to the passed-in value.
-   */
-  getState(n: number) {
-
-    if (n === 1) {
-
-      return "To do";
-
-    } else if (n === 2) {
-
-      return "In Progress";
-
-    } else if (n === 3) {
-
-      return "Testing";
-
-    } else {
-
-      return "Done";
-
-    }
-
-  }
 
   /**
    * By calling the getUserById function from the user service (and of course making use of the passed-in id) gets the assignee/creator 
@@ -185,7 +136,7 @@ export class DialogEditTaskComponent implements OnInit, OnDestroy {
 
     this.userService.getUserById(id).pipe(takeUntil(this.destroy)).subscribe((data: User) => {
 
-      assigneeOrCreator === "assignee" ? this.taskFromTheBoard.assignee = data.username : this.taskFromTheBoard.creator = data.username;
+      assigneeOrCreator === "assignee" ? this.taskFromTheBoard.assignee = data.id : this.taskFromTheBoard.creator = data.id;
       
       //Once the function gets the assignee and creator usernames the setFormValues function is called.
       this.setFormValues();

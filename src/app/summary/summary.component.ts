@@ -41,7 +41,7 @@ export class SummaryComponent implements OnInit {
       this.toDo = data.filter(e => e.state === "To Do");
 
       //This array is assigned all the tasks whose state is "In Progress".
-      this.inProgress = data.filter(e => e.state === "in Progress");
+      this.inProgress = data.filter(e => e.state === "In Progress");
 
       //This array is assigned all the tasks whose state is "Awaiting Feedback".
       this.awaitingFeedback = data.filter(e => e.state === "Awaiting Feedback");
