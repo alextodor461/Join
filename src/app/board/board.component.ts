@@ -30,7 +30,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   inProgress: Task[] = [];
 
-  testing: Task[] = [];
+  awaitingFeedback: Task[] = [];
 
   done: Task[] = [];
 
@@ -116,17 +116,17 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       const element = this.tasks[i];
 
-      if (element.state === 1) {
+      if (element.state === "To Do") {
 
         this.toDo.push(element);
 
-      } else if (element.state === 2) {
+      } else if (element.state === "In Progress") {
 
         this.inProgress.push(element);
 
-      } else if (element.state === 3) {
+      } else if (element.state === "Awaiting Feedback") {
 
-        this.testing.push(element);
+        this.awaitingFeedback.push(element);
 
       } else {
 
@@ -179,7 +179,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
         if (movedTask) {
 
-          movedTask.state = 1;
+          movedTask.state = "To Do";
 
           this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
@@ -209,7 +209,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
         if (movedTask) {
 
-          movedTask.state = 2;
+          movedTask.state = "In Progress";
 
           this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
@@ -239,7 +239,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
         if (movedTask) {
 
-          movedTask.state = 3;
+          movedTask.state = "Awaiting Feedback";
 
           this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
@@ -269,7 +269,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
         if (movedTask) {
 
-          movedTask.state = 4;
+          movedTask.state = "Done";
 
           this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
@@ -406,7 +406,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     this.toDo = [];
     this.inProgress = [];
-    this.testing = [];
+    this.awaitingFeedback = [];
     this.done = [];
 
   }
@@ -422,7 +422,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     this.toDo = [];
     this.inProgress = [];
-    this.testing = [];
+    this.awaitingFeedback = [];
     this.done = [];
 
     this.sortTasks();

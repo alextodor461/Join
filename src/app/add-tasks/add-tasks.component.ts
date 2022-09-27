@@ -210,7 +210,7 @@ export class AddTasksComponent implements OnInit, OnDestroy {
     newTask.title = this.title?.value;
     newTask.description = this.description?.value;
     newTask.priority = this.priority?.value;
-    newTask.state = 1;
+    newTask.state = "To Do";
     newTask.creation_date = this.getCurrentDate();
     newTask.completion_date = this.convertCompletionDate(this.completionDate?.value);
     newTask.assignee = this.assignee?.value;

@@ -16,7 +16,7 @@ export class SummaryComponent implements OnInit {
 
   inProgress: Task[] = [];
 
-  testing: Task[] = [];
+  awaitingFeedback: Task[] = [];
 
   done: Task[] = [];
 
@@ -38,19 +38,19 @@ export class SummaryComponent implements OnInit {
       this.tasks = data;
 
       //This array is assigned all the tasks whose state is "To Do".
-      this.toDo = data.filter(e => e.state === 1);
+      this.toDo = data.filter(e => e.state === "To Do");
 
-      //This array is assigned all the tasks whose state is "in Progress".
-      this.inProgress = data.filter(e => e.state === 2);
+      //This array is assigned all the tasks whose state is "In Progress".
+      this.inProgress = data.filter(e => e.state === "in Progress");
 
-      //This array is assigned all the tasks whose state is "testing".
-      this.testing = data.filter(e => e.state === 3);
+      //This array is assigned all the tasks whose state is "Awaiting Feedback".
+      this.awaitingFeedback = data.filter(e => e.state === "Awaiting Feedback");
 
-      //This array is assigned all the tasks whose state is "done".
-      this.done = data.filter(e => e.state === 4);
+      //This array is assigned all the tasks whose state is "Done".
+      this.done = data.filter(e => e.state === "Done");
 
       //This array is assigned all the tasks whose priority is "high".
-      this.tasksWithHighPriority = data.filter(e => e.priority === 3);
+      this.tasksWithHighPriority = data.filter(e => e.priority === "Urgent");
 
       //This array is assigned all the tasks, but sorted in ascending order based on the completion date value parameter of each task.
       this.tasksOrderedbyCompletionDate = this.orderTasksByCompletionDate(data);

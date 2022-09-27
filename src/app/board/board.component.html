@@ -115,11 +115,11 @@
 
                 <h2>Testing</h2>
 
-                <div cdkDropList [cdkDropListData]="testing" class="list-3" (cdkDropListDropped)="drop($event)" [class.empty]="!testing.length">
+                <div cdkDropList [cdkDropListData]="awaitingFeedback" class="list-3" (cdkDropListDropped)="drop($event)" [class.empty]="!awaitingFeedback.length">
 
-                    <span class="currently-empty-span" *ngIf="!testing.length">currently empty</span>
+                    <span class="currently-empty-span" *ngIf="!awaitingFeedback.length">currently empty</span>
 
-                    <p class="box-3" *ngFor="let item of testing; index as i" [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
+                    <p class="box-3" *ngFor="let item of awaitingFeedback; index as i" [class.recently-created]="recentlyCreatedTask(item)" cdkDrag>
 
                         <span class="task-title-container">
                             <span [class.searched]="includedInFilteredTasks(item)">{{ item.title }}</span>
