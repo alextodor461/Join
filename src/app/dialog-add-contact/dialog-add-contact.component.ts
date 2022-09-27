@@ -19,8 +19,8 @@ export class DialogAddContactComponent implements OnInit, OnDestroy {
 
   addNewContactForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]),
+    confirmPassword: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')])
   });
 
   destroy = new Subject();
@@ -90,24 +90,25 @@ export class DialogAddContactComponent implements OnInit, OnDestroy {
 
     const newUser: User = new User();
 
-    newUser.username = (this.username?.value).replace(/ /g,'');
+    newUser.username = (this.username?.value).replace(/ /g, '');
     newUser.password = this.password?.value;
+    newUser.password_confirmation = this.confirmPassword?.value;
 
-    this.userService.createUser(newUser).pipe(takeUntil(this.destroy)).subscribe((data: User | string) => {
+    this.userService.createUser(newUser).pipe(takeUntil(this.destroy)).subscribe({
 
-      //If the username from the passed-in data matches any username on the server, no user is created.
-      if (data === `There is already one user with the username '${newUser.username}'.`) {
+      //If the username from the passed-in data does not match any username on the server, a new user is created.
+      next: (data) => {
 
+        this.dialogRef.close(data);
+
+      },
+
+      //But, If the username from the passed-in data matches any username on the server, no user is created.
+      error: (e) => {
+
+        console.error(e);
         this.dialogRef.close();
-
-        //And an unsuccessful conctact creation message is displayed.
         this.toast.warning(`There is already one user with the username '${newUser.username}'.`);
-
-      //But, if the username from the passed-in data does not match any username on the server, a new user is created.
-      } else {
-
-        //And the from-the-server-received data is passed to the contacts component so that it can update its users array.
-        this.dialogRef.close(data); 
 
       }
 

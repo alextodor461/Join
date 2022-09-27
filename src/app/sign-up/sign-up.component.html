@@ -31,7 +31,7 @@
             <mat-form-field>
                 <input matInput placeholder="Confirm password" formControlName="confirmPassword" type="password">
                 <mat-error *ngIf="confirmPassword?.errors?.['required']">Confirm password is required</mat-error>
-                <mat-error *ngIf="password?.errors?.['pattern']">Password must contain at least 8 characters, including lowercase and uppercase letters, numbers and special characters.</mat-error>
+                <mat-error *ngIf="confirmPassword?.errors?.['pattern']">Password must contain at least 8 characters, including lowercase and uppercase letters, numbers and special characters.</mat-error>
             </mat-form-field>
 
             <mat-error *ngIf="!checkPasswordsMatch()">Password must be the same in both the "Password" and "Confirm password" fields.</mat-error>

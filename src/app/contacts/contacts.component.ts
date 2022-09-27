@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subject, takeUntil } from 'rxjs';
 import { User } from 'src/models/user';
@@ -26,7 +27,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
     private userService: UserService,
     public dialog: MatDialog,
     private toast: HotToastService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private router: Router
   ) { }
 
   /**
@@ -60,7 +62,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
       if (data) {
 
-        this.updateUsersArray(data);
+        this.refreshPage();
         this.toast.success('New contact succesfully added!');
 
       }
@@ -94,7 +96,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
         if (data) {
 
-          this.updateUsersArray(data);
+          this.refreshPage();
           this.toast.success('Contact succesfully deleted!');
 
         }
@@ -117,7 +119,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
         if (data) {
 
-          this.updateUsersArray(data);
+          this.refreshPage();
           this.toast.success('Contact succesfully deleted!');
 
         }
@@ -133,13 +135,15 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   }
 
-  /**
-   * Updates the local array "users".
-   * @param data - This is the passed-in data (the passed-in array of users).
-   */
-  updateUsersArray(data: User[]) {
+  refreshPage() {
 
-    this.users = data;
+    let currentUrl = this.router.url;
+
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+
+        this.router.navigate([currentUrl]);
+
+    });
 
   }
 
