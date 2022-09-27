@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
 
     return new Observable((subscriber) => {
 
-      const isAlreadyLoggedIn = localStorage.getItem('currentUserAsText');
+      const isAlreadyLoggedIn = localStorage.getItem('currentUserPlusTokenAsText');
 
       if (isAlreadyLoggedIn) {
 

@@ -10,12 +10,17 @@ import { UserPlusToken } from 'src/models/userPlusToken';
 })
 export class AuthenticationService {
 
-  public currentUser!: User;
+  public currentUserPlusToken!: UserPlusToken;
 
   private loginUrl: string = "https://vicentbotellaferragud.pythonanywhere.com/users/login/";
 
   constructor(private router: Router, private http: HttpClient) { }
 
+  /**
+   * Logs in the passed in user by making a post request to the loginUrl.
+   * @param user - This is the passed-in user.
+   * @returns - the logged-in user data plus his/her recently created token (it is created the moment the user is logged in).
+   */
   public loginUser(user: User): Observable<UserPlusToken> {
 
     return this.http.post<UserPlusToken>(this.loginUrl, user);
@@ -23,38 +28,38 @@ export class AuthenticationService {
   }
 
   /**
-   * Stores the current user in the local storage.
+   * Stores the current user data and his/her token in the local storage.
    */
-  saveCurrentUser() {
+  public saveCurrentUser() {
 
-    const currentUserAsText = JSON.stringify(this.currentUser);
-    localStorage.setItem('currentUserAsText', currentUserAsText);
+    const currentUserPlusTokenAsText = JSON.stringify(this.currentUserPlusToken);
+    localStorage.setItem('currentUserPlusTokenAsText', currentUserPlusTokenAsText);
 
   }
 
   /**
-   * Gets the current user from the local storage.
+   * Gets the current user data and his/her token from the local storage.
    * IMPORTANT! --> This function is always called after the saveCurrentUser function. Therefore, there is always one user in the
    * local storage to retrieve.
    */
-  getCurrentUser() {
+   public getCurrentUser() {
 
-    const currentUserAsText = localStorage.getItem('currentUserAsText');
+    const currentUserPlusTokenAsText = localStorage.getItem('currentUserPlusTokenAsText');
 
-    if (currentUserAsText) {
+    if (currentUserPlusTokenAsText) {
 
-      this.currentUser = JSON.parse(currentUserAsText);
+      this.currentUserPlusToken = JSON.parse(currentUserPlusTokenAsText);
       
     }
 
-    return this.currentUser;
+    return this.currentUserPlusToken;
 
   }
 
   /**
-   * Deletes the current user from the local storage and navigates the user to the login view.
+   * Deletes the current user data and his/her token from the local storage and navigates him/her to the login view.
    */
-  deleteCurrentUser() {
+   public deleteCurrentUser() {
 
     localStorage.removeItem('currentUserAsText');
     this.router.navigate(['/login']);

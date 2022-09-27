@@ -6,7 +6,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { User } from 'src/models/user';
 import { UserPlusToken } from 'src/models/userPlusToken';
 import { AuthenticationService } from 'src/services/authentication.service';
-import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')])
   });
 
   destroy = new Subject();
@@ -25,7 +24,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private toast: HotToastService,
-    private userService: UserService,
     private authService: AuthenticationService
   ) { }
 
@@ -50,8 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Calls the getAllUsers function from the user service to get all the users from the server. Then, it looks for the user object that
-   * matches the passed-in data and logs in (or not) the user.
+   * By calling the loginUser function from the authentication service logs in the user or not.
    */
   submit() {
 
@@ -60,9 +57,24 @@ export class LoginComponent implements OnInit, OnDestroy {
     userToLogIn.username = (this.username?.value).replace(/ /g, '');
     userToLogIn.password = this.password?.value;
 
-    this.authService.loginUser(userToLogIn).pipe(takeUntil(this.destroy)).subscribe((data: UserPlusToken) => {
+    this.authService.loginUser(userToLogIn).pipe(takeUntil(this.destroy)).subscribe({
 
-     console.log(data);
+      //If the passed-in username and the password match any user data on the server, the user is logged in.
+      next: (data: UserPlusToken) => {
+
+        this.authService.currentUserPlusToken = data;
+        this.authService.saveCurrentUser();  //The logged-in user data is stored in the local storage thanks to this function from the authentication service.
+        this.successfulLogin();
+
+      },
+
+      //But, if the passed-in username and the password does not match any user data on the server, the user is not logged in.
+      error: (e) => {
+
+        console.error(e);
+        this.unsuccessfulLogin();
+
+      }
 
     });
 
@@ -96,27 +108,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     //Hard coded data.
     guest.username = "guest";
-    guest.password = "guest";
+    guest.password = "Guest54321@";
 
-    this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
+    this.authService.loginUser(guest).pipe(takeUntil(this.destroy)).subscribe((data: UserPlusToken) => {
 
-      //There is a "guest" user on the server that cannot be deleted (from the frontend). Meaning: the function will always find
-      //the user object that matches the hard coded data.
-      const guestFromDb = data.find((user: User) => user.username === guest.username && user.password === guest.password);
-
-      if (guestFromDb) {
-
-        this.authService.currentUser = guestFromDb;
-        this.authService.saveCurrentUser();
-        this.successfulLogin();
-
-      //Since the function will always find the user object that matches the hard coded data, this is not really necessary. It could
-      //be removed in the future.
-      } else {
-
-        this.toast.error('Log in as guest is not possible yet.');
-
-      }
+      this.authService.currentUserPlusToken = data;
+      this.authService.saveCurrentUser();
+      this.successfulLogin();
 
     });
 

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Subject, takeUntil } from 'rxjs';
 import { User } from 'src/models/user';
+import { UserPlusToken } from 'src/models/userPlusToken';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { UserService } from 'src/services/user.service';
 import { DialogAddContactComponent } from '../dialog-add-contact/dialog-add-contact.component';
@@ -16,7 +17,7 @@ import { DialogEditContactComponent } from '../dialog-edit-contact/dialog-edit-c
 })
 export class ContactsComponent implements OnInit, OnDestroy {
 
-  currentUser!: User;
+  currentUser!: UserPlusToken;
 
   users: User[] = [];
 
@@ -69,71 +70,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   }
 
-  /**
-   * If the current user is Vincent, Alex or Florian, or if the current user clicks the "Edit" button that corresponds to his/her own
-   * contact, the function opens the DialogEditContactComponent, passes all the passed-in contact properties to it (as a data object) 
-   * and, when this is closed, uses the from-the-DialogEditContactComponent-received data to update the local array "users".
-   * @param contact - This is the passed-in contact.
-   */
-  editContact(contact: User) {
-
-    //If the current user is Vincent, Alex or Florian...
-    if (this.currentUser.id === 1 || this.currentUser.id === 2 || this.currentUser.id === 3) {
-
-      const dialogRef = this.dialog.open(DialogEditContactComponent, {
-
-        data: {
-          id: contact.id,
-          username: contact.username,
-          password: contact.password
-        }
-
-      });
-
-      dialogRef.afterClosed().subscribe((data: User[]) => {
-
-        if (data) {
-
-          this.updateUsersArray(data);
-          this.toast.success('Contact succesfully edited!');
-
-        }
-
-      });
-
-    //If the current user tries to edit his/her own contact...
-    } else if (this.currentUser.id === contact.id) {
-
-      const dialogRef = this.dialog.open(DialogEditContactComponent, {
-
-        data: {
-          id: contact.id,
-          username: contact.username,
-          password: contact.password
-        }
-
-      });
-
-      dialogRef.afterClosed().subscribe((data: User[]) => {
-
-        if (data) {
-
-          this.updateUsersArray(data);
-          this.toast.success('Contact succesfully edited!');
-
-        }
-
-      });
-
-    //If the current user is NOT Vincent, Alex or Florian and he/she tries to edit a contact that is not his/her own.
-    } else {
-
-      this.toast.warning('You are not authorized to edit contacts except your own.');
-
-    }
-
-  }
-
+ 
   /**
    * If the current user is Vincent, Alex or Florian, or if the current user clicks the "Delete" button that corresponds to his/her own
    * contact, the function opens the DialogDeleteContactComponent, passes two of the passed-in contact properties to it (as a data 
@@ -143,7 +80,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   deleteContact(contact: User) {
 
     //If the current user is Vincent, Alex or Florian...
-    if (this.currentUser.id === 1 || this.currentUser.id === 2 || this.currentUser.id === 3) {
+    if (this.currentUser.user.id === 1 || this.currentUser.user.id === 2 || this.currentUser.user.id === 3) {
 
       const dialogRef = this.dialog.open(DialogDeleteContactComponent, {
 
@@ -166,7 +103,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
       });
 
     //If the current tries to delete his/her own contact...
-    } else if (this.currentUser.id === contact.id) {
+    } else if (this.currentUser.user.id === contact.id) {
 
       const dialogRef = this.dialog.open(DialogDeleteContactComponent, {
 

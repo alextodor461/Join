@@ -25,6 +25,7 @@
             <mat-form-field>
                 <input matInput placeholder="Password" formControlName="password" type="password">
                 <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
+                <mat-error *ngIf="password?.errors?.['pattern']">Password must contain at least 8 characters, including lowercase and uppercase letters, numbers and special characters.</mat-error>
             </mat-form-field>
 
             <div class="buttons-div">
