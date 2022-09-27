@@ -34,10 +34,6 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-mat-drawer-content {
-    overflow: unset !important;
-}
-
 @media (max-width: 1200px) {
     .mat-horizontal-stepper-header {
         flex-direction: column !important;

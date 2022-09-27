@@ -8,7 +8,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 40px;
     h1 {
         font-weight: bold;
         font-size: 3rem;
@@ -26,9 +25,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top: 50px;
-    margin-left: 40px;
-    //height: calc(100vh - 172px);
+    height: calc(100vh - 172px);
     .summary-left-container {
         width: 50%;
         .summary-container1 {
