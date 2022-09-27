@@ -15,8 +15,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   signupForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]),
+    confirmPassword: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')])
   });
 
   destroy = new Subject();
@@ -90,17 +90,20 @@ export class SignUpComponent implements OnInit, OnDestroy {
     newUser.password = this.password?.value;
     newUser.password_confirmation = this.confirmPassword?.value;
 
-    this.userService.createUser(newUser).pipe(takeUntil(this.destroy)).subscribe((data: User | string) => {
+    this.userService.createUser(newUser).pipe(takeUntil(this.destroy)).subscribe({
 
-      //If the username from the passed-in data matches any username on the server, no user is created.
-      if (data === `There is already one user with the username '${newUser.username}'.`) {
-
-        this.unsuccessfulResgistration();
-
-      //But, if the username from the passed-in data does not match any username on the server, a new user is created.
-      } else {
+      //If the username from the passed-in data does not match any username on the server, a new user is created.
+      next: () => {
 
         this.successfulResgistration();
+
+      },
+
+      //But, If the username from the passed-in data matches any username on the server, no user is created.
+      error: (e) => {
+
+        console.error(e);
+        this.unsuccessfulResgistration();
 
       }
 
