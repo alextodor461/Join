@@ -1,26 +1,50 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Task } from 'src/models/task';
+import { AuthenticationService } from './authentication.service';
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+
+  constructor(private authService: AuthenticationService) {}
+
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    const token = this.authService.getCurrentUser().access_token;
+
+    req = req.clone({
+
+      setHeaders: {
+        'Content-Type' : 'application/json; charset=utf-8',
+        'Accept'       : 'application/json',
+        'Authorization': `Token ${token}`,
+      }
+
+    });
+
+    return next.handle(req);
+
+  }
+
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  private baseUrl: string = "https://vicentbotellaferragud.pythonanywhere.com/api";
+  private baseUrl: string = "https://vicentbotellaferragud.pythonanywhere.com/tasks/";
 
   constructor(private http: HttpClient) { }
 
   /**
    * GET method: fetches all the tasks from the server.
-   * @returns - all the tasks from the server / a string if there are no tasks to fetch.
+   * @returns - all the tasks from the server.
    */
   public getAllTasks(): Observable<Task[]> {
 
-    const taskListEndpoint = "task-list/";
-
-    return this.http.get<Task[]>(`${this.baseUrl}/${taskListEndpoint}`);
+    return this.http.get<Task[]>(this.baseUrl);
 
   }
 
@@ -31,22 +55,18 @@ export class TaskService {
    */
   public getTaskById(id: any): Observable<Task> {
 
-    const taskToGetEndpoint = `task-detail/${id}/`;
-
-    return this.http.get<Task>(`${this.baseUrl}/${taskToGetEndpoint}`);
+    return this.http.get<Task>(`${this.baseUrl}/${id}/`);
 
   }
 
   /**
    * POST method: creates a new task on the server.
    * @param task - This is the passed-in task (the to-be-created task).
-   * @returns - all the tasks from the server.
+   * @returns - the recently created Task from the server.
    */
-  public createTask(task: Task): Observable<Task[]> {
-
-    const taskCreationEndpoint = "task-create/";
+  public createTask(task: Task): Observable<Task> {
     
-    return this.http.post<Task[]>(`${this.baseUrl}/${taskCreationEndpoint}`, task);
+    return this.http.post<Task>(this.baseUrl, task);
 
   }
 
@@ -54,26 +74,22 @@ export class TaskService {
    * PUT method: updates an existing task on the server.
    * @param id - This is the passed-in task's id. The function needs it to update the right task on the server.
    * @param task - This is the passed-in task. The function needs it to update the to-be-updated task info.
-   * @returns - all the tasks from the server.
+   * @returns - the recently updated Task from the server.
    */
-  public updateTask(id: number, task: Task): Observable<Task[]> {
+  public updateTask(id: number, task: Task): Observable<Task> {
 
-    const taskToUpdateEndpoint = `task-update/${id}/`; //The last ULR "/" is necessary in order to avoid server errors.
-
-    return this.http.put<Task[]>(`${this.baseUrl}/${taskToUpdateEndpoint}`, task);
+    return this.http.put<Task>(`${this.baseUrl}/${id}/`, task);
 
   }
 
   /**
    * DELETE method: deletes an existing task from the server.
    * @param id - This is the passed-in task's id. The function needs it to delete the right task from the server.
-   * @returns - all the tasks from the server.
+   * @returns - a message confirming the task deletion success.
    */
-  public deleteTask(id: number): Observable<Task[]> {
+  public deleteTask(id: number): Observable<string> {
 
-    const taskToDeleteEndpoint = `task-delete/${id}/`;
-
-    return this.http.delete<Task[]>(`${this.baseUrl}/${taskToDeleteEndpoint}`);
+    return this.http.delete<string>(`${this.baseUrl}/${id}/`);
 
   }
 

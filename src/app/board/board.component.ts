@@ -191,7 +191,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               movedTask.assignee = assignee?.username;
               movedTask.creator = creator?.username;
 
-              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task[]) => {
+              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
                 console.log(data);
           
@@ -221,7 +221,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               movedTask.assignee = assignee?.username;
               movedTask.creator = creator?.username;
 
-              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task[]) => {
+              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
                 console.log(data);
           
@@ -251,7 +251,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               movedTask.assignee = assignee?.username;
               movedTask.creator = creator?.username;
 
-              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task[]) => {
+              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
                 console.log(data);
           
@@ -281,7 +281,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               movedTask.assignee = assignee?.username;
               movedTask.creator = creator?.username;
 
-              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task[]) => {
+              this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
                 console.log(data);
           
@@ -346,7 +346,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     });
 
-    dialogRef.afterClosed().subscribe((data: Task[]) => {
+    dialogRef.afterClosed().subscribe((data: Task) => {
 
       if (data) {
 
@@ -376,13 +376,12 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     });
 
-    dialogRef.afterClosed().subscribe((data: Task[] | string) => {
+    dialogRef.afterClosed().subscribe((data: string) => {
 
       if (data) {
 
         if (typeof data !== "string") { //Meaning: if the response from the server is NOT "The task list is empty."...
 
-          this.emptyAndRefillArrays(data);
           this.toast.success("Task succesfully deleted!");
 
         } else {
@@ -417,9 +416,9 @@ export class BoardComponent implements OnInit, OnDestroy {
    * sortTasks function).
    * @param data - This is the passed-in data (the passed-in array of tasks).
    */
-  emptyAndRefillArrays(data: Task[]) {
+  emptyAndRefillArrays(data: Task) {
 
-    this.tasks = data;
+    this.tasks.push(data);
 
     this.toDo = [];
     this.inProgress = [];

@@ -27,7 +27,7 @@ export class DialogEditTaskComponent implements OnInit, OnDestroy {
     assignee: new FormControl('', [Validators.required])
   });
 
-  tasksAfterEdition: Task[] = [];
+  taskAfterEdition: Task = new Task();
 
   destroy = new Subject();
 
@@ -232,10 +232,10 @@ export class DialogEditTaskComponent implements OnInit, OnDestroy {
     editedTask.assignee = this.assignee?.value;
     editedTask.creator = this.taskFromTheBoard.creator;
 
-    this.taskService.updateTask(id, editedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task[]) => {
+    this.taskService.updateTask(id, editedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
-      this.tasksAfterEdition = data;
-      this.dialogRef.close(this.tasksAfterEdition);
+      this.taskAfterEdition = data;
+      this.dialogRef.close(this.taskAfterEdition);
 
     });
 

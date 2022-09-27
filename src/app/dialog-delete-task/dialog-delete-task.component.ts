@@ -15,8 +15,6 @@ export class DialogDeleteTaskComponent implements OnInit, OnDestroy {
 
   taskToDeleteTitle!: string;
 
-  tasksAfterDeletion: Task[] = [];
-
   destroy = new Subject();
 
   constructor(
@@ -45,10 +43,9 @@ export class DialogDeleteTaskComponent implements OnInit, OnDestroy {
    */
   deleteTask(taskId: number) {
 
-    this.taskService.deleteTask(taskId).pipe(takeUntil(this.destroy)).subscribe((data: Task[]) => {
+    this.taskService.deleteTask(taskId).pipe(takeUntil(this.destroy)).subscribe((data: string) => {
 
-      this.tasksAfterDeletion = data;
-      this.dialogRef.close(this.tasksAfterDeletion);
+      this.dialogRef.close();
 
     });
 

@@ -10,7 +10,7 @@ import { BoardComponent } from './board/board.component';
 import { AddTasksComponent } from './add-tasks/add-tasks.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -23,7 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { AuthenticationService } from 'src/services/authentication.service';
-import { TaskService } from 'src/services/task.service';
+import { AuthInterceptor, TaskService } from 'src/services/task.service';
 import { UserService } from 'src/services/user.service';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
@@ -85,7 +85,17 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatProgressSpinnerModule,
     MatExpansionModule
   ],
-  providers: [AuthGuard, AuthenticationService, UserService, TaskService],
+  providers: [
+    AuthGuard, 
+    AuthenticationService, 
+    UserService, 
+    TaskService,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi   : true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
