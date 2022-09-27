@@ -8,7 +8,6 @@ import { AuthenticationService } from 'src/services/authentication.service';
 import { UserService } from 'src/services/user.service';
 import { DialogAddContactComponent } from '../dialog-add-contact/dialog-add-contact.component';
 import { DialogDeleteContactComponent } from '../dialog-delete-contact/dialog-delete-contact.component';
-import { DialogEditContactComponent } from '../dialog-edit-contact/dialog-edit-contact.component';
 
 @Component({
   selector: 'app-contacts',

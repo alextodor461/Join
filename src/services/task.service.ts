@@ -62,7 +62,7 @@ export class TaskService {
   /**
    * POST method: creates a new task on the server.
    * @param task - This is the passed-in task (the to-be-created task).
-   * @returns - the recently created Task from the server.
+   * @returns - the recently created task from the server.
    */
   public createTask(task: Task): Observable<Task> {
     
@@ -74,7 +74,7 @@ export class TaskService {
    * PUT method: updates an existing task on the server.
    * @param id - This is the passed-in task's id. The function needs it to update the right task on the server.
    * @param task - This is the passed-in task. The function needs it to update the to-be-updated task info.
-   * @returns - the recently updated Task from the server.
+   * @returns - the recently updated task from the server.
    */
   public updateTask(id: number, task: Task): Observable<Task> {
 
@@ -85,7 +85,7 @@ export class TaskService {
   /**
    * DELETE method: deletes an existing task from the server.
    * @param id - This is the passed-in task's id. The function needs it to delete the right task from the server.
-   * @returns - a message confirming the task deletion success.
+   * @returns - a message confirming the task deletion.
    */
   public deleteTask(id: number): Observable<string> {
 

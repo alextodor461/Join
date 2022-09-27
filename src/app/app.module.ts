@@ -38,7 +38,6 @@ import { DialogSeeTaskDetailsComponent } from './dialog-see-task-details/dialog-
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DialogEditTaskComponent } from './dialog-edit-task/dialog-edit-task.component';
 import { DialogAddContactComponent } from './dialog-add-contact/dialog-add-contact.component';
-import { DialogEditContactComponent } from './dialog-edit-contact/dialog-edit-contact.component';
 import { DialogDeleteContactComponent } from './dialog-delete-contact/dialog-delete-contact.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 
@@ -56,7 +55,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
     DialogSeeTaskDetailsComponent,
     DialogEditTaskComponent,
     DialogAddContactComponent,
-    DialogEditContactComponent,
     DialogDeleteContactComponent,
   ],
   imports: [

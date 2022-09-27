@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from 'src/models/user';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { User } from 'src/models/user';
 })
 export class UserService {
 
-  private baseUrl: string = "https://vicentbotellaferragud.pythonanywhere.com/api";
+  private baseUrl: string = "https://vicentbotellaferragud.pythonanywhere.com/users/";
 
   private registrationUrl: string = "https://vicentbotellaferragud.pythonanywhere.com/users/register/";
 
@@ -16,13 +16,11 @@ export class UserService {
 
   /**
    * GET method: fetches all the users from the server.
-   * @returns - all the users from the server / a string if there are no users to fetch.
+   * @returns - all the users from the server.
    */
   public getAllUsers(): Observable<User[]> {
 
-    const userListEndpoint = "user-list/";
-
-    return this.http.get<User[]>(`${this.baseUrl}/${userListEndpoint}`); 
+    return this.http.get<User[]>(this.baseUrl);
 
   }
 
@@ -33,42 +31,29 @@ export class UserService {
    */
   public getUserById(id: any): Observable<User> {
 
-    const userToGetEndpoint = `user-detail/${id}`;
-
-    return this.http.get<User>(`${this.baseUrl}/${userToGetEndpoint}`); 
-
-  }
-
-  public createUser(user: User): Observable<User> {
-    
-    return this.http.post<User>(this.registrationUrl, user);
+    return this.http.get<User>(`${this.baseUrl}/${id}`);
 
   }
 
   /**
-   * PUT method: updates an existing user on the server.
-   * @param id - This is the passed-in user's id. The function needs it to update the right user on the server.
-   * @param user - This is the passed-in user. The function needs it to update the to-be-updated user info.
-   * @returns - all the users from the server.
+   * POST method: creates a new user on the server.
+   * @param user - This is the passed-in user (the to-be-created user).
+   * @returns - the recently created user from the server.
    */
-  public updateUser(id: number, user: User): Observable<User[]> {
+  public createUser(user: User): Observable<User> {
 
-    const userToUpdateEndpoint = `user-update/${id}/`;
-    
-    return this.http.put<User[]>(`${this.baseUrl}/${userToUpdateEndpoint}`, user);
+    return this.http.post<User>(this.registrationUrl, user);
 
   }
 
   /**
    * DELETE method: deletes an existing user from the server.
    * @param id - This is the passed-in user's id. The function needs it to delete the right user from the server.
-   * @returns - all the users from the server.
+   * @returns - a message confirming the user deletion.
    */
   public deleteUser(id: number): Observable<User[]> {
 
-    const userToDeleteEndpoint = `user-delete/${id}/`;
-    
-    return this.http.delete<User[]>(`${this.baseUrl}/${userToDeleteEndpoint}`);
+    return this.http.delete<User[]>(`${this.baseUrl}/${id}`);
 
   }
 
