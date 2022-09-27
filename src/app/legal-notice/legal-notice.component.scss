@@ -10,6 +10,10 @@
     }
 }
 
+.mat-drawer-content {
+    position: unset !important;
+}
+
 @media (max-width: 600px) {
     mat-drawer-content {
         margin-left: unset;
@@ -17,11 +21,11 @@
     }
     .legal-notice-content {
         position: absolute;
-        left: 0;
-        top: 67px;
-        right: 0px;
-        bottom: 0px;
+        height: 85%;
+        left: 0%;
+        top: 8%;
+        bottom: 87px;
         width: 100%;
-        overflow: scroll;
+        overflow-y: scroll;
     }
 }
