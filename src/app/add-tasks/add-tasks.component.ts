@@ -214,7 +214,7 @@ export class AddTasksComponent implements OnInit, OnDestroy {
     newTask.creation_date = this.getCurrentDate();
     newTask.completion_date = this.convertCompletionDate(this.completionDate?.value);
     newTask.assignee = this.assignee?.value;
-    newTask.creator = this.authService.getCurrentUser().user.username;
+    newTask.creator = this.authService.getCurrentUser().user.id;
 
     this.taskService.createTask(newTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 

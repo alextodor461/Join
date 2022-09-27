@@ -31,6 +31,7 @@ export class DialogSeeTaskDetailsComponent implements OnInit, OnDestroy {
     this.taskFromTheBoard.id = this.data.id;
     this.taskFromTheBoard.title = this.data.title;
     this.taskFromTheBoard.description = this.data.description;
+    this.taskFromTheBoard.priority = this.data.priority;
     this.taskFromTheBoard.state = this.data.state;
     this.taskFromTheBoard.completion_date = this.data.completion_date;
     this.taskFromTheBoard.creation_date = this.data.creation_date;

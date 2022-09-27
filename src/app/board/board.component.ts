@@ -188,8 +188,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
             if (assignee && creator) {
 
-              movedTask.assignee = assignee?.username;
-              movedTask.creator = creator?.username;
+              movedTask.assignee = assignee?.id;
+              movedTask.creator = creator?.id;
 
               this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
@@ -218,8 +218,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
             if (assignee && creator) {
 
-              movedTask.assignee = assignee?.username;
-              movedTask.creator = creator?.username;
+              movedTask.assignee = assignee?.id;
+              movedTask.creator = creator?.id;
 
               this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
@@ -248,8 +248,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
             if (assignee && creator) {
 
-              movedTask.assignee = assignee?.username;
-              movedTask.creator = creator?.username;
+              movedTask.assignee = assignee?.id;
+              movedTask.creator = creator?.id;
 
               this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
@@ -278,8 +278,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
             if (assignee && creator) {
 
-              movedTask.assignee = assignee?.username;
-              movedTask.creator = creator?.username;
+              movedTask.assignee = assignee?.id;
+              movedTask.creator = creator?.id;
 
               this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
