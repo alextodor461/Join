@@ -7,17 +7,22 @@ import { AuthenticationService } from './authentication.service';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService) { }
 
+  /**
+   * Sets the http headers for each http request.
+   */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token = this.authService.getCurrentUser().access_token;
+    let token: string;
+    
+    this.authService.getCurrentUser() ? token = this.authService.getCurrentUser().access_token : token = '';
 
     req = req.clone({
 
       setHeaders: {
-        'Content-Type' : 'application/json; charset=utf-8',
-        'Accept'       : 'application/json',
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
         'Authorization': `Token ${token}`,
       }
 
@@ -65,7 +70,7 @@ export class TaskService {
    * @returns - the recently created task from the server.
    */
   public createTask(task: Task): Observable<Task> {
-    
+
     return this.http.post<Task>(this.baseUrl, task);
 
   }

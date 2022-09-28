@@ -39,8 +39,8 @@ export class AuthenticationService {
 
   /**
    * Gets the current user data and his/her token from the local storage.
-   * IMPORTANT! --> This function is always called after the saveCurrentUser function. Therefore, there is always one user in the
-   * local storage to retrieve.
+   * IMPORTANT! --> This function is always called after the saveCurrentUser function. Therefore, there is always one user (and also 
+   * one token) in the local storage to retrieve.
    */
    public getCurrentUser() {
 
@@ -57,11 +57,11 @@ export class AuthenticationService {
   }
 
   /**
-   * Deletes the current user data and his/her token from the local storage and navigates him/her to the login view.
+   * Deletes the current user data and his/her token from the local storage and navigates the user to the login view.
    */
    public deleteCurrentUser() {
 
-    localStorage.removeItem('currentUserAsText');
+    localStorage.removeItem('currentUserPlusTokenAsText');
     this.router.navigate(['/login']);
 
   }

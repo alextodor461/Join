@@ -49,7 +49,7 @@ export class SummaryComponent implements OnInit {
       //This array is assigned all the tasks whose state is "Done".
       this.done = data.filter(e => e.state === "Done");
 
-      //This array is assigned all the tasks whose priority is "high".
+      //This array is assigned all the tasks whose priority is "Urgent".
       this.tasksWithHighPriority = data.filter(e => e.priority === "Urgent");
 
       //This array is assigned all the tasks, but sorted in ascending order based on the completion date value parameter of each task.
@@ -63,7 +63,7 @@ export class SummaryComponent implements OnInit {
    * Assigns a new completion date value (which is obtained from the getCompletionDateValue function) to each task of the passed-in 
    * tasks array and then sorts it (the array) in ascending order based on this new completion date value parameter.
    * @param tasks - This is the passed-in tasks array.
-   * @returns - The passed-in tasks array sorted in ascending order based on the completion date value parameter of each task.
+   * @returns - the passed-in tasks array sorted in ascending order based on the completion date value parameter of each task.
    */
   orderTasksByCompletionDate(tasks: any) {
 

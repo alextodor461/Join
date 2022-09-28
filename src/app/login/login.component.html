@@ -25,11 +25,13 @@
             <mat-form-field>
                 <input matInput placeholder="Password" formControlName="password" type="password">
                 <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
-                <mat-error *ngIf="password?.errors?.['pattern']">Password must contain at least 8 characters, including lowercase and uppercase letters, numbers and special characters.</mat-error>
+                <mat-error *ngIf="password?.errors?.['pattern']">Password must contain at least 8 characters, including
+                    lowercase and uppercase letters, numbers and special characters.</mat-error>
             </mat-form-field>
 
             <div class="buttons-div">
-                <button class="login-btn" type="submit" [disabled]="!loginForm.valid" [class.disabled-btn]="!loginForm.valid">
+                <button class="login-btn" type="submit" [disabled]="!loginForm.valid"
+                    [class.disabled-btn]="!loginForm.valid">
                     Log in
                 </button>
                 <button class="guest-login-btn" type="button" (click)="loginAsGuest()">Guest Log in</button>

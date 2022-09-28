@@ -1,9 +1,11 @@
 .legal-notice-content {
     display: flex;
     flex-direction: column;
+
     mat-card {
         margin-top: 20px;
     }
+
     h3 {
         color: #29abe2;
         text-decoration: underline;
@@ -19,6 +21,7 @@
         margin-left: unset;
         position: unset;
     }
+
     .legal-notice-content {
         position: absolute;
         height: 85%;
