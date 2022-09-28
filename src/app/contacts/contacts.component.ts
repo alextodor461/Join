@@ -51,8 +51,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Opens the DialogAddContactComponent and, when this is closed, uses the from-the-DialogAddContactComponent-received data to update 
-   * the local array "users".
+   * Opens the DialogAddContactComponent and, when this is closed, calls the refreshPage function and displays a successful 
+   * contact creation message.
    */
   addNewContact() {
 
@@ -71,17 +71,16 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   }
 
- 
   /**
    * If the current user is Vincent, Alex or Florian, or if the current user clicks the "Delete" button that corresponds to his/her own
    * contact, the function opens the DialogDeleteContactComponent, passes two of the passed-in contact properties to it (as a data 
-   * object) and, when this is closed, uses the from-the-DialogDeleteContactComponent-received data to update the local array "users".
+   * object) and, when this is closed, calls the refreshPage function and displays a successful contact deletion message.
    * @param contact - This is the passed-in contact.
    */
   deleteContact(contact: User) {
 
     //If the current user is Vincent, Alex or Florian...
-    if (this.currentUser.user.id === 1 || this.currentUser.user.id === 2 || this.currentUser.user.id === 3) {
+    if (this.currentUser.user.username === "Vincent" || this.currentUser.user.username === "Alex" || this.currentUser.user.username === "Florian") {
 
       const dialogRef = this.dialog.open(DialogDeleteContactComponent, {
 
@@ -129,19 +128,23 @@ export class ContactsComponent implements OnInit, OnDestroy {
     //If the current user is NOT Vincent, Alex or Florian and he/she tries to delete a contact that is not his/her own.
     } else {
 
+      //In this case, a warning message is displayed.
       this.toast.warning('You are not authorized to delete contacts except your own.');
 
     }
 
   }
 
+  /**
+   * Refreshes the page.
+   */
   refreshPage() {
 
     let currentUrl = this.router.url;
 
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
 
-        this.router.navigate([currentUrl]);
+      this.router.navigate([currentUrl]);
 
     });
 

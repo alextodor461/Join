@@ -36,14 +36,12 @@ export class DialogDeleteContactComponent implements OnInit, OnDestroy {
 
   /**
    * Calls the deleteUser function from the user service to delete the user that corresponds to the passed-in id and then closes the
-   * dialog, passing to the board component the data obtained after deleting that user (the rest of the users).
-   * IMPORTANT! --> We want this function to pass the rest of the users to the contacts component, because this component will make 
-   * use of this data to update its users array.
+   * dialog, passing to the board component the data obtained after deleting that user (a message confirming the user deletion).
    * @param userId - This is the passed-in user id.
    */
   deleteContact(userId: number) {
 
-    this.userService.deleteUser(userId).pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
+    this.userService.deleteUser(userId).pipe(takeUntil(this.destroy)).subscribe((data: string) => {
 
       this.dialogRef.close(data);
 

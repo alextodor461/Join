@@ -53,9 +53,8 @@ export class DialogEditTaskComponent implements OnInit, OnDestroy {
     this.taskFromTheBoard.state = this.data.state;
     this.taskFromTheBoard.completion_date = this.data.completion_date;
     this.taskFromTheBoard.creation_date = this.data.creation_date;
-
-    this.getAssigneeOrCreator(this.data.assignee, "assignee");
-    this.getAssigneeOrCreator(this.data.creator, "creator");
+    this.taskFromTheBoard.assignee = this.data.assignee;
+    this.taskFromTheBoard.creator = this.data.creator;
 
     this.userService.getAllUsers().pipe(takeUntil(this.destroy)).subscribe((data: User[]) => {
 
@@ -63,6 +62,8 @@ export class DialogEditTaskComponent implements OnInit, OnDestroy {
       this.users = usersExcludingGuest;
 
     });
+
+    this.setFormValues();
 
   }
 
@@ -120,31 +121,6 @@ export class DialogEditTaskComponent implements OnInit, OnDestroy {
 
   }
 
-
-  /**
-   * By calling the getUserById function from the user service (and of course making use of the passed-in id) gets the assignee/creator 
-   * username.
-   * @param id - This is the passed-in id.
-   * @param assigneeOrCreator - This is the assignee or the creator. Depending on what we want to get, assignee or creator username, we 
-   * will pass in "assignee" or "creator".
-   * IMPORTANT! --> This function is needed because both the assignee and the creator have a numeric value on the server and we want
-   * the user to see their usernames and not their numeric values.
-   */
-  getAssigneeOrCreator(id: number | string, assigneeOrCreator: string) {
-
-    Number(id);
-
-    this.userService.getUserById(id).pipe(takeUntil(this.destroy)).subscribe((data: User) => {
-
-      assigneeOrCreator === "assignee" ? this.taskFromTheBoard.assignee = data.id : this.taskFromTheBoard.creator = data.id;
-      
-      //Once the function gets the assignee and creator usernames the setFormValues function is called.
-      this.setFormValues();
-
-    });
-
-  }
-
   /**
    * Sets all form control values from the editTask from group. In order to do this, it makes use of the local variable
    * "taskFromTheBoard" properties.
@@ -164,9 +140,7 @@ export class DialogEditTaskComponent implements OnInit, OnDestroy {
    * Taking the values of all form controls + the taskFromTheBoard creation date + the taskFromTheBoard creator updates the task
    * object that corresponds to the passed-in id (you can find it in the updateTask function) on the server (it does it by 
    * calling the updateTask function from the task service). It then closes the dialog and passes to the board component the data 
-   * obtained after updating that task (all the tasks, including the recently updated task with the updated info).
-   * IMPORTANT! --> We want this function to pass all the tasks (updated) to the board, because this component will make use of this 
-   * data to update its tasks array.
+   * obtained after updating that task (the recently updated task with the updated info).
    */
   saveChanges() {
 

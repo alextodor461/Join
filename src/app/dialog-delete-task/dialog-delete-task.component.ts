@@ -36,9 +36,7 @@ export class DialogDeleteTaskComponent implements OnInit, OnDestroy {
 
   /**
    * Calls the deleteTask function from the task service to delete the task that corresponds to the passed-in id and then closes the
-   * dialog, passing to the board component the data obtained after deleting that task (the rest of the tasks).
-   * IMPORTANT! --> We want this function to pass the rest of the tasks to the board, because this component will make use of this 
-   * data to update its tasks array.
+   * dialog, passing to the board component the data obtained after deleting that task (a message confirming the task deletion).
    * @param taskId - This is the passed-in task id.
    */
   deleteTask(taskId: number) {

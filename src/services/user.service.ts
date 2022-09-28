@@ -51,9 +51,9 @@ export class UserService {
    * @param id - This is the passed-in user's id. The function needs it to delete the right user from the server.
    * @returns - a message confirming the user deletion.
    */
-  public deleteUser(id: number): Observable<User[]> {
+  public deleteUser(id: number): Observable<string> {
 
-    return this.http.delete<User[]>(`${this.baseUrl}/${id}`);
+    return this.http.delete<string>(`${this.baseUrl}/${id}`);
 
   }
 

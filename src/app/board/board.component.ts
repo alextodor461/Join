@@ -86,7 +86,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       if (data.length) { //Meaning: if the search input infield is not empty...
 
         this.filteredTasks = this.tasks.filter(task => (task.title.toLowerCase()).includes(data.toLowerCase()));
-        
+
       } else {
 
         this.filteredTasks = [];
@@ -94,7 +94,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       }
 
     });
-    
+
   }
 
   /**
@@ -109,7 +109,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Sorts all task into 4 subarrays according to their state (1 = toDo, 2 = inProgress, 3 = testing and 4 = done).
+   * Sorts all task into 4 subarrays according to their state.
    */
   sortTasks() {
 
@@ -195,7 +195,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
                 console.log(data);
-          
+
               });
 
             }
@@ -225,7 +225,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
                 console.log(data);
-          
+
               });
 
             }
@@ -255,7 +255,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
                 console.log(data);
-          
+
               });
 
             }
@@ -285,7 +285,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               this.taskService.updateTask(movedTask.id, movedTask).pipe(takeUntil(this.destroy)).subscribe((data: Task) => {
 
                 console.log(data);
-          
+
               });
 
             }
@@ -326,7 +326,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   /**
    * Opens the DialogEditTaskComponent, passes all the passed-in task properties to it (as a data object) and, when this is closed,
-   * uses the from-the-DialogEditTaskComponent-received data to update the local array "tasks" (and also the 4 subarrays).
+   * calls the refreshPage function and displays a successful task edition message.
    * @param task - This is the passed-in task.
    */
   editTask(task: Task) {
@@ -352,8 +352,8 @@ export class BoardComponent implements OnInit, OnDestroy {
       if (data) {
 
         this.refreshPage();
-        this.toast.success("Task succesfully edited!");  
-        
+        this.toast.success("Task succesfully edited!");
+
       }
 
     });
@@ -362,8 +362,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   /**
    * Opens the DialogDeleteTaskComponent, passes some propertis from the passed-in task properties to it (as a data object) and, when 
-   * this is closed, uses the from-the-DialogDeleteTaskComponent-received data to update the local array "tasks" (and also the 4 
-   * subarrays).
+   * this is closed, calls the refreshPage function and displays a successful task deletion message.
    * @param task - This is the passed-in task.
    */
   deleteTask(task: Task) {
@@ -390,13 +389,16 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Refreshes the page.
+   */
   refreshPage() {
 
     let currentUrl = this.router.url;
 
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
 
-        this.router.navigate([currentUrl]);
+      this.router.navigate([currentUrl]);
 
     });
 

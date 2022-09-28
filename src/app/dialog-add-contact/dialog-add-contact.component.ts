@@ -96,18 +96,20 @@ export class DialogAddContactComponent implements OnInit, OnDestroy {
 
     this.userService.createUser(newUser).pipe(takeUntil(this.destroy)).subscribe({
 
-      //If the username from the passed-in data does not match any username on the server, a new user is created.
+      //If the username from the passed-in data does not match any username on the server, a new user is created and passed to the
+      //contacts component.
       next: (data) => {
 
-        this.dialogRef.close(data);
+        this.dialogRef.close(data); //The dialog is closed, passing the recently created user to the contacts component.
 
       },
 
-      //But, If the username from the passed-in data matches any username on the server, no user is created.
+      //But, If the username from the passed-in data matches any username on the server, no user is created and a warning message
+      //is displayed.
       error: (e) => {
 
         console.error(e);
-        this.dialogRef.close();
+        this.dialogRef.close(); //The dialog is closed anyway.
         this.toast.warning(`There is already one user with the username '${newUser.username}'.`);
 
       }
