@@ -109,7 +109,6 @@ h2 {
     margin-left: 2.5px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 4px;
-
     img {
         width: 75%;
         padding: 2.5px;
@@ -121,7 +120,6 @@ h2 {
     border-radius: 50%;
     transition: 225ms ease-in-out;
     padding: 4px;
-
     &:hover {
         color: white;
         background-color: rgba(0, 0, 0, 0.25);
@@ -135,7 +133,6 @@ h2 {
 
 .info {
     transition: 225ms ease-in-out;
-
     &:hover {
         mat-icon {
             color: #3f51b5;
@@ -145,7 +142,6 @@ h2 {
 
 .edit {
     transition: 225ms ease-in-out;
-
     &:hover {
         mat-icon {
             color: black;
@@ -155,7 +151,6 @@ h2 {
 
 .delete {
     transition: 225ms ease-in-out;
-
     &:hover {
         mat-icon {
             color: #f44336;
@@ -206,24 +201,45 @@ mat-expansion-panel {
 
 @media (max-width: 1000px) {
     .section-header {
-        justify-content: center;
+        // justify-content: center;
+    }
+    .list-container {
+        margin-top: 25px;
+    }
+    .mb-48 {
+        margin-bottom: 48px;
+    }
+    .mbt-48 {
+        margin-bottom: 48px;
+        margin-top: 25px;
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 600px) {
     .list-container-group {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-
     .list-container {
         width: calc(80% - 20px);
     }
-
     main {
         position: fixed;
         left: 0px;
         top: 80px;
+        margin: 2px;
+        height: 82%;
+        padding: 7px;
+        padding-bottom: -1px;
+        width: auto;
+        overflow-y: scroll;
+    }
+    .section-header {
+        flex-direction: column;
+    }
+    h1 {
+        text-align: center;
+        font-size: 2rem;
     }
 }
