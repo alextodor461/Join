@@ -37,12 +37,17 @@ body {
 @media (max-width: 1200px) {
     .mat-horizontal-stepper-header {
         flex-direction: column !important;
+        padding: unset !important;
     }
 }
 
 @media (max-width: 800px) {
     .mat-step-label {
-        display: none !important;
+        // display: none !important;
+        text-align: center;
+    }
+    .mat-step-icon {
+        margin-right: unset !important;
     }
 }
 
@@ -52,5 +57,11 @@ body {
         position: fixed;
         top: 200px;
         left: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .mat-step-label {
+        font-size: 0.7rem;
     }
 }

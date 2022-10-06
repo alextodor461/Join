@@ -119,8 +119,12 @@ nav {
         left: 0;
     }
     nav {
-        justify-content: space-around;
+        flex-direction: row;
+        justify-content: center;
         width: 100%;
+    }
+    .sidebar-top {
+        width: 80%;
     }
     .anchor-tags-main-div {
         flex-direction: row !important;
@@ -133,10 +137,14 @@ nav {
         min-width: 100%;
     }
     .legal-notice-div {
-        display: none !important;
+        width: unset !important;
     }
     mat-toolbar {
         position: fixed;
         left: 0;
+        justify-content: end !important;
+    }
+    #burger-button {
+        display: none;
     }
 }
