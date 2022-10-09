@@ -11,7 +11,7 @@
 
             <div class="summary-container1">
 
-                <mat-card class="mr-1">
+                <mat-card class="mr-1" routerLink="/board">
 
                     <div class="board-info">
                         <h1>{{ tasks.length ? tasks.length : 0}}</h1>
@@ -20,7 +20,7 @@
 
                 </mat-card>
 
-                <mat-card class="mr-1">
+                <mat-card class="mr-1" routerLink="/board">
 
                     <div class="board-info">
                         <h1>{{ inProgress.length ? inProgress.length : 0}}</h1>
@@ -29,7 +29,7 @@
 
                 </mat-card>
 
-                <mat-card>
+                <mat-card routerLink="/board">
 
                     <div class="board-info">
                         <h1>{{ awaitingFeedback.length ? awaitingFeedback.length : 0 }}</h1>
@@ -42,7 +42,7 @@
 
             <div class="summary-container2">
 
-                <mat-card class="middle-card">
+                <mat-card class="middle-card" routerLink="/board">
 
                     <div class="middle-card-left">
 
@@ -59,7 +59,8 @@
 
                     <div class="board-date">
                         <p>Task with the closest deadline:</p>
-                        <p><b>"{{ tasksOrderedbyCompletionDate.length ? tasksOrderedbyCompletionDate[0].title : "none" }}"</b></p>
+                        <p><b>"{{ tasksOrderedbyCompletionDate.length ? tasksOrderedbyCompletionDate[0].title : "none"
+                                }}"</b></p>
                     </div>
 
                 </mat-card>
@@ -68,7 +69,7 @@
 
             <div class="summary-container3">
 
-                <mat-card class="todo-card mr-1">
+                <mat-card class="todo-card mr-1" routerLink="/board">
 
                     <div id="circle">
                         <img src="assets\img\pencil-48.png">
@@ -81,7 +82,7 @@
 
                 </mat-card>
 
-                <mat-card class="todo-card">
+                <mat-card class="todo-card" routerLink="/board">
 
                     <div id="circle">
                         <img src="assets\img\check-mark-3-48.png">

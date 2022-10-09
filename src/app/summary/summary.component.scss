@@ -1,3 +1,11 @@
+mat-card {
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
 .summary-content {
     display: flex;
     flex-direction: column;
@@ -8,11 +16,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     h1 {
         font-weight: bold;
         font-size: 3rem;
         margin-right: 1rem;
     }
+
     p {
         text-align: center;
         border-left: medium solid #29abe2;
@@ -26,20 +36,25 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 270px);
+    height: calc(100vh - 172px);
+
     .summary-left-container {
         width: 50%;
+
         .summary-container1 {
             padding: 0px 0px 35px 0px;
             display: flex;
             justify-content: space-between;
+
             mat-card {
                 max-height: 150px;
                 width: calc(100% / 3);
+
                 .board-info {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
+
                     p {
                         text-align: center;
                         font-size: 21px;
@@ -48,18 +63,22 @@
                 }
             }
         }
+
         .summary-container2 {
             padding: 0px 0px 35px 0px;
             display: flex;
             justify-content: center;
+
             mat-card {
                 width: 100%;
                 display: flex;
                 justify-content: center;
+
                 .middle-card-left {
                     display: flex;
                     align-items: center;
                     margin-right: 1rem;
+
                     #circle-red {
                         width: 69px;
                         height: 69px;
@@ -67,6 +86,7 @@
                         border-radius: 70px;
                         margin-right: 1rem;
                         -webkit-border-radius: 70px;
+
                         img {
                             padding: 14px;
                             width: 40px;
@@ -74,18 +94,22 @@
                             transform: rotate(180deg);
                         }
                     }
+
                     .subcontainer-left {
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
+
                         h1 {
                             margin-bottom: .5rem;
                         }
+
                         p {
                             text-align: center;
                             font-size: .75rem;
                             color: #2a3647;
                             margin-bottom: 0;
+
                             span {
                                 color: #ff3d00;
                                 text-decoration: underline;
@@ -93,6 +117,7 @@
                         }
                     }
                 }
+
                 .board-date {
                     border-left: medium solid #d1d1d1;
                     padding-inline: 1rem;
@@ -100,20 +125,24 @@
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
+
                     p {
                         margin-bottom: 0;
                     }
                 }
             }
         }
+
         .summary-container3 {
             display: flex;
             justify-content: space-between;
+
             mat-card {
                 width: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
                 #circle {
                     width: 69px;
                     height: 69px;
@@ -121,19 +150,23 @@
                     border-radius: 70px;
                     margin-right: 1rem;
                     -webkit-border-radius: 70px;
+
                     img {
                         padding: 14px;
                         width: 40px;
                         height: 40px;
                     }
                 }
+
                 .subcontainer-right {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
+
                     h1 {
                         margin-bottom: .5rem;
                     }
+
                     p {
                         text-align: center;
                         font-size: 1.5rem;
@@ -144,9 +177,11 @@
             }
         }
     }
+
     .welcome-name {
         text-align: center;
         width: 50%;
+
         h1 {
             font-size: 47px;
             line-height: normal;
@@ -157,6 +192,7 @@
 mat-card {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     padding: 25px 0px;
+
     h1 {
         font-size: 2rem;
         font-weight: bold;
@@ -172,6 +208,7 @@ mat-card {
     .welcome-name {
         display: none !important;
     }
+
     .summary-left-container {
         width: 80% !important;
     }
@@ -182,38 +219,47 @@ mat-card {
         max-height: 110px;
         width: 110px;
     }
+
     .card-size-middle {
         max-height: 110px;
         width: 110px;
     }
+
     h1 {
         font-size: 47px !important;
     }
+
     p {
         font-size: 14px !important;
     }
+
     #circle {
         width: 50px !important;
         height: 50px !important;
+
         img {
             padding: 10px !important;
             width: 30px !important;
             height: 30px !important;
         }
     }
+
     #circle-red {
         width: 50px !important;
         height: 50px !important;
         margin-left: 10px !important;
+
         img {
             padding: 10px !important;
             width: 30px !important;
             height: 30px !important;
         }
     }
+
     .summary-headline {
         margin-top: 50px;
     }
+
     .summary-content {
         position: fixed;
         left: 0;

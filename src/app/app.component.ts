@@ -13,10 +13,10 @@ export class AppComponent implements OnInit {
   title: string = 'Join';
 
   constructor(
-    private router: Router, 
-    private auth: AuthenticationService, 
+    private router: Router,
+    private auth: AuthenticationService,
     private toast: HotToastService
-    ) { }
+  ) { }
 
   ngOnInit(): void { }
 

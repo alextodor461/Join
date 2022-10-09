@@ -1,18 +1,22 @@
     main {
         width: 100vw;
+
         nav {
             display: flex;
             justify-content: space-between;
             padding: 60px;
+
             .register-button {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
+
             div {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+
                 .signup-btn {
                     font-weight: bold;
                     border: none;
@@ -23,22 +27,26 @@
                     background-color: #2A3647;
                     color: white;
                     transition: 225ms ease-in-out;
+
                     &:hover {
                         background-color: #29ABE2;
                         cursor: pointer;
                     }
                 }
             }
+
             img {
                 width: 80px;
                 height: 80px;
             }
         }
+
         .form-div {
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
+
             form {
                 display: flex;
                 justify-content: space-evenly;
@@ -47,24 +55,29 @@
                 border-radius: 30px;
                 box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
                 min-width: 50vw;
+
                 mat-form-field {
                     width: 75%;
                     margin-bottom: 10px;
                 }
+
                 h1 {
                     font-size: 48px;
                     font-weight: bold;
                     margin: 0;
                     padding-block: 30px;
                 }
+
                 .input-fields-div {
                     display: flex;
                     flex-direction: column;
                     width: 60%;
                 }
+
                 .buttons-div {
                     padding-top: 20px;
                     padding-bottom: 30px;
+
                     button {
                         font-weight: bold;
                         border: none;
@@ -72,29 +85,36 @@
                         padding: 10px;
                         min-width: 100px;
                         margin: 0px 10px;
+
                         &:hover {
                             cursor: pointer;
                         }
                     }
+
                     .guest-login-btn {
                         border: solid 0.5px #2A3647;
                         background: none;
                         transition: 225ms ease-in-out;
+
                         &:hover {
                             color: #29ABE2;
                             border: solid 0.5px #29ABE2;
                         }
                     }
+
                     .login-btn {
                         background-color: #2A3647;
                         color: white;
                         transition: 225ms ease-in-out;
+
                         &:hover {
                             background-color: #29ABE2;
                         }
                     }
+
                     .disabled-btn {
                         background-color: rgba(0, 0, 0, .15);
+
                         &:hover {
                             background-color: rgba(0, 0, 0, .15);
                             cursor: default;
@@ -104,12 +124,13 @@
             }
         }
     }
-    
+
     @media (max-width: 500px) {
         nav {
             display: flex;
             justify-content: center !important;
         }
+
         .register-button {
             display: flex;
             flex-direction: column;

@@ -15,7 +15,7 @@ import { AuthenticationService } from 'src/services/authentication.service';
 export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
     password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')])
   });
 

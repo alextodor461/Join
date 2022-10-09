@@ -10,8 +10,10 @@ mat-toolbar {
     background-color: rgba(0, 0, 0, 0.15);
     justify-content: space-between;
     padding: 0 30px;
+
     button {
         transition: 225ms ease-in-out;
+
         &:hover {
             color: white;
             background-color: #29abe2;
@@ -26,30 +28,37 @@ nav {
     background-color: #2a3647;
     height: 100%;
     font-size: 13px;
+
     a {
         color: white;
         text-decoration: none;
     }
+
     span {
         color: white;
     }
+
     .logo {
         margin-left: 25%;
         padding-block: 30px;
     }
+
     .anchor-tags-main-div {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
+
         div {
             display: flex;
             align-items: center;
             padding: 20px 0px;
+
             &:hover {
                 cursor: pointer;
                 //background-color: #091931;
             }
+
             img {
                 margin-left: 25%;
                 margin-right: 10px;
@@ -58,6 +67,7 @@ nav {
             }
         }
     }
+
     .legal-notice-div {
         display: flex;
         text-align: center;
@@ -65,9 +75,11 @@ nav {
         width: 100%;
         padding: 20px 0px;
         cursor: pointer;
+
         &:hover {
             background-color: #091931;
         }
+
         img {
             margin-left: 25%;
             margin-right: 10px;
@@ -99,11 +111,13 @@ nav {
             display: none;
         }
     }
+
     .legal-notice-div {
         span {
             display: none;
         }
     }
+
     .sidebar-top {
         img {
             height: 15%;
@@ -118,32 +132,40 @@ nav {
         bottom: 0;
         left: 0;
     }
+
     nav {
         flex-direction: row;
         justify-content: center;
         width: 100%;
     }
+
     .sidebar-top {
         width: 80%;
     }
+
     .anchor-tags-main-div {
         flex-direction: row !important;
         justify-content: space-around !important;
     }
+
     .logo {
         display: contents;
     }
+
     mat-drawer {
         min-width: 100%;
     }
+
     .legal-notice-div {
         width: unset !important;
     }
+
     mat-toolbar {
         position: fixed;
         left: 0;
         justify-content: end !important;
     }
+
     #burger-button {
         display: none;
     }

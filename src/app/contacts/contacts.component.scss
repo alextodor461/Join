@@ -21,9 +21,11 @@ h1 {
 .avatar-username-container {
     display: flex;
     align-items: center;
+
     mat-card-title {
         margin: 0;
     }
+
     img {
         margin-right: 1rem;
         background-color: rgba(0, 0, 0, 0.5);
@@ -55,6 +57,7 @@ h1 {
     h1 {
         margin-top: 10px !important;
     }
+
     main {
         height: 83%;
         width: 90%;
@@ -66,6 +69,7 @@ h1 {
         margin-right: 2px;
         padding-right: 18px;
     }
+
     mat-card {
         min-width: 300px;
     }
