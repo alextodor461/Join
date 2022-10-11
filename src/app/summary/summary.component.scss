@@ -39,7 +39,7 @@ mat-card {
     height: calc(100vh - 172px);
 
     .summary-left-container {
-        width: 50%;
+        width: 80%;
 
         .summary-container1 {
             padding: 0px 0px 35px 0px;
@@ -78,6 +78,7 @@ mat-card {
                     display: flex;
                     align-items: center;
                     margin-right: 1rem;
+                    padding: 0px 10px;
 
                     #circle-red {
                         width: 69px;
